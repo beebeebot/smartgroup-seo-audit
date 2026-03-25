@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smartgroup — SEO Audit Report</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ===========================================
+   VIEWPORT FITTING: MANDATORY BASE STYLES
+   =========================================== */
+html, body { height: 100%; overflow-x: hidden; }
+html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+.slide {
+    width: 100vw; height: 100vh; height: 100dvh;
+    overflow: hidden; scroll-snap-align: start;
+    display: flex; flex-direction: column; position: relative;
+}
+.slide-content {
+    flex: 1; display: flex; flex-direction: column; justify-content: center;
+    max-height: 100%; overflow: hidden; padding: var(--slide-padding);
+}
+:root {
+    --title-size: clamp(1.5rem, 5vw, 4rem);
+    --h2-size: clamp(1.25rem, 3.5vw, 2.5rem);
+    --h3-size: clamp(1rem, 2.5vw, 1.75rem);
+    --body-size: clamp(0.75rem, 1.5vw, 1.125rem);
+    --small-size: clamp(0.65rem, 1vw, 0.875rem);
+    --slide-padding: clamp(1rem, 4vw, 4rem);
+    --content-gap: clamp(0.5rem, 2vw, 2rem);
+    --element-gap: clamp(0.25rem, 1vw, 1rem);
+}
+.card, .container, .content-box { max-width: min(90vw, 1000px); max-height: min(80vh, 700px); }
+.feature-list, .bullet-list { gap: clamp(0.4rem, 1vh, 1rem); }
+.feature-list li, .bullet-list li { font-size: var(--body-size); line-height: 1.4; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: clamp(0.5rem, 1.5vw, 1rem); }
+img, .image-container { max-width: 100%; max-height: min(50vh, 400px); object-fit: contain; }
+@media (max-height: 700px) {
+    :root { --slide-padding: clamp(0.75rem, 3vw, 2rem); --content-gap: clamp(0.4rem, 1.5vw, 1rem); --title-size: clamp(1.25rem, 4.5vw, 2.5rem); --h2-size: clamp(1rem, 3vw, 1.75rem); }
+}
+@media (max-height: 600px) {
+    :root { --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem); --content-gap: clamp(0.3rem, 1vw, 0.75rem); --title-size: clamp(1.1rem, 4vw, 2rem); --body-size: clamp(0.7rem, 1.2vw, 0.95rem); }
+    .nav-dots, .keyboard-hint, .decorative { display: none; }
+}
+@media (max-height: 500px) {
+    :root { --slide-padding: clamp(0.4rem, 2vw, 1rem); --title-size: clamp(1rem, 3.5vw, 1.5rem); --h2-size: clamp(0.9rem, 2.5vw, 1.25rem); --body-size: clamp(0.65rem, 1vw, 0.85rem); }
+}
+@media (max-width: 600px) {
+    :root { --title-size: clamp(1.25rem, 7vw, 2.5rem); }
+    .grid { grid-template-columns: 1fr; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; }
+    html { scroll-behavior: auto; }
+}
+
+/* ===========================================
+   PAPER & INK THEME
+   Editorial, literary, warm cream + charcoal
+   =========================================== */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Source Serif 4', Georgia, serif;
+    --bg-cream: #faf9f7;
+    --bg-warm: #f2f0eb;
+    --bg-dark: #1a1a1a;
+    --text-dark: #1a1a1a;
+    --text-light: #faf9f7;
+    --text-muted: #6b6561;
+    --accent: #c41e3a;
+    --accent-light: rgba(196, 30, 58, 0.08);
+    --rule-color: rgba(26, 26, 26, 0.12);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --duration-normal: 0.7s;
+}
+
+body {
+    font-family: var(--font-body);
+    font-weight: 400;
+    background: var(--bg-cream);
+    color: var(--text-dark);
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ===========================================
+   SLIDE LAYOUTS
+   =========================================== */
+
+/* Title Slide */
+.slide-title {
+    background: var(--bg-cream);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+}
+.slide-title .content-wrap {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center;
+    gap: clamp(0.5rem, 1.5vw, 1.5rem);
+    max-width: min(85vw, 750px);
+}
+.slide-title h1 {
+    font-family: var(--font-display);
+    font-weight: 700; font-style: italic;
+    font-size: clamp(2.5rem, 7vw, 6rem);
+    line-height: 0.95; letter-spacing: -0.02em;
+    color: var(--text-dark);
+}
+.slide-title h1 .accent { color: var(--accent); }
+.slide-title .subtitle {
+    font-family: var(--font-body);
+    font-size: var(--body-size);
+    color: var(--text-muted);
+    max-width: 500px; line-height: 1.6;
+    font-style: italic;
+}
+.slide-title .meta {
+    font-family: var(--font-body);
+    font-size: var(--small-size);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+}
+
+/* Elegant horizontal rules */
+.hr-ornament {
+    display: flex; align-items: center; gap: clamp(0.5rem, 1.5vw, 1rem);
+    width: min(50vw, 300px);
+}
+.hr-ornament::before, .hr-ornament::after {
+    content: ''; flex: 1; height: 1px; background: var(--rule-color);
+}
+.hr-ornament .diamond {
+    width: clamp(5px, 0.6vw, 8px); height: clamp(5px, 0.6vw, 8px);
+    background: var(--accent); transform: rotate(45deg); flex-shrink: 0;
+}
+
+/* Split layout */
+.slide-split { display: flex; height: 100%; width: 100%; }
+.split-left {
+    flex: 1; padding: var(--slide-padding);
+    display: flex; flex-direction: column; justify-content: center;
+    gap: var(--content-gap); position: relative; z-index: 1;
+    background: var(--bg-cream);
+}
+.split-right {
+    flex: 1; padding: var(--slide-padding);
+    display: flex; flex-direction: column; justify-content: center;
+    gap: var(--content-gap); position: relative; z-index: 1;
+    background: var(--bg-dark); color: var(--text-light);
+}
+
+/* Dark slide */
+.slide-dark { background: var(--bg-dark); color: var(--text-light); }
+.slide-dark .slide-content { position: relative; z-index: 1; }
+
+/* Warm slide */
+.slide-warm { background: var(--bg-warm); }
+
+/* Labels */
+.label {
+    font-family: var(--font-body);
+    font-size: var(--small-size);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+    font-weight: 600;
+}
+.label-muted {
+    font-family: var(--font-body);
+    font-size: var(--small-size);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* Headings */
+h2 {
+    font-family: var(--font-display);
+    font-weight: 700; font-size: var(--h2-size);
+    line-height: 1.15; letter-spacing: -0.01em;
+}
+h3 {
+    font-family: var(--font-display);
+    font-weight: 600; font-size: var(--h3-size);
+    line-height: 1.2;
+}
+p, li { font-size: var(--body-size); line-height: 1.6; }
+
+/* Score ring */
+.score-display { display: flex; align-items: center; gap: clamp(1rem, 3vw, 3rem); }
+.score-ring {
+    position: relative;
+    width: clamp(100px, 18vw, 200px); height: clamp(100px, 18vw, 200px);
+    flex-shrink: 0;
+}
+.score-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+.score-ring .ring-bg { fill: none; stroke: var(--rule-color); stroke-width: 5; }
+.score-ring .ring-fill {
+    fill: none; stroke: var(--accent); stroke-width: 5;
+    stroke-linecap: round; stroke-dasharray: 283;
+    stroke-dashoffset: 283;
+    transition: stroke-dashoffset 1.5s var(--ease-out-expo);
+}
+.slide.visible .score-ring .ring-fill { stroke-dashoffset: calc(283 - (283 * var(--score-pct))); }
+.score-number {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(1.8rem, 5vw, 3.5rem); color: var(--text-dark);
+}
+.score-label {
+    font-family: var(--font-body); font-size: var(--small-size);
+    text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted);
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: clamp(2px, 0.3vw, 4px) clamp(6px, 1vw, 12px);
+    font-family: var(--font-body); font-size: clamp(0.55rem, 0.8vw, 0.7rem);
+    font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+    border-radius: 0;
+}
+.badge-critical { background: var(--accent); color: white; }
+.badge-high { background: #d4760a; color: white; }
+.badge-medium { background: #c4a000; color: var(--text-dark); }
+.badge-good { background: #2e7d32; color: white; }
+
+/* Issue cards */
+.issue-card {
+    padding: clamp(0.5rem, 1.2vw, 1rem);
+    border-left: 2px solid var(--accent);
+    background: rgba(255,255,255,0.03);
+    display: flex; flex-direction: column;
+    gap: clamp(0.2rem, 0.5vw, 0.4rem);
+}
+.issue-card strong {
+    font-family: var(--font-display); font-size: var(--body-size);
+    font-weight: 700; color: var(--text-light);
+}
+.issue-card p { font-size: var(--small-size); color: rgba(255,255,255,0.6); line-height: 1.5; }
+
+/* Evidence */
+.evidence {
+    background: rgba(0,0,0,0.03); border: 1px solid var(--rule-color);
+    padding: clamp(0.5rem, 1vw, 0.8rem);
+    font-family: 'Source Serif 4', monospace; font-size: var(--small-size);
+    color: var(--text-muted); line-height: 1.5;
+}
+.evidence-dark {
+    background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.65);
+}
+
+/* Fix box */
+.fix-box {
+    display: flex; gap: clamp(0.4rem, 0.8vw, 0.8rem); align-items: flex-start;
+    padding: clamp(0.5rem, 1vw, 0.8rem);
+    background: rgba(46, 125, 50, 0.06); border: 1px solid rgba(46, 125, 50, 0.15);
+}
+.fix-box-dark {
+    background: rgba(46, 125, 50, 0.08); border-color: rgba(46, 125, 50, 0.2);
+}
+.fix-icon { color: #2e7d32; font-weight: 700; font-size: var(--body-size); flex-shrink: 0; }
+.fix-box strong {
+    font-family: var(--font-body); font-size: var(--small-size);
+    text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dark);
+}
+.fix-box-dark strong { color: var(--text-light); }
+.fix-box p { font-size: var(--small-size); color: var(--text-muted); line-height: 1.5; }
+.fix-box-dark p { color: rgba(255,255,255,0.6); }
+
+/* Findings list */
+.findings {
+    list-style: none; display: flex; flex-direction: column;
+    gap: clamp(0.3rem, 0.8vh, 0.6rem);
+}
+.findings li {
+    font-size: var(--body-size); line-height: 1.5;
+    padding-left: clamp(0.8rem, 1.5vw, 1.2rem); position: relative;
+}
+.findings li::before {
+    content: '—'; position: absolute; left: 0; color: var(--accent);
+    font-weight: 600;
+}
+.findings-dark li { color: rgba(255,255,255,0.85); }
+.findings-dark li strong { color: var(--text-light); }
+.findings-dark li::before { color: var(--accent); }
+
+/* Breakdown grid */
+.breakdown-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: clamp(0.4rem, 1vw, 0.8rem);
+}
+.breakdown-item {
+    padding: clamp(0.5rem, 1vw, 0.8rem);
+    border-left: 2px solid var(--accent);
+    background: var(--accent-light);
+    display: flex; flex-direction: column;
+    gap: clamp(0.1rem, 0.3vw, 0.2rem);
+}
+.breakdown-item .cat-name {
+    font-family: var(--font-body); font-size: var(--small-size);
+    text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;
+}
+.breakdown-item .cat-score {
+    font-family: var(--font-display); font-size: clamp(1.2rem, 2.5vw, 2rem);
+    font-weight: 700; color: var(--accent);
+}
+.breakdown-item .cat-max { font-size: var(--small-size); color: var(--text-muted); }
+
+/* Priority list */
+.priority-list { display: flex; flex-direction: column; gap: clamp(0.3rem, 0.6vh, 0.5rem); }
+.priority-row {
+    display: flex; align-items: center;
+    gap: clamp(0.4rem, 1vw, 0.8rem);
+    padding: clamp(0.3rem, 0.6vw, 0.5rem) 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.priority-num {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: var(--body-size); color: var(--accent);
+    min-width: clamp(18px, 2vw, 28px); font-style: italic;
+}
+.priority-text { font-size: var(--body-size); color: rgba(255,255,255,0.85); flex: 1; }
+
+/* Pull quote (Paper & Ink signature) */
+.pull-quote {
+    font-family: var(--font-display); font-style: italic;
+    font-size: clamp(1.1rem, 2.5vw, 1.8rem); line-height: 1.3;
+    color: var(--text-dark); max-width: min(70vw, 550px);
+    position: relative;
+    padding-left: clamp(1rem, 2vw, 2rem);
+    border-left: 3px solid var(--accent);
+}
+.pull-quote-dark { color: var(--text-light); }
+
+/* Slide number */
+.slide-num {
+    position: absolute; top: var(--slide-padding); right: var(--slide-padding);
+    font-family: var(--font-body); font-weight: 500;
+    font-size: clamp(0.55rem, 0.8vw, 0.75rem);
+    text-transform: uppercase; letter-spacing: 0.15em;
+    color: var(--text-muted); z-index: 2;
+}
+.slide-dark .slide-num { color: rgba(255,255,255,0.2); }
+
+/* Progress bar */
+.progress-bar {
+    position: fixed; top: 0; left: 0; height: 2px;
+    background: var(--accent); z-index: 9999;
+    transition: width 0.3s ease;
+}
+
+/* Nav dots */
+.nav-dots {
+    position: fixed; right: clamp(12px, 2vw, 24px); top: 50%;
+    transform: translateY(-50%); display: flex; flex-direction: column;
+    gap: clamp(6px, 0.8vh, 10px); z-index: 9998;
+}
+.nav-dot {
+    width: clamp(5px, 0.5vw, 7px); height: clamp(5px, 0.5vw, 7px);
+    border-radius: 50%; background: rgba(0,0,0,0.12);
+    cursor: pointer; transition: all 0.3s ease;
+}
+.nav-dot.active { background: var(--accent); transform: scale(1.5); }
+
+/* Animations */
+.reveal {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity var(--duration-normal) var(--ease-out-expo),
+                transform var(--duration-normal) var(--ease-out-expo);
+}
+.slide.visible .reveal { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* Responsive: stack split on mobile */
+@media (max-width: 768px) {
+    .slide-split { flex-direction: column; }
+    .split-left, .split-right { flex: none; height: 50%; }
+    .breakdown-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+<nav class="nav-dots" id="navDots"></nav>
+
+<!-- ========== SLIDE 1: TITLE ========== -->
+<section class="slide slide-title" data-slide="0">
+    <div class="content-wrap">
+        <p class="meta reveal">SEO Audit Report — March 2026</p>
+        <div class="hr-ornament reveal reveal-delay-1"><div class="diamond"></div></div>
+        <h1 class="reveal reveal-delay-2"><span class="accent">Smartgroup</span></h1>
+        <p class="subtitle reveal reveal-delay-3">A comprehensive technical and on-page SEO audit of smartgroup.com.au — identifying critical gaps and prioritised recommendations for Australia's leading salary packaging provider.</p>
+        <div class="hr-ornament reveal reveal-delay-4"><div class="diamond"></div></div>
+        <p class="label-muted reveal reveal-delay-4">smartgroup.com.au</p>
+    </div>
+</section>
+
+<!-- ========== SLIDE 2: SCORE ========== -->
+<section class="slide" data-slide="1">
+    <span class="slide-num">01 / 11</span>
+    <div class="slide-split">
+        <div class="split-left">
+            <p class="label reveal">Overall Score</p>
+            <h2 class="reveal reveal-delay-1">SEO Health</h2>
+            <div class="score-display reveal reveal-delay-2">
+                <div class="score-ring" style="--score-pct: 0.44;">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="ring-bg" cx="50" cy="50" r="45"/>
+                        <circle class="ring-fill" cx="50" cy="50" r="45"/>
+                    </svg>
+                    <div class="score-number">44</div>
+                </div>
+                <div>
+                    <p class="score-label">out of 100</p>
+                    <p style="font-size: var(--body-size); color: var(--text-muted); margin-top: clamp(0.3rem, 0.5vw, 0.5rem); max-width: 320px; line-height: 1.6;">An ASX-listed company with strong brand authority — but critical SEO fundamentals have been neglected. No meta descriptions, no social sharing tags, and no structured data on the homepage.</p>
+                </div>
+            </div>
+        </div>
+        <div class="split-right">
+            <h3 class="reveal" style="color: var(--text-light);">Score Breakdown</h3>
+            <div class="breakdown-grid reveal reveal-delay-1">
+                <div class="breakdown-item" style="background: rgba(255,255,255,0.04); border-left-color: var(--accent);">
+                    <span class="cat-name" style="color: rgba(255,255,255,0.5);">Crawlability</span>
+                    <span class="cat-score" style="color: var(--accent);">18</span>
+                    <span class="cat-max" style="color: rgba(255,255,255,0.3);">/ 25</span>
+                </div>
+                <div class="breakdown-item" style="background: rgba(255,255,255,0.04); border-left-color: #d4760a;">
+                    <span class="cat-name" style="color: rgba(255,255,255,0.5);">Technical</span>
+                    <span class="cat-score" style="color: #d4760a;">4</span>
+                    <span class="cat-max" style="color: rgba(255,255,255,0.3);">/ 20</span>
+                </div>
+                <div class="breakdown-item" style="background: rgba(255,255,255,0.04); border-left-color: #c4a000;">
+                    <span class="cat-name" style="color: rgba(255,255,255,0.5);">On-Page</span>
+                    <span class="cat-score" style="color: #c4a000;">12</span>
+                    <span class="cat-max" style="color: rgba(255,255,255,0.3);">/ 30</span>
+                </div>
+                <div class="breakdown-item" style="background: rgba(255,255,255,0.04); border-left-color: #2e7d32;">
+                    <span class="cat-name" style="color: rgba(255,255,255,0.5);">Content</span>
+                    <span class="cat-score" style="color: #2e7d32;">5</span>
+                    <span class="cat-max" style="color: rgba(255,255,255,0.3);">/ 15</span>
+                </div>
+            </div>
+            <p class="reveal reveal-delay-2" style="font-size: var(--small-size); color: rgba(255,255,255,0.35);">Authority estimated at 5/10 based on ASX-listed status and established brand. Backlink analysis requires Ahrefs/Semrush.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 3: WHAT'S WORKING ========== -->
+<section class="slide slide-warm" data-slide="2">
+    <span class="slide-num">02 / 11</span>
+    <div class="slide-split">
+        <div class="split-left" style="background: var(--bg-warm);">
+            <p class="label reveal" style="color: #2e7d32;">Positives</p>
+            <h2 class="reveal reveal-delay-1">What's Working</h2>
+            <p class="reveal reveal-delay-2" style="font-size: var(--body-size); color: var(--text-muted); max-width: 350px;">The foundations for a strong SEO presence exist — they just need attention.</p>
+        </div>
+        <div class="split-right">
+            <ul class="findings findings-dark reveal">
+                <li><strong>HTTPS everywhere</strong> — valid SSL across all pages</li>
+                <li><strong>Canonical tags</strong> — correctly set on all crawled pages</li>
+                <li><strong>H1 tags on inner pages</strong> — Salary Packaging, About Us, NFP all have proper H1s</li>
+                <li><strong>BreadcrumbList schema</strong> — implemented on inner pages</li>
+                <li><strong>Clean URL structure</strong> — /what-we-do/salary-packaging/, /who-we-help/not-for-profits/</li>
+                <li><strong>XML sitemap</strong> — exists and referenced in robots.txt</li>
+                <li><strong>Lazy loading</strong> — images use loading="lazy"</li>
+                <li><strong>Sector-specific pages</strong> — NFP, Healthcare, Corporate, Government, Education</li>
+                <li><strong>Active news section</strong> — latest article March 2026</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 4: CRITICAL — No Meta Descriptions ========== -->
+<section class="slide" data-slide="3">
+    <span class="slide-num" style="color: rgba(255,255,255,0.2);">03 / 11</span>
+    <div class="slide-split">
+        <div class="split-left">
+            <div class="reveal" style="display: flex; align-items: center; gap: clamp(0.3rem, 0.8vw, 0.6rem);">
+                <span class="badge badge-critical">Critical</span>
+                <p class="label">Issue #1</p>
+            </div>
+            <h2 class="reveal reveal-delay-1">No Meta Descriptions<br>On Any Page</h2>
+            <p class="reveal reveal-delay-2" style="font-size: var(--body-size); color: var(--text-muted); max-width: 380px;">Every single page crawled — homepage, services, about, sector pages — is missing a meta description. Google will auto-generate snippets from page content, which are often poor representations of the page's value.</p>
+        </div>
+        <div class="split-right">
+            <div class="reveal">
+                <p style="font-size: var(--small-size); text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.4); margin-bottom: clamp(0.3rem, 0.5vw, 0.5rem);">Evidence</p>
+                <div class="evidence evidence-dark">
+                    / — meta description: (none)<br>
+                    /about-us/ — meta description: (none)<br>
+                    /what-we-do/salary-packaging/ — (none)<br>
+                    /what-we-do/novated-leasing/ — (none)<br>
+                    /who-we-help/not-for-profits/ — (none)
+                </div>
+            </div>
+            <div class="reveal reveal-delay-1">
+                <div class="fix-box fix-box-dark">
+                    <span class="fix-icon">✓</span>
+                    <div>
+                        <strong>Recommended Fix</strong>
+                        <p>Write unique, keyword-rich meta descriptions (150-160 chars) for every page. Prioritise the homepage, salary packaging, novated leasing, and sector pages first.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 5: CRITICAL — No Open Graph / Social Tags ========== -->
+<section class="slide" data-slide="4">
+    <span class="slide-num">04 / 11</span>
+    <div class="slide-split">
+        <div class="split-left">
+            <div class="reveal" style="display: flex; align-items: center; gap: clamp(0.3rem, 0.8vw, 0.6rem);">
+                <span class="badge badge-critical">Critical</span>
+                <p class="label">Issue #2</p>
+            </div>
+            <h2 class="reveal reveal-delay-1">Zero Social<br>Sharing Tags</h2>
+            <p class="reveal reveal-delay-2" style="font-size: var(--body-size); color: var(--text-muted); max-width: 380px;">No Open Graph tags and no Twitter Card tags on any page. When shared on LinkedIn, Facebook, or Twitter, the site has no control over the title, description, or image that appears.</p>
+        </div>
+        <div class="split-right">
+            <div class="issue-card reveal">
+                <strong>No og:title, og:description, og:image</strong>
+                <p>Social platforms will guess at content to display, often pulling irrelevant text or no image at all. For a B2B company, LinkedIn shares are critical.</p>
+            </div>
+            <div class="issue-card reveal reveal-delay-1">
+                <strong>No Twitter Card meta tags</strong>
+                <p>twitter:card, twitter:title, twitter:image — all missing. Twitter/X shares will appear as plain text links.</p>
+            </div>
+            <div class="reveal reveal-delay-2">
+                <div class="fix-box fix-box-dark">
+                    <span class="fix-icon">✓</span>
+                    <div>
+                        <strong>Recommended Fix</strong>
+                        <p>Add og:title, og:description, og:image, og:url, og:type + twitter:card tags to every page template. Use branded images (1200×630px) for consistent social previews.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 6: CRITICAL — Homepage Missing H1 + Schema ========== -->
+<section class="slide" data-slide="5">
+    <span class="slide-num">05 / 11</span>
+    <div class="slide-split">
+        <div class="split-left">
+            <div class="reveal" style="display: flex; align-items: center; gap: clamp(0.3rem, 0.8vw, 0.6rem);">
+                <span class="badge badge-critical">Critical</span>
+                <p class="label">Issue #3</p>
+            </div>
+            <h2 class="reveal reveal-delay-1">Homepage Has<br>No H1 &amp; No Schema</h2>
+            <p class="reveal reveal-delay-2" style="font-size: var(--body-size); color: var(--text-muted); max-width: 380px;">The most important page on the site is missing both an H1 heading and any structured data. Inner pages have H1s and BreadcrumbList schema — but the homepage has neither.</p>
+        </div>
+        <div class="split-right">
+            <div class="reveal">
+                <p style="font-size: var(--small-size); text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.4); margin-bottom: clamp(0.3rem, 0.5vw, 0.5rem);">Evidence</p>
+                <div class="evidence evidence-dark">
+                    Homepage headings found:<br>
+                    H1: (none)<br>
+                    H2: "Hello Smart"<br>
+                    H2: "Giving back to those in need"<br>
+                    H2: "Champions in the Australian Service<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Excellence Awards"<br><br>
+                    JSON-LD schemas found: 0<br>
+                    (inner pages have BreadcrumbList ✓)
+                </div>
+            </div>
+            <div class="reveal reveal-delay-1">
+                <div class="fix-box fix-box-dark">
+                    <span class="fix-icon">✓</span>
+                    <div>
+                        <strong>Recommended Fix</strong>
+                        <p>Add an H1 (e.g. "Australia's Leading Salary Packaging Provider"). Add Organization schema with name, logo, URL, contact info, and sameAs for social profiles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 7: HIGH — Soft 404s + Images ========== -->
+<section class="slide" data-slide="6">
+    <span class="slide-num">06 / 11</span>
+    <div class="slide-split">
+        <div class="split-left">
+            <div class="reveal" style="display: flex; align-items: center; gap: clamp(0.3rem, 0.8vw, 0.6rem);">
+                <span class="badge badge-high">High</span>
+                <p class="label">Issue #4</p>
+            </div>
+            <h2 class="reveal reveal-delay-1">Soft 404s &amp;<br>Missing Alt Text</h2>
+            <p class="reveal reveal-delay-2" style="font-size: var(--body-size); color: var(--text-muted); max-width: 380px;">Old URLs return a 200 status with "404" content — confusing crawlers. And 4 of 10 homepage images have empty alt attributes.</p>
+        </div>
+        <div class="split-right">
+            <div class="issue-card reveal">
+                <strong>Soft 404s on legacy URLs</strong>
+                <p>/salary-packaging/ and /novated-leasing/ display "404" content but return HTTP 200. Google treats these as live pages with thin content — hurting crawl quality.</p>
+            </div>
+            <div class="issue-card reveal reveal-delay-1">
+                <strong>40% of homepage images missing alt</strong>
+                <p>The hero slider images, logo image, and carousel images all have empty alt="" attributes. Impacts accessibility and image search visibility.</p>
+            </div>
+            <div class="reveal reveal-delay-2">
+                <div class="fix-box fix-box-dark">
+                    <span class="fix-icon">✓</span>
+                    <div>
+                        <strong>Recommended Fix</strong>
+                        <p>Return proper 404 status codes (or 301 redirect to /what-we-do/salary-packaging/). Add descriptive alt text to all images.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 8: BIG OPPORTUNITY — Content ========== -->
+<section class="slide slide-dark" data-slide="7">
+    <span class="slide-num">07 / 11</span>
+    <div class="slide-content" style="align-items: center; text-align: center;">
+        <p class="label reveal">The Biggest Opportunity</p>
+        <div class="pull-quote pull-quote-dark reveal reveal-delay-1" style="border-left: none; text-align: center; padding: 0;">
+            "News and Announcements" is not a content strategy.
+        </div>
+        <p class="reveal reveal-delay-2" style="color: rgba(255,255,255,0.6); max-width: min(70vw, 550px); font-size: var(--body-size); line-height: 1.6; margin-top: clamp(0.5rem, 1vw, 1rem);">Smartgroup's "news" section is PR releases and event coverage — not search-optimised content. Employees searching for "salary packaging calculator", "novated lease vs buying a car", or "FBT exemption cap 2026" won't find Smartgroup in the results.</p>
+        <div class="reveal reveal-delay-3" style="display: flex; gap: clamp(0.5rem, 1vw, 1rem); flex-wrap: wrap; justify-content: center; margin-top: clamp(0.5rem, 1vw, 1rem);">
+            <span class="badge badge-medium" style="font-size: var(--small-size); padding: clamp(4px, 0.5vw, 8px) clamp(10px, 1.5vw, 18px);">salary packaging calculator</span>
+            <span class="badge badge-medium" style="font-size: var(--small-size); padding: clamp(4px, 0.5vw, 8px) clamp(10px, 1.5vw, 18px);">novated lease vs buying</span>
+            <span class="badge badge-medium" style="font-size: var(--small-size); padding: clamp(4px, 0.5vw, 8px) clamp(10px, 1.5vw, 18px);">FBT exemption cap 2026</span>
+            <span class="badge badge-medium" style="font-size: var(--small-size); padding: clamp(4px, 0.5vw, 8px) clamp(10px, 1.5vw, 18px);">salary packaging NFP</span>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 9: MEDIUM — Other Findings ========== -->
+<section class="slide slide-warm" data-slide="8">
+    <span class="slide-num">08 / 11</span>
+    <div class="slide-split">
+        <div class="split-left" style="background: var(--bg-warm);">
+            <p class="label reveal">Medium Priority</p>
+            <h2 class="reveal reveal-delay-1">Other Findings</h2>
+        </div>
+        <div class="split-right">
+            <ul class="findings findings-dark reveal">
+                <li><strong>BreadcrumbList schema malformed</strong> — uses "context" and "type" instead of the required "@context" and "@type". May not be parsed correctly by Google.</li>
+                <li><strong>No Organization schema</strong> — an ASX-listed company should have complete Organization markup with logo, address, social profiles, and contact info.</li>
+                <li><strong>Title tags are generic</strong> — "Salary Packaging | Smartgroup" misses keywords like "Australia", "employee benefits", or "for employers".</li>
+                <li><strong>Viewport meta incomplete</strong> — only has "width=device-width" (missing "initial-scale=1").</li>
+                <li><strong>Sitemap contains stale entries</strong> — many news articles have identical lastmod dates from March 2024, suggesting the sitemap isn't regenerating properly.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 10: QUICK WINS ========== -->
+<section class="slide slide-dark" data-slide="9">
+    <span class="slide-num">09 / 11</span>
+    <div class="slide-split" style="background: var(--bg-dark);">
+        <div class="split-left" style="background: var(--bg-dark); color: var(--text-light);">
+            <p class="label reveal">Action Plan</p>
+            <h2 class="reveal reveal-delay-1" style="color: var(--text-light);">Quick Wins<br><span style="color: var(--accent);">This Week</span></h2>
+            <p class="reveal reveal-delay-2" style="color: rgba(255,255,255,0.45); font-size: var(--body-size); font-style: italic;">Template-level fixes that immediately improve every page.</p>
+        </div>
+        <div class="split-right" style="background: rgba(255,255,255,0.02);">
+            <div class="priority-list reveal">
+                <div class="priority-row">
+                    <span class="priority-num">1</span>
+                    <span class="priority-text">Add meta descriptions to all pages (start with homepage + service pages)</span>
+                </div>
+                <div class="priority-row">
+                    <span class="priority-num">2</span>
+                    <span class="priority-text">Add Open Graph + Twitter Card tags to page template</span>
+                </div>
+                <div class="priority-row">
+                    <span class="priority-num">3</span>
+                    <span class="priority-text">Add H1 to homepage</span>
+                </div>
+                <div class="priority-row">
+                    <span class="priority-num">4</span>
+                    <span class="priority-text">Fix soft 404s — return proper 404 status or 301 redirect</span>
+                </div>
+                <div class="priority-row">
+                    <span class="priority-num">5</span>
+                    <span class="priority-text">Add alt text to all homepage images</span>
+                </div>
+                <div class="priority-row">
+                    <span class="priority-num">6</span>
+                    <span class="priority-text">Fix viewport meta (add initial-scale=1)</span>
+                </div>
+                <div class="priority-row">
+                    <span class="priority-num">7</span>
+                    <span class="priority-text">Fix BreadcrumbList schema (@context, @type)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 11: MEDIUM-TERM ========== -->
+<section class="slide" data-slide="10">
+    <span class="slide-num">10 / 11</span>
+    <div class="slide-split">
+        <div class="split-left">
+            <p class="label reveal">Next 2–4 Weeks</p>
+            <h2 class="reveal reveal-delay-1">Growth<br>Roadmap</h2>
+        </div>
+        <div class="split-right">
+            <div class="priority-list reveal">
+                <div class="priority-row">
+                    <span class="priority-num">1</span>
+                    <span class="priority-text">Add Organization schema with logo, address, phone, sameAs profiles</span>
+                </div>
+                <div class="priority-row">
+                    <span class="priority-num">2</span>
+                    <span class="priority-text">Rewrite title tags with targeted keywords + "Australia" across all pages</span>
+                </div>
+                <div class="priority-row">
+                    <span class="priority-num">3</span>
+                    <span class="priority-text">Add FAQ schema to salary packaging and novated leasing pages</span>
+                </div>
+                <div class="priority-row">
+                    <span class="priority-num">4</span>
+                    <span class="priority-text">Launch an SEO-optimised blog targeting employee benefit keywords</span>
+                </div>
+                <div class="priority-row">
+                    <span class="priority-num">5</span>
+                    <span class="priority-text">Build a salary packaging calculator tool (free tool strategy for organic traffic)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== SLIDE 12: CLOSING ========== -->
+<section class="slide slide-title" data-slide="11" style="background: var(--bg-dark);">
+    <div class="content-wrap">
+        <p class="meta reveal" style="color: rgba(255,255,255,0.35);">SEO Audit Complete</p>
+        <div class="hr-ornament reveal reveal-delay-1" style="--rule-color: rgba(255,255,255,0.1);"><div class="diamond"></div></div>
+        <h1 class="reveal reveal-delay-2" style="color: var(--text-light);">Score: <span class="accent">44/100</span></h1>
+        <p class="subtitle reveal reveal-delay-3" style="color: rgba(255,255,255,0.5);">Strong brand authority undermined by basic technical neglect. The template-level fixes alone — meta descriptions, OG tags, homepage H1 — could push this into the 65+ range within a week.</p>
+        <div class="hr-ornament reveal reveal-delay-4" style="--rule-color: rgba(255,255,255,0.1);"><div class="diamond"></div></div>
+        <p class="label-muted reveal reveal-delay-4" style="color: rgba(255,255,255,0.25);">smartgroup.com.au — Prepared March 2026</p>
+    </div>
+</section>
+
+<script>
+class SlidePresentation {
+    constructor() {
+        this.slides = document.querySelectorAll('.slide');
+        this.currentSlide = 0;
+        this.setupIntersectionObserver();
+        this.setupKeyboardNav();
+        this.setupTouchNav();
+        this.setupProgressBar();
+        this.setupNavDots();
+    }
+    setupIntersectionObserver() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    this.currentSlide = Array.from(this.slides).indexOf(entry.target);
+                    this.updateNavDots();
+                    this.updateProgressBar();
+                }
+            });
+        }, { threshold: 0.5 });
+        this.slides.forEach(slide => observer.observe(slide));
+    }
+    setupKeyboardNav() {
+        document.addEventListener('keydown', (e) => {
+            if (['ArrowDown','ArrowRight',' ','PageDown'].includes(e.key)) { e.preventDefault(); this.goToSlide(this.currentSlide + 1); }
+            else if (['ArrowUp','ArrowLeft','PageUp'].includes(e.key)) { e.preventDefault(); this.goToSlide(this.currentSlide - 1); }
+            else if (e.key === 'Home') { e.preventDefault(); this.goToSlide(0); }
+            else if (e.key === 'End') { e.preventDefault(); this.goToSlide(this.slides.length - 1); }
+        });
+    }
+    setupTouchNav() {
+        let startY = 0;
+        document.addEventListener('touchstart', (e) => { startY = e.touches[0].clientY; }, { passive: true });
+        document.addEventListener('touchend', (e) => {
+            const diff = startY - e.changedTouches[0].clientY;
+            if (Math.abs(diff) > 50) this.goToSlide(this.currentSlide + (diff > 0 ? 1 : -1));
+        }, { passive: true });
+    }
+    setupProgressBar() { this.progressBar = document.getElementById('progressBar'); this.updateProgressBar(); }
+    updateProgressBar() { if (this.progressBar) this.progressBar.style.width = ((this.currentSlide + 1) / this.slides.length * 100) + '%'; }
+    setupNavDots() {
+        const nav = document.getElementById('navDots');
+        if (!nav) return;
+        this.slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+            dot.addEventListener('click', () => this.goToSlide(i));
+            nav.appendChild(dot);
+        });
+        this.dots = nav.querySelectorAll('.nav-dot');
+    }
+    updateNavDots() { if (this.dots) this.dots.forEach((d, i) => d.classList.toggle('active', i === this.currentSlide)); }
+    goToSlide(idx) { if (idx >= 0 && idx < this.slides.length) this.slides[idx].scrollIntoView({ behavior: 'smooth' }); }
+}
+document.addEventListener('DOMContentLoaded', () => new SlidePresentation());
+</script>
+</body>
+</html>

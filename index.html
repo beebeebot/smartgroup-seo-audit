@@ -3,17 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Smartgroup — SEO Audit Report</title>
+<title>SmartGroup — AI Search & SEO/GEO Audit</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* ===========================================
-   VIEWPORT FITTING: MANDATORY BASE STYLES
-   =========================================== */
-html, body { height: 100%; overflow-x: hidden; }
+/* === VIEWPORT FITTING === */
+html, body { height: 100%; overflow-x: hidden; margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 .slide {
     width: 100vw; height: 100vh; height: 100dvh;
     overflow: hidden; scroll-snap-align: start;
@@ -23,120 +22,107 @@ html { scroll-snap-type: y mandatory; scroll-behavior: smooth; }
     flex: 1; display: flex; flex-direction: column; justify-content: center;
     max-height: 100%; overflow: hidden; padding: var(--slide-padding);
 }
+
+/* === PSYKE THEME === */
 :root {
+    --psyke-purple: #9500FF;
+    --psyke-purple-light: rgba(149, 0, 255, 0.15);
+    --psyke-purple-glow: rgba(149, 0, 255, 0.3);
+    --psyke-lime: #e6f85e;
+    --psyke-lime-light: rgba(230, 248, 94, 0.12);
+    --bg-primary: #11121c;
+    --bg-secondary: #171825;
+    --bg-tertiary: #191a28;
+    --bg-card: #1e1f30;
+    --bg-elevated: #262838;
+    --bg-surface: rgba(255, 255, 255, 0.03);
+    --text-primary: #eae6ff;
+    --text-secondary: #bdbfd4;
+    --text-muted: #747694;
+    --text-dim: rgba(255, 255, 255, 0.35);
+    --accent-critical: #fe577f;
+    --accent-high: #ff8f3f;
+    --accent-medium: #e6f85e;
+    --accent-good: #58ebff;
+    --accent-positive: #4ade80;
+    --gradient-brand: linear-gradient(135deg, #9500FF 0%, #fe577f 100%);
+    --gradient-glow: linear-gradient(135deg, #58ebff 0%, #e6f85e 100%);
+    --gradient-card: linear-gradient(180deg, rgba(149, 0, 255, 0.08) 0%, transparent 100%);
+    --font-display: 'Space Grotesk', system-ui, sans-serif;
+    --font-body: 'Space Grotesk', system-ui, sans-serif;
     --title-size: clamp(1.5rem, 5vw, 4rem);
     --h2-size: clamp(1.25rem, 3.5vw, 2.5rem);
     --h3-size: clamp(1rem, 2.5vw, 1.75rem);
     --body-size: clamp(0.75rem, 1.5vw, 1.125rem);
     --small-size: clamp(0.65rem, 1vw, 0.875rem);
-    --slide-padding: clamp(1rem, 4vw, 4rem);
+    --slide-padding: clamp(1.5rem, 4vw, 4rem);
     --content-gap: clamp(0.5rem, 2vw, 2rem);
-    --element-gap: clamp(0.25rem, 1vw, 1rem);
-}
-.card, .container, .content-box { max-width: min(90vw, 1000px); max-height: min(80vh, 700px); }
-.feature-list, .bullet-list { gap: clamp(0.4rem, 1vh, 1rem); }
-.feature-list li, .bullet-list li { font-size: var(--body-size); line-height: 1.4; }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); gap: clamp(0.5rem, 1.5vw, 1rem); }
-img, .image-container { max-width: 100%; max-height: min(50vh, 400px); object-fit: contain; }
-@media (max-height: 700px) {
-    :root { --slide-padding: clamp(0.75rem, 3vw, 2rem); --content-gap: clamp(0.4rem, 1.5vw, 1rem); --title-size: clamp(1.25rem, 4.5vw, 2.5rem); --h2-size: clamp(1rem, 3vw, 1.75rem); }
-}
-@media (max-height: 600px) {
-    :root { --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem); --content-gap: clamp(0.3rem, 1vw, 0.75rem); --title-size: clamp(1.1rem, 4vw, 2rem); --body-size: clamp(0.7rem, 1.2vw, 0.95rem); }
-    .nav-dots, .keyboard-hint, .decorative { display: none; }
-}
-@media (max-height: 500px) {
-    :root { --slide-padding: clamp(0.4rem, 2vw, 1rem); --title-size: clamp(1rem, 3.5vw, 1.5rem); --h2-size: clamp(0.9rem, 2.5vw, 1.25rem); --body-size: clamp(0.65rem, 1vw, 0.85rem); }
-}
-@media (max-width: 600px) {
-    :root { --title-size: clamp(1.25rem, 7vw, 2.5rem); }
-    .grid { grid-template-columns: 1fr; }
-}
-@media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; }
-    html { scroll-behavior: auto; }
-}
-
-/* ===========================================
-   PAPER & INK THEME
-   Editorial, literary, warm cream + charcoal
-   =========================================== */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-    --font-display: 'Cormorant Garamond', Georgia, serif;
-    --font-body: 'Source Serif 4', Georgia, serif;
-    --bg-cream: #faf9f7;
-    --bg-warm: #f2f0eb;
-    --bg-dark: #1a1a1a;
-    --text-dark: #1a1a1a;
-    --text-light: #faf9f7;
-    --text-muted: #6b6561;
-    --accent: #c41e3a;
-    --accent-light: rgba(196, 30, 58, 0.08);
-    --rule-color: rgba(26, 26, 26, 0.12);
     --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-    --duration-normal: 0.7s;
+    --duration-normal: 0.6s;
 }
 
 body {
     font-family: var(--font-body);
     font-weight: 400;
-    background: var(--bg-cream);
-    color: var(--text-dark);
+    background: var(--bg-primary);
+    color: var(--text-primary);
     -webkit-font-smoothing: antialiased;
 }
 
-/* ===========================================
-   SLIDE LAYOUTS
-   =========================================== */
+/* === TYPOGRAPHY === */
+.label {
+    font-family: var(--font-display); font-size: var(--small-size);
+    text-transform: uppercase; letter-spacing: 0.2em;
+    color: var(--psyke-purple); font-weight: 600;
+}
+.label-lime { color: var(--psyke-lime); }
+.label-muted { color: var(--text-muted); }
+h2 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: var(--h2-size); line-height: 1.1;
+    letter-spacing: -0.02em; color: var(--text-primary);
+}
+h3 {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: var(--h3-size); line-height: 1.2;
+    color: var(--text-primary);
+}
+p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-secondary); }
 
-/* Title Slide */
+/* === SLIDE LAYOUTS === */
 .slide-title {
-    background: var(--bg-cream);
+    background: var(--bg-primary);
     display: flex; align-items: center; justify-content: center;
-    text-align: center;
 }
 .slide-title .content-wrap {
     position: relative; z-index: 1;
-    display: flex; flex-direction: column; align-items: center;
+    display: flex; flex-direction: column; align-items: flex-start;
     gap: clamp(0.5rem, 1.5vw, 1.5rem);
-    max-width: min(85vw, 750px);
+    max-width: min(85vw, 900px);
 }
 .slide-title h1 {
     font-family: var(--font-display);
-    font-weight: 700; font-style: italic;
-    font-size: clamp(2.5rem, 7vw, 6rem);
-    line-height: 0.95; letter-spacing: -0.02em;
-    color: var(--text-dark);
+    font-weight: 700;
+    font-size: clamp(2rem, 6vw, 4.5rem);
+    line-height: 0.95; letter-spacing: -0.03em;
+    color: var(--text-primary);
 }
-.slide-title h1 .accent { color: var(--accent); }
+.slide-title h1 .accent { color: var(--psyke-purple); }
+.slide-title h1 .accent-lime { color: var(--psyke-lime); }
 .slide-title .subtitle {
-    font-family: var(--font-body);
-    font-size: var(--body-size);
-    color: var(--text-muted);
+    font-size: var(--body-size); color: var(--text-secondary);
     max-width: 500px; line-height: 1.6;
-    font-style: italic;
 }
 .slide-title .meta {
-    font-family: var(--font-body);
     font-size: var(--small-size);
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
+    text-transform: uppercase; letter-spacing: 0.2em;
     color: var(--text-muted);
 }
-
-/* Elegant horizontal rules */
-.hr-ornament {
-    display: flex; align-items: center; gap: clamp(0.5rem, 1.5vw, 1rem);
-    width: min(50vw, 300px);
-}
-.hr-ornament::before, .hr-ornament::after {
-    content: ''; flex: 1; height: 1px; background: var(--rule-color);
-}
-.hr-ornament .diamond {
-    width: clamp(5px, 0.6vw, 8px); height: clamp(5px, 0.6vw, 8px);
-    background: var(--accent); transform: rotate(45deg); flex-shrink: 0;
+.psyke-logo {
+    font-family: var(--font-display);
+    font-weight: 700; font-size: clamp(0.8rem, 1.2vw, 1rem);
+    text-transform: uppercase; letter-spacing: 0.3em;
+    color: var(--psyke-purple);
 }
 
 /* Split layout */
@@ -145,137 +131,139 @@ body {
     flex: 1; padding: var(--slide-padding);
     display: flex; flex-direction: column; justify-content: center;
     gap: var(--content-gap); position: relative; z-index: 1;
-    background: var(--bg-cream);
+    background: var(--bg-primary);
 }
 .split-right {
     flex: 1; padding: var(--slide-padding);
     display: flex; flex-direction: column; justify-content: center;
     gap: var(--content-gap); position: relative; z-index: 1;
-    background: var(--bg-dark); color: var(--text-light);
+    background: var(--bg-secondary);
 }
 
-/* Dark slide */
-.slide-dark { background: var(--bg-dark); color: var(--text-light); }
-.slide-dark .slide-content { position: relative; z-index: 1; }
-
-/* Warm slide */
-.slide-warm { background: var(--bg-warm); }
-
-/* Labels */
-.label {
-    font-family: var(--font-body);
-    font-size: var(--small-size);
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--accent);
-    font-weight: 600;
+/* Full-width centered */
+.slide-center {
+    background: var(--bg-primary);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
 }
-.label-muted {
-    font-family: var(--font-body);
-    font-size: var(--small-size);
-    text-transform: uppercase;
-    letter-spacing: 0.2em;
-    color: var(--text-muted);
-    font-weight: 500;
+.slide-center .content-wrap {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center;
+    gap: var(--content-gap);
+    max-width: min(85vw, 800px);
 }
 
-/* Headings */
-h2 {
-    font-family: var(--font-display);
-    font-weight: 700; font-size: var(--h2-size);
-    line-height: 1.15; letter-spacing: -0.01em;
+/* Glow orbs */
+.glow-orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(80px); pointer-events: none; z-index: 0;
 }
-h3 {
-    font-family: var(--font-display);
-    font-weight: 600; font-size: var(--h3-size);
-    line-height: 1.2;
+.glow-purple {
+    background: var(--psyke-purple-glow);
+    width: clamp(150px, 25vw, 350px); height: clamp(150px, 25vw, 350px);
 }
-p, li { font-size: var(--body-size); line-height: 1.6; }
+.glow-lime {
+    background: rgba(230, 248, 94, 0.08);
+    width: clamp(100px, 20vw, 250px); height: clamp(100px, 20vw, 250px);
+}
 
-/* Score ring */
-.score-display { display: flex; align-items: center; gap: clamp(1rem, 3vw, 3rem); }
+/* Grid background */
+.grid-bg {
+    position: absolute; inset: 0;
+    background-image:
+        linear-gradient(rgba(149, 0, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(149, 0, 255, 0.03) 1px, transparent 1px);
+    background-size: clamp(30px, 5vw, 60px) clamp(30px, 5vw, 60px);
+    pointer-events: none; z-index: 0;
+}
+
+/* === SCORE DISPLAY === */
 .score-ring {
     position: relative;
     width: clamp(100px, 18vw, 200px); height: clamp(100px, 18vw, 200px);
     flex-shrink: 0;
 }
 .score-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
-.score-ring .ring-bg { fill: none; stroke: var(--rule-color); stroke-width: 5; }
+.score-ring .ring-bg { fill: none; stroke: var(--bg-elevated); stroke-width: 6; }
 .score-ring .ring-fill {
-    fill: none; stroke: var(--accent); stroke-width: 5;
-    stroke-linecap: round; stroke-dasharray: 283;
-    stroke-dashoffset: 283;
+    fill: none; stroke: var(--psyke-purple); stroke-width: 6;
+    stroke-linecap: round; stroke-dasharray: 283; stroke-dashoffset: 283;
     transition: stroke-dashoffset 1.5s var(--ease-out-expo);
 }
+.score-ring .ring-fill-lime { stroke: var(--psyke-lime); }
 .slide.visible .score-ring .ring-fill { stroke-dashoffset: calc(283 - (283 * var(--score-pct))); }
 .score-number {
-    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    position: absolute; inset: 0; display: flex;
+    align-items: center; justify-content: center;
     font-family: var(--font-display); font-weight: 700;
-    font-size: clamp(1.8rem, 5vw, 3.5rem); color: var(--text-dark);
+    font-size: clamp(1.8rem, 5vw, 3.5rem); color: var(--text-primary);
 }
 .score-label {
-    font-family: var(--font-body); font-size: var(--small-size);
-    text-transform: uppercase; letter-spacing: 0.15em; color: var(--text-muted);
+    font-size: var(--small-size); text-transform: uppercase;
+    letter-spacing: 0.15em; color: var(--text-muted);
+}
+.dual-score { display: flex; gap: clamp(1.5rem, 4vw, 4rem); flex-wrap: wrap; justify-content: center; }
+.dual-score .score-block { display: flex; flex-direction: column; gap: clamp(0.3rem, 0.5vw, 0.5rem); align-items: center; }
+.dual-score .score-label-big {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: var(--body-size); text-transform: uppercase;
+    letter-spacing: 0.15em;
 }
 
-/* Badges */
+/* === BADGES === */
 .badge {
     display: inline-block;
-    padding: clamp(2px, 0.3vw, 4px) clamp(6px, 1vw, 12px);
-    font-family: var(--font-body); font-size: clamp(0.55rem, 0.8vw, 0.7rem);
+    padding: clamp(2px, 0.3vw, 4px) clamp(8px, 1vw, 14px);
+    font-family: var(--font-display); font-size: clamp(0.55rem, 0.8vw, 0.7rem);
     font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
-    border-radius: 0;
+    border-radius: 4px;
 }
-.badge-critical { background: var(--accent); color: white; }
-.badge-high { background: #d4760a; color: white; }
-.badge-medium { background: #c4a000; color: var(--text-dark); }
-.badge-good { background: #2e7d32; color: white; }
+.badge-critical { background: var(--accent-critical); color: white; }
+.badge-high { background: var(--accent-high); color: var(--bg-primary); }
+.badge-medium { background: var(--accent-medium); color: var(--bg-primary); }
+.badge-good { background: var(--accent-good); color: var(--bg-primary); }
+.badge-positive { background: var(--accent-positive); color: var(--bg-primary); }
 
-/* Issue cards */
+/* === ISSUE CARDS === */
 .issue-card {
-    padding: clamp(0.5rem, 1.2vw, 1rem);
-    border-left: 2px solid var(--accent);
-    background: rgba(255,255,255,0.03);
+    padding: clamp(0.6rem, 1.2vw, 1rem);
+    border-left: 3px solid var(--psyke-purple);
+    background: var(--bg-surface);
     display: flex; flex-direction: column;
     gap: clamp(0.2rem, 0.5vw, 0.4rem);
+    border-radius: 0 4px 4px 0;
 }
 .issue-card strong {
     font-family: var(--font-display); font-size: var(--body-size);
-    font-weight: 700; color: var(--text-light);
+    font-weight: 600; color: var(--text-primary);
 }
-.issue-card p { font-size: var(--small-size); color: rgba(255,255,255,0.6); line-height: 1.5; }
+.issue-card p { font-size: var(--small-size); color: var(--text-muted); line-height: 1.5; }
 
-/* Evidence */
+/* === EVIDENCE BLOCK === */
 .evidence {
-    background: rgba(0,0,0,0.03); border: 1px solid var(--rule-color);
+    background: rgba(149, 0, 255, 0.05);
+    border: 1px solid rgba(149, 0, 255, 0.12);
     padding: clamp(0.5rem, 1vw, 0.8rem);
-    font-family: 'Source Serif 4', monospace; font-size: var(--small-size);
-    color: var(--text-muted); line-height: 1.5;
-}
-.evidence-dark {
-    background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08);
-    color: rgba(255,255,255,0.65);
+    font-family: 'Space Grotesk', monospace; font-size: var(--small-size);
+    color: var(--text-secondary); line-height: 1.5; border-radius: 4px;
 }
 
-/* Fix box */
+/* === FIX BOX === */
 .fix-box {
     display: flex; gap: clamp(0.4rem, 0.8vw, 0.8rem); align-items: flex-start;
     padding: clamp(0.5rem, 1vw, 0.8rem);
-    background: rgba(46, 125, 50, 0.06); border: 1px solid rgba(46, 125, 50, 0.15);
+    background: rgba(74, 222, 128, 0.06);
+    border: 1px solid rgba(74, 222, 128, 0.15);
+    border-radius: 4px;
 }
-.fix-box-dark {
-    background: rgba(46, 125, 50, 0.08); border-color: rgba(46, 125, 50, 0.2);
-}
-.fix-icon { color: #2e7d32; font-weight: 700; font-size: var(--body-size); flex-shrink: 0; }
+.fix-icon { color: var(--accent-positive); font-weight: 700; flex-shrink: 0; }
 .fix-box strong {
-    font-family: var(--font-body); font-size: var(--small-size);
-    text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dark);
+    font-size: var(--small-size); text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--text-primary);
 }
-.fix-box-dark strong { color: var(--text-light); }
 .fix-box p { font-size: var(--small-size); color: var(--text-muted); line-height: 1.5; }
-.fix-box-dark p { color: rgba(255,255,255,0.6); }
 
-/* Findings list */
+/* === FINDINGS LIST === */
 .findings {
     list-style: none; display: flex; flex-direction: column;
     gap: clamp(0.3rem, 0.8vh, 0.6rem);
@@ -283,94 +271,90 @@ p, li { font-size: var(--body-size); line-height: 1.6; }
 .findings li {
     font-size: var(--body-size); line-height: 1.5;
     padding-left: clamp(0.8rem, 1.5vw, 1.2rem); position: relative;
+    color: var(--text-secondary);
 }
 .findings li::before {
-    content: '—'; position: absolute; left: 0; color: var(--accent);
-    font-weight: 600;
+    content: ''; position: absolute; left: 0;
+    top: clamp(7px, 0.8vw, 10px);
+    width: clamp(4px, 0.5vw, 6px); height: clamp(4px, 0.5vw, 6px);
+    background: var(--psyke-purple); border-radius: 1px;
 }
-.findings-dark li { color: rgba(255,255,255,0.85); }
-.findings-dark li strong { color: var(--text-light); }
-.findings-dark li::before { color: var(--accent); }
+.findings li strong { color: var(--text-primary); }
 
-/* Breakdown grid */
+/* === BREAKDOWN GRID === */
 .breakdown-grid {
     display: grid; grid-template-columns: 1fr 1fr;
     gap: clamp(0.4rem, 1vw, 0.8rem);
 }
 .breakdown-item {
     padding: clamp(0.5rem, 1vw, 0.8rem);
-    border-left: 2px solid var(--accent);
-    background: var(--accent-light);
-    display: flex; flex-direction: column;
-    gap: clamp(0.1rem, 0.3vw, 0.2rem);
+    background: var(--bg-surface);
+    border-left: 3px solid var(--psyke-purple);
+    display: flex; flex-direction: column; gap: 2px;
+    border-radius: 0 4px 4px 0;
 }
+.breakdown-item.lime-border { border-left-color: var(--psyke-lime); }
 .breakdown-item .cat-name {
-    font-family: var(--font-body); font-size: var(--small-size);
-    text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600;
+    font-size: var(--small-size); text-transform: uppercase;
+    letter-spacing: 0.08em; font-weight: 600; color: var(--text-muted);
 }
 .breakdown-item .cat-score {
-    font-family: var(--font-display); font-size: clamp(1.2rem, 2.5vw, 2rem);
-    font-weight: 700; color: var(--accent);
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(1.2rem, 2.5vw, 2rem); color: var(--psyke-purple);
 }
-.breakdown-item .cat-max { font-size: var(--small-size); color: var(--text-muted); }
+.breakdown-item.lime-border .cat-score { color: var(--psyke-lime); }
+.breakdown-item .cat-max { font-size: var(--small-size); color: var(--text-dim); }
 
-/* Priority list */
+/* === PRIORITY LIST === */
 .priority-list { display: flex; flex-direction: column; gap: clamp(0.3rem, 0.6vh, 0.5rem); }
 .priority-row {
-    display: flex; align-items: center;
-    gap: clamp(0.4rem, 1vw, 0.8rem);
+    display: flex; align-items: center; gap: clamp(0.4rem, 1vw, 0.8rem);
     padding: clamp(0.3rem, 0.6vw, 0.5rem) 0;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
+    border-bottom: 1px solid rgba(255,255,255,0.04);
 }
 .priority-num {
     font-family: var(--font-display); font-weight: 700;
-    font-size: var(--body-size); color: var(--accent);
-    min-width: clamp(18px, 2vw, 28px); font-style: italic;
+    font-size: var(--body-size); color: var(--psyke-purple);
+    min-width: clamp(18px, 2vw, 28px);
 }
-.priority-text { font-size: var(--body-size); color: rgba(255,255,255,0.85); flex: 1; }
+.priority-text { font-size: var(--body-size); color: var(--text-secondary); flex: 1; }
 
-/* Pull quote (Paper & Ink signature) */
-.pull-quote {
-    font-family: var(--font-display); font-style: italic;
-    font-size: clamp(1.1rem, 2.5vw, 1.8rem); line-height: 1.3;
-    color: var(--text-dark); max-width: min(70vw, 550px);
-    position: relative;
-    padding-left: clamp(1rem, 2vw, 2rem);
-    border-left: 3px solid var(--accent);
+/* === PSYKE CTA === */
+.psyke-cta {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
-.pull-quote-dark { color: var(--text-light); }
 
-/* Slide number */
+/* === SLIDE NUMBER === */
 .slide-num {
     position: absolute; top: var(--slide-padding); right: var(--slide-padding);
-    font-family: var(--font-body); font-weight: 500;
     font-size: clamp(0.55rem, 0.8vw, 0.75rem);
     text-transform: uppercase; letter-spacing: 0.15em;
-    color: var(--text-muted); z-index: 2;
+    color: var(--text-dim); z-index: 2;
 }
-.slide-dark .slide-num { color: rgba(255,255,255,0.2); }
 
-/* Progress bar */
+/* === PROGRESS BAR === */
 .progress-bar {
     position: fixed; top: 0; left: 0; height: 2px;
-    background: var(--accent); z-index: 9999;
+    background: var(--gradient-brand); z-index: 9999;
     transition: width 0.3s ease;
 }
 
-/* Nav dots */
+/* === NAV DOTS === */
 .nav-dots {
     position: fixed; right: clamp(12px, 2vw, 24px); top: 50%;
     transform: translateY(-50%); display: flex; flex-direction: column;
-    gap: clamp(6px, 0.8vh, 10px); z-index: 9998;
+    gap: clamp(4px, 0.5vh, 8px); z-index: 9998;
 }
 .nav-dot {
     width: clamp(5px, 0.5vw, 7px); height: clamp(5px, 0.5vw, 7px);
-    border-radius: 50%; background: rgba(0,0,0,0.12);
-    cursor: pointer; transition: all 0.3s ease;
+    border-radius: 50%; background: rgba(255,255,255,0.1);
+    cursor: pointer; transition: all 0.3s ease; border: none;
 }
-.nav-dot.active { background: var(--accent); transform: scale(1.5); }
+.nav-dot.active { background: var(--psyke-purple); transform: scale(1.5); }
 
-/* Animations */
+/* === ANIMATIONS === */
 .reveal {
     opacity: 0; transform: translateY(20px);
     transition: opacity var(--duration-normal) var(--ease-out-expo),
@@ -382,435 +366,1110 @@ p, li { font-size: var(--body-size); line-height: 1.6; }
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
 
-/* Responsive: stack split on mobile */
+/* === NARRATIVE SLIDE STYLES === */
+.narrative-points {
+    list-style: none; display: flex; flex-direction: column;
+    gap: clamp(0.4rem, 1vh, 0.8rem);
+}
+.narrative-points li {
+    font-size: var(--body-size); line-height: 1.5;
+    padding-left: clamp(1rem, 2vw, 1.5rem); position: relative;
+    color: var(--text-secondary);
+}
+.narrative-points li::before {
+    content: ''; position: absolute; left: 0;
+    top: clamp(7px, 0.8vw, 10px);
+    width: clamp(4px, 0.5vw, 6px); height: clamp(4px, 0.5vw, 6px);
+    background: var(--psyke-purple); border-radius: 1px;
+}
+.narrative-points li strong { color: var(--text-primary); }
+
+.quote-block {
+    border-left: 3px solid var(--psyke-purple);
+    padding-left: clamp(0.8rem, 1.5vw, 1.2rem);
+    font-style: italic; color: var(--text-muted);
+    font-size: var(--body-size); line-height: 1.6;
+}
+
+.step-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(clamp(120px, 15vw, 180px), 1fr));
+    gap: clamp(0.4rem, 1vw, 0.8rem);
+}
+.step-item {
+    padding: clamp(0.6rem, 1vw, 1rem);
+    background: var(--bg-surface);
+    border-top: 2px solid var(--psyke-purple);
+    border-radius: 0 0 4px 4px;
+    display: flex; flex-direction: column; gap: clamp(0.2rem, 0.4vw, 0.4rem);
+}
+.step-num {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(1.2rem, 2vw, 1.8rem); color: var(--psyke-purple);
+}
+.step-item p { font-size: var(--small-size); color: var(--text-secondary); line-height: 1.4; }
+
+.proof-card {
+    padding: clamp(0.6rem, 1.2vw, 1rem);
+    background: var(--bg-surface);
+    border-left: 3px solid var(--psyke-lime);
+    border-radius: 0 4px 4px 0;
+    display: flex; flex-direction: column; gap: clamp(0.2rem, 0.4vw, 0.3rem);
+}
+.proof-card strong { font-size: var(--body-size); color: var(--text-primary); }
+.proof-card .stat { font-size: clamp(1.2rem, 2.5vw, 2rem); font-weight: 700; color: var(--psyke-lime); }
+.proof-card p { font-size: var(--small-size); color: var(--text-muted); }
+
+.phase-block {
+    padding: clamp(0.5rem, 1vw, 0.8rem);
+    background: var(--bg-surface);
+    border-left: 3px solid var(--psyke-purple);
+    border-radius: 0 4px 4px 0;
+    display: flex; flex-direction: column; gap: clamp(0.15rem, 0.3vw, 0.25rem);
+}
+.phase-block .phase-label {
+    font-size: var(--small-size); text-transform: uppercase;
+    letter-spacing: 0.1em; font-weight: 600; color: var(--psyke-purple);
+}
+.phase-block strong { font-size: var(--body-size); color: var(--text-primary); }
+.phase-block p { font-size: var(--small-size); color: var(--text-muted); line-height: 1.4; }
+
+.analysis-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: clamp(0.4rem, 1vw, 0.8rem);
+}
+.analysis-card {
+    padding: clamp(0.5rem, 1vw, 0.8rem);
+    background: var(--bg-surface);
+    border-left: 3px solid var(--psyke-purple);
+    border-radius: 0 4px 4px 0;
+    display: flex; flex-direction: column; gap: clamp(0.15rem, 0.3vw, 0.3rem);
+}
+.analysis-card strong {
+    font-size: var(--small-size); text-transform: uppercase;
+    letter-spacing: 0.08em; font-weight: 600; color: var(--psyke-purple);
+}
+.analysis-card p { font-size: var(--small-size); color: var(--text-muted); line-height: 1.4; }
+
+.keyword-badges {
+    display: flex; flex-wrap: wrap; gap: clamp(0.3rem, 0.6vw, 0.5rem);
+    justify-content: center;
+}
+.keyword-badge {
+    padding: clamp(4px, 0.4vw, 6px) clamp(10px, 1.2vw, 16px);
+    background: var(--psyke-purple-light);
+    border: 1px solid rgba(149, 0, 255, 0.25);
+    border-radius: 20px;
+    font-size: var(--small-size); color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.ai-query-card {
+    padding: clamp(0.5rem, 1vw, 0.8rem);
+    background: var(--bg-surface);
+    border-radius: 6px;
+    display: flex; flex-direction: column; gap: clamp(0.2rem, 0.4vw, 0.3rem);
+    border: 1px solid rgba(255,255,255,0.04);
+}
+.ai-query-card .query {
+    font-size: var(--small-size); color: var(--psyke-lime);
+    font-weight: 600;
+}
+.ai-query-card .result {
+    font-size: var(--small-size); color: var(--text-muted);
+    line-height: 1.4;
+}
+.ai-query-card .result .absent { color: var(--accent-critical); font-weight: 600; }
+.ai-query-card .result .present { color: var(--accent-positive); font-weight: 600; }
+
+/* === SECTION DIVIDER === */
+.section-divider {
+    background: var(--bg-primary);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+}
+.section-divider .content-wrap {
+    position: relative; z-index: 1;
+    display: flex; flex-direction: column; align-items: center;
+    gap: clamp(0.5rem, 1.5vw, 1.5rem);
+}
+.section-divider h1 {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1; letter-spacing: -0.03em;
+    background: var(--gradient-brand);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.divider-line {
+    width: clamp(40px, 8vw, 80px); height: 2px;
+    background: var(--gradient-brand); border-radius: 1px;
+}
+
+/* === RESPONSIVE === */
 @media (max-width: 768px) {
     .slide-split { flex-direction: column; }
     .split-left, .split-right { flex: none; height: 50%; }
     .breakdown-grid { grid-template-columns: 1fr; }
+    .analysis-grid { grid-template-columns: 1fr; }
+    .dual-score { flex-direction: column; align-items: center; }
+    .step-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-height: 700px) {
+    :root { --slide-padding: clamp(0.75rem, 3vw, 2rem); --content-gap: clamp(0.4rem, 1.5vw, 1rem); --title-size: clamp(1.25rem, 4.5vw, 2.5rem); }
+}
+@media (max-height: 600px) {
+    :root { --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem); --title-size: clamp(1.1rem, 4vw, 2rem); --body-size: clamp(0.7rem, 1.2vw, 0.95rem); }
+    .nav-dots { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.2s !important; }
+    html { scroll-behavior: auto; }
 }
 </style>
 </head>
 <body>
 
-<div class="progress-bar" id="progressBar"></div>
+<!-- Progress Bar -->
+<div class="progress-bar" id="progressBar" style="width: 0%"></div>
+
+<!-- Nav Dots -->
 <nav class="nav-dots" id="navDots"></nav>
 
-<!-- ========== SLIDE 1: TITLE ========== -->
-<section class="slide slide-title" data-slide="0">
+<!-- ============================================================
+     PART 1: NARRATIVE SLIDES (1-17)
+     ============================================================ -->
+
+<!-- SLIDE 1: Title -->
+<section class="slide slide-title" id="slide-1">
+    <div class="glow-orb glow-purple" style="top: -10%; right: -5%"></div>
+    <div class="glow-orb glow-lime" style="bottom: -8%; left: -3%"></div>
     <div class="content-wrap">
-        <p class="meta reveal">SEO Audit Report — March 2026</p>
-        <div class="hr-ornament reveal reveal-delay-1"><div class="diamond"></div></div>
-        <h1 class="reveal reveal-delay-2"><span class="accent">Smartgroup</span></h1>
-        <p class="subtitle reveal reveal-delay-3">A comprehensive technical and on-page SEO audit of smartgroup.com.au — identifying critical gaps and prioritised recommendations for Australia's leading salary packaging provider.</p>
-        <div class="hr-ornament reveal reveal-delay-4"><div class="diamond"></div></div>
-        <p class="label-muted reveal reveal-delay-4">smartgroup.com.au</p>
+        <div class="psyke-logo reveal">PSYKE</div>
+        <h1 class="reveal reveal-delay-1"><span class="accent">AI Search</span> Is Reshaping How Enterprise Buyers Discover Vendors</h1>
+        <p class="subtitle reveal reveal-delay-2">What this means for SmartGroup and how to get ahead of it</p>
+        <p class="meta reveal reveal-delay-3">smartgroup.com.au &middot; March 2026</p>
     </div>
+    <span class="slide-num">01 / 30</span>
 </section>
 
-<!-- ========== SLIDE 2: SCORE ========== -->
-<section class="slide" data-slide="1">
-    <span class="slide-num">01 / 11</span>
+<!-- SLIDE 2: What We Heard -->
+<section class="slide" id="slide-2">
     <div class="slide-split">
         <div class="split-left">
-            <p class="label reveal">Overall Score</p>
-            <h2 class="reveal reveal-delay-1">SEO Health</h2>
-            <div class="score-display reveal reveal-delay-2">
-                <div class="score-ring" style="--score-pct: 0.44;">
+            <span class="label reveal">Context</span>
+            <h2 class="reveal reveal-delay-1">What we've heard from SmartGroup</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">Clear opportunity to unlock scalable, inbound demand</p>
+        </div>
+        <div class="split-right">
+            <ul class="narrative-points">
+                <li class="reveal reveal-delay-1"><strong>Strong enterprise positioning</strong> and established market presence across salary packaging, novated leasing, and fleet management</li>
+                <li class="reveal reveal-delay-2"><strong>Growth tied to visibility</strong> across multiple service lines and employer segments</li>
+                <li class="reveal reveal-delay-3"><strong>Reliance on traditional channels</strong> including referrals, sales-led outreach, and paid acquisition</li>
+                <li class="reveal reveal-delay-4"><strong>Increasing pressure to modernise</strong> digital acquisition as competitors invest in organic and AI-ready content</li>
+            </ul>
+        </div>
+    </div>
+    <span class="slide-num">02 / 30</span>
+</section>
+
+<!-- SLIDE 3: The Shift -->
+<section class="slide" id="slide-3">
+    <div class="slide-split">
+        <div class="split-left">
+            <span class="label reveal">The Shift</span>
+            <h2 class="reveal reveal-delay-1">Search is no longer just Google</h2>
+            <div class="quote-block reveal reveal-delay-3">"If you're not structured for AI, you don't exist in these environments"</div>
+        </div>
+        <div class="split-right">
+            <ul class="narrative-points">
+                <li class="reveal reveal-delay-1">Buyers are shifting to <strong>ChatGPT, AI Overviews, Claude, and Perplexity</strong> for vendor research</li>
+                <li class="reveal reveal-delay-2"><strong>Zero-click behaviour is rising</strong> across commercial queries. Answers are served directly, not via blue links</li>
+                <li class="reveal reveal-delay-3">Discovery is becoming <strong>answer-led, not link-led</strong>. AI systems cite authoritative, well-structured sources</li>
+            </ul>
+        </div>
+    </div>
+    <span class="slide-num">03 / 30</span>
+</section>
+
+<!-- SLIDE 4: Why This Matters -->
+<section class="slide" id="slide-4">
+    <div class="slide-split">
+        <div class="split-left">
+            <span class="label reveal">Urgency</span>
+            <h2 class="reveal reveal-delay-1">This is already impacting enterprise buying behaviour</h2>
+        </div>
+        <div class="split-right">
+            <ul class="narrative-points">
+                <li class="reveal reveal-delay-1">Buyers <strong>shortlist vendors before ever visiting a website</strong>, using AI tools to narrow options</li>
+                <li class="reveal reveal-delay-2"><strong>AI is influencing early-stage decision-making</strong> across salary packaging, fleet, and benefits procurement</li>
+                <li class="reveal reveal-delay-3"><strong>Visibility equals credibility</strong> in AI-mediated discovery. If an AI can't find you, you're not in the consideration set</li>
+            </ul>
+            <div class="evidence reveal reveal-delay-4">
+                If you're not showing up here, you're not in the conversation.
+            </div>
+        </div>
+    </div>
+    <span class="slide-num">04 / 30</span>
+</section>
+
+<!-- SLIDE 5: What Winning Looks Like -->
+<section class="slide" id="slide-5">
+    <div class="slide-split">
+        <div class="split-left">
+            <span class="label-lime label reveal">Opportunity</span>
+            <h2 class="reveal reveal-delay-1">The companies winning are doing this differently</h2>
+        </div>
+        <div class="split-right">
+            <ul class="narrative-points">
+                <li class="reveal reveal-delay-1"><strong>Owning entire topic clusters</strong>, not just ranking for a handful of keywords</li>
+                <li class="reveal reveal-delay-2"><strong>Structuring content for machines</strong>, not just humans. Schema, entities, clear headings, parseable paragraphs</li>
+                <li class="reveal reveal-delay-3"><strong>Building authority across long-tail, high-intent queries</strong> like "salary packaging for healthcare workers" or "novated lease vs car loan calculator"</li>
+                <li class="reveal reveal-delay-4"><strong>Being consistently cited by AI systems</strong> through depth, structure, and topical authority</li>
+            </ul>
+        </div>
+    </div>
+    <span class="slide-num">05 / 30</span>
+</section>
+
+<!-- SLIDE 6: SmartGroup Analysis -->
+<section class="slide" id="slide-6">
+    <div class="slide-split">
+        <div class="split-left">
+            <span class="label reveal">Assessment</span>
+            <h2 class="reveal reveal-delay-1">Where SmartGroup currently sits</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">This isn't a performance issue. It's a structural opportunity.</p>
+        </div>
+        <div class="split-right">
+            <div class="analysis-grid">
+                <div class="analysis-card reveal reveal-delay-1">
+                    <strong>Visibility</strong>
+                    <p>Limited presence across long-tail, high-intent queries. SmartGroup absent from AI responses for "best salary packaging provider Australia" and "how does novated leasing work"</p>
+                </div>
+                <div class="analysis-card reveal reveal-delay-2">
+                    <strong>Structure</strong>
+                    <p>Content not optimised for AI parsing. No Organization schema, no FAQ markup, missing Open Graph tags across all pages. H1 tags absent on homepage and key service pages</p>
+                </div>
+                <div class="analysis-card reveal reveal-delay-3">
+                    <strong>Coverage</strong>
+                    <p>Gaps across service-related search themes. No informational content: no guides, comparisons, calculators, or explainer articles targeting buyer queries</p>
+                </div>
+                <div class="analysis-card reveal reveal-delay-4">
+                    <strong>Opportunity</strong>
+                    <p>Significant whitespace across commercial queries. Competitors like Maxxia, SG Fleet, and RemServ own the AI citation space. SmartGroup has the brand authority to compete, but not the content infrastructure</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <span class="slide-num">06 / 30</span>
+</section>
+
+<!-- SLIDE 7: The Gap -->
+<section class="slide slide-center" id="slide-7">
+    <div class="grid-bg"></div>
+    <div class="content-wrap">
+        <span class="label reveal">The Gap</span>
+        <h2 class="reveal reveal-delay-1" style="font-size: var(--title-size);">The gap isn't effort.<br>It's <span style="color: var(--psyke-purple);">infrastructure</span>.</h2>
+        <p class="reveal reveal-delay-2" style="max-width: 600px;">You cannot solve this with blogs or internal teams. This requires a new content system, purpose-built for how search works now and where it's heading.</p>
+    </div>
+    <span class="slide-num">07 / 30</span>
+</section>
+
+<!-- SLIDE 8: Introducing the New Model -->
+<section class="slide" id="slide-8">
+    <div class="slide-split">
+        <div class="split-left">
+            <span class="label reveal">The Model</span>
+            <h2 class="reveal reveal-delay-1">From content creation to content <span style="color: var(--psyke-purple);">infrastructure</span></h2>
+        </div>
+        <div class="split-right">
+            <ul class="narrative-points">
+                <li class="reveal reveal-delay-1"><strong>Topic identification</strong> maps your service areas to the queries buyers actually use</li>
+                <li class="reveal reveal-delay-2"><strong>Blueprint creation</strong> builds the structural foundation: schema, entity relationships, heading architecture</li>
+                <li class="reveal reveal-delay-3"><strong>Scaled page generation</strong> produces 100-200 pages per topic cluster, each targeting specific long-tail queries</li>
+                <li class="reveal reveal-delay-4"><strong>Machine-readable by default.</strong> Every page built for both Google and AI citation engines</li>
+            </ul>
+        </div>
+    </div>
+    <span class="slide-num">08 / 30</span>
+</section>
+
+<!-- SLIDE 9: Where Psyke Fits -->
+<section class="slide" id="slide-9">
+    <div class="slide-split">
+        <div class="split-left">
+            <span class="label reveal">Psyke</span>
+            <h2 class="reveal reveal-delay-1">Your AI Content Growth Engine</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">Not a tool. Not an agency. A system for scalable visibility.</p>
+        </div>
+        <div class="split-right">
+            <ul class="narrative-points">
+                <li class="reveal reveal-delay-1"><strong>Generates 100-200 pages per topic</strong> targeting long-tail, high-intent queries across your service areas</li>
+                <li class="reveal reveal-delay-2"><strong>Built for AI discovery and Google</strong> with proper schema, entity markup, and structured content architecture</li>
+                <li class="reveal reveal-delay-3"><strong>Lives on your domain</strong> building domain authority and brand equity, not on a third-party platform</li>
+                <li class="reveal reveal-delay-4"><strong>No internal resource strain.</strong> Psyke handles research, creation, deployment, and optimisation end-to-end</li>
+            </ul>
+        </div>
+    </div>
+    <span class="slide-num">09 / 30</span>
+</section>
+
+<!-- SLIDE 10: How It Works -->
+<section class="slide" id="slide-10">
+    <div class="slide-split">
+        <div class="split-left">
+            <span class="label reveal">Process</span>
+            <h2 class="reveal reveal-delay-1">How it works</h2>
+        </div>
+        <div class="split-right">
+            <div class="step-grid">
+                <div class="step-item reveal reveal-delay-1">
+                    <span class="step-num">01</span>
+                    <p><strong>Identify</strong> core topics aligned to your commercial goals</p>
+                </div>
+                <div class="step-item reveal reveal-delay-1">
+                    <span class="step-num">02</span>
+                    <p><strong>Build</strong> blueprint pages with full schema and entity architecture</p>
+                </div>
+                <div class="step-item reveal reveal-delay-2">
+                    <span class="step-num">03</span>
+                    <p><strong>Generate</strong> long-tail page variants at scale</p>
+                </div>
+                <div class="step-item reveal reveal-delay-2">
+                    <span class="step-num">04</span>
+                    <p><strong>Deploy</strong> to your domain with zero disruption</p>
+                </div>
+                <div class="step-item reveal reveal-delay-3" style="grid-column: span 2;">
+                    <span class="step-num">05</span>
+                    <p><strong>Optimise + iterate</strong> based on performance data, AI citation tracking, and keyword movement</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <span class="slide-num">10 / 30</span>
+</section>
+
+<!-- SLIDE 11: Proof -->
+<section class="slide" id="slide-11">
+    <div class="slide-split">
+        <div class="split-left">
+            <span class="label-lime label reveal">Results</span>
+            <h2 class="reveal reveal-delay-1">What this looks like in practice</h2>
+        </div>
+        <div class="split-right" style="gap: clamp(0.4rem, 1vw, 0.8rem);">
+            <div class="proof-card reveal reveal-delay-1">
+                <strong>Beny</strong>
+                <span class="stat">600 clicks in 28 days</span>
+                <p>From zero organic presence to measurable inbound traffic within one month of deployment</p>
+            </div>
+            <div class="proof-card reveal reveal-delay-2">
+                <strong>Varicon</strong>
+                <span class="stat">41,000 impressions</span>
+                <p>Scaled visibility across niche construction-tech queries, establishing category authority</p>
+            </div>
+            <div class="proof-card reveal reveal-delay-3">
+                <strong>SaucedIT</strong>
+                <span class="stat">Deal via ChatGPT</span>
+                <p>First recorded client acquisition directly attributed to AI citation, not Google</p>
+            </div>
+        </div>
+    </div>
+    <span class="slide-num">11 / 30</span>
+</section>
+
+<!-- SLIDE 12: Enterprise Readiness -->
+<section class="slide" id="slide-12">
+    <div class="slide-split">
+        <div class="split-left">
+            <span class="label reveal">Enterprise</span>
+            <h2 class="reveal reveal-delay-1">Built for enterprise environments</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">This isn't experimental. This is deployable at enterprise scale.</p>
+        </div>
+        <div class="split-right">
+            <ul class="narrative-points">
+                <li class="reveal reveal-delay-1"><strong>Security and compliance:</strong> Content generated with governance controls, brand-safe outputs, and audit trails</li>
+                <li class="reveal reveal-delay-2"><strong>Brand control:</strong> Every page reviewed against brand guidelines before deployment. Tone, terminology, and positioning locked in</li>
+                <li class="reveal reveal-delay-3"><strong>Integration:</strong> Deploys as a subdirectory on your existing domain. No platform migration, no CMS disruption</li>
+                <li class="reveal reveal-delay-4"><strong>Governance:</strong> Approval workflows, version control, and performance reporting built into the process</li>
+            </ul>
+        </div>
+    </div>
+    <span class="slide-num">12 / 30</span>
+</section>
+
+<!-- SLIDE 13: Risk Reversal -->
+<section class="slide" id="slide-13">
+    <div class="slide-split">
+        <div class="split-left">
+            <span class="label reveal">De-risked</span>
+            <h2 class="reveal reveal-delay-1">De-risked from day one</h2>
+        </div>
+        <div class="split-right">
+            <ul class="narrative-points">
+                <li class="reveal reveal-delay-1"><strong>3-month performance guarantee.</strong> If metrics don't improve within 90 days, we course-correct at our cost</li>
+                <li class="reveal reveal-delay-2"><strong>Controlled rollout.</strong> Start with one topic cluster. Scale only when results are validated</li>
+                <li class="reveal reveal-delay-3"><strong>Pilot approach.</strong> Low commitment entry point designed for enterprise procurement cycles</li>
+                <li class="reveal reveal-delay-4"><strong>Measurable KPIs from week one.</strong> Impressions, clicks, keyword rankings, and AI citation tracking from day of deployment</li>
+            </ul>
+        </div>
+    </div>
+    <span class="slide-num">13 / 30</span>
+</section>
+
+<!-- SLIDE 14: Jeremy Slide -->
+<section class="slide" id="slide-14">
+    <div class="slide-split">
+        <div class="split-left">
+            <span class="label reveal">Strategic</span>
+            <h2 class="reveal reveal-delay-1">Strategic Growth Audit</h2>
+            <h3 class="reveal reveal-delay-2" style="color: var(--psyke-purple);">Led by Jeremy Cabral</h3>
+            <p class="reveal reveal-delay-3" style="color: var(--text-muted);">Embedded growth operator, not an advisor.</p>
+        </div>
+        <div class="split-right">
+            <ul class="narrative-points">
+                <li class="reveal reveal-delay-1"><strong>Deep audit of acquisition and funnel</strong> identifying where pipeline leaks and where high-value traffic is being lost</li>
+                <li class="reveal reveal-delay-2"><strong>Identification of growth constraints</strong> across organic, paid, and AI channels</li>
+                <li class="reveal reveal-delay-3"><strong>Alignment of Psyke with broader strategy</strong> so content infrastructure maps directly to revenue goals</li>
+                <li class="reveal reveal-delay-4"><strong>Recommendations beyond content:</strong> conversion, positioning, competitive gaps, and channel prioritisation</li>
+            </ul>
+        </div>
+    </div>
+    <span class="slide-num">14 / 30</span>
+</section>
+
+<!-- SLIDE 15: The Plan -->
+<section class="slide" id="slide-15">
+    <div class="slide-split">
+        <div class="split-left">
+            <span class="label reveal">Timeline</span>
+            <h2 class="reveal reveal-delay-1">What the next 6-8 weeks looks like</h2>
+        </div>
+        <div class="split-right" style="gap: clamp(0.3rem, 0.8vh, 0.6rem);">
+            <div class="phase-block reveal reveal-delay-1">
+                <span class="phase-label">Phase 1 &middot; Week 1-2</span>
+                <strong>Audit</strong>
+                <p>Jeremy-led growth audit, market and competitor analysis, topic and structure mapping</p>
+            </div>
+            <div class="phase-block reveal reveal-delay-2">
+                <span class="phase-label">Phase 2 &middot; Week 3</span>
+                <strong>Strategy</strong>
+                <p>Blueprint creation, content architecture design, alignment with commercial goals</p>
+            </div>
+            <div class="phase-block reveal reveal-delay-3">
+                <span class="phase-label">Phase 3 &middot; Week 4-6</span>
+                <strong>Deployment</strong>
+                <p>Page generation and rollout, integration with smartgroup.com.au domain, schema implementation</p>
+            </div>
+            <div class="phase-block reveal reveal-delay-4">
+                <span class="phase-label">Phase 4 &middot; Ongoing</span>
+                <strong>Optimisation</strong>
+                <p>Performance tracking, AI citation monitoring, expansion into new topic clusters</p>
+            </div>
+        </div>
+    </div>
+    <span class="slide-num">15 / 30</span>
+</section>
+
+<!-- SLIDE 16: The Outcome -->
+<section class="slide" id="slide-16">
+    <div class="slide-split">
+        <div class="split-left">
+            <span class="label-lime label reveal">Outcome</span>
+            <h2 class="reveal reveal-delay-1">What success looks like</h2>
+        </div>
+        <div class="split-right">
+            <ul class="narrative-points">
+                <li class="reveal reveal-delay-1"><strong>Increased inbound pipeline</strong> from organic and AI-driven discovery across salary packaging, novated leasing, and fleet management</li>
+                <li class="reveal reveal-delay-2"><strong>Visibility in AI and Google</strong> for the queries that matter. Being cited, not just indexed</li>
+                <li class="reveal reveal-delay-3"><strong>Reduced reliance on paid channels.</strong> Organic infrastructure that compounds over time, lowering acquisition cost</li>
+                <li class="reveal reveal-delay-4"><strong>A scalable acquisition engine</strong> that grows with your service lines and geographic expansion</li>
+            </ul>
+        </div>
+    </div>
+    <span class="slide-num">16 / 30</span>
+</section>
+
+<!-- SLIDE 17: Next Steps -->
+<section class="slide slide-center" id="slide-17">
+    <div class="grid-bg"></div>
+    <div class="content-wrap">
+        <span class="label reveal">Next Steps</span>
+        <h2 class="reveal reveal-delay-1" style="font-size: var(--title-size);">Next steps</h2>
+        <div style="display: flex; flex-direction: column; gap: clamp(0.3rem, 0.8vh, 0.6rem); text-align: left; width: 100%; max-width: 500px;">
+            <div class="priority-row reveal reveal-delay-1">
+                <span class="priority-num">1</span>
+                <span class="priority-text">Confirm audit scope and service line priorities</span>
+            </div>
+            <div class="priority-row reveal reveal-delay-2">
+                <span class="priority-num">2</span>
+                <span class="priority-text">Schedule Jeremy's strategic growth session</span>
+            </div>
+            <div class="priority-row reveal reveal-delay-3">
+                <span class="priority-num">3</span>
+                <span class="priority-text">Begin topic mapping across salary packaging, novated leasing, and fleet</span>
+            </div>
+            <div class="priority-row reveal reveal-delay-4">
+                <span class="priority-num">4</span>
+                <span class="priority-text">Agree kick-off timeline and pilot cluster</span>
+            </div>
+        </div>
+    </div>
+    <span class="slide-num">17 / 30</span>
+</section>
+
+<!-- ============================================================
+     PART 2: SEO + GEO AUDIT (18-30)
+     ============================================================ -->
+
+<!-- SLIDE 18: Section Divider -->
+<section class="slide section-divider" id="slide-18">
+    <div class="glow-orb glow-purple" style="top: 20%; left: -10%"></div>
+    <div class="glow-orb glow-lime" style="bottom: 20%; right: -5%"></div>
+    <div class="content-wrap">
+        <div class="divider-line reveal"></div>
+        <h1 class="reveal reveal-delay-1">SEO & GEO Audit</h1>
+        <p class="reveal reveal-delay-2" style="font-size: var(--body-size); color: var(--text-secondary);">smartgroup.com.au</p>
+        <p class="reveal reveal-delay-3" style="font-size: var(--small-size); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.2em;">March 2026</p>
+    </div>
+    <span class="slide-num">18 / 30</span>
+</section>
+
+<!-- SLIDE 19: Dual Score -->
+<section class="slide slide-center" id="slide-19">
+    <div class="content-wrap" style="gap: clamp(1rem, 3vh, 2.5rem);">
+        <span class="label reveal">Overall Scores</span>
+        <div class="dual-score reveal reveal-delay-1">
+            <div class="score-block">
+                <div class="score-ring" style="--score-pct: 0.48">
                     <svg viewBox="0 0 100 100">
                         <circle class="ring-bg" cx="50" cy="50" r="45"/>
                         <circle class="ring-fill" cx="50" cy="50" r="45"/>
                     </svg>
-                    <div class="score-number">44</div>
+                    <div class="score-number">48</div>
                 </div>
+                <span class="score-label-big" style="color: var(--psyke-purple);">SEO Health</span>
+                <span class="score-label">Poor</span>
+            </div>
+            <div class="score-block">
+                <div class="score-ring" style="--score-pct: 0.22">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="ring-bg" cx="50" cy="50" r="45"/>
+                        <circle class="ring-fill ring-fill-lime" cx="50" cy="50" r="45"/>
+                    </svg>
+                    <div class="score-number">22</div>
+                </div>
+                <span class="score-label-big" style="color: var(--psyke-lime);">GEO Readiness</span>
+                <span class="score-label">Invisible</span>
+            </div>
+        </div>
+        <div class="breakdown-grid reveal reveal-delay-2" style="width: 100%;">
+            <div class="breakdown-item">
+                <span class="cat-name">Crawlability</span>
+                <span class="cat-score">14</span>
+                <span class="cat-max">out of 20</span>
+            </div>
+            <div class="breakdown-item lime-border">
+                <span class="cat-name">AI Citability</span>
+                <span class="cat-score">11</span>
+                <span class="cat-max">out of 40</span>
+            </div>
+            <div class="breakdown-item">
+                <span class="cat-name">Technical SEO</span>
+                <span class="cat-score">9</span>
+                <span class="cat-max">out of 20</span>
+            </div>
+            <div class="breakdown-item lime-border">
+                <span class="cat-name">Content Architecture</span>
+                <span class="cat-score">5</span>
+                <span class="cat-max">out of 35</span>
+            </div>
+            <div class="breakdown-item">
+                <span class="cat-name">On-Page SEO</span>
+                <span class="cat-score">13</span>
+                <span class="cat-max">out of 25</span>
+            </div>
+            <div class="breakdown-item lime-border">
+                <span class="cat-name">Competitive Position</span>
+                <span class="cat-score">6</span>
+                <span class="cat-max">out of 25</span>
+            </div>
+            <div class="breakdown-item">
+                <span class="cat-name">Structured Data</span>
+                <span class="cat-score">5</span>
+                <span class="cat-max">out of 15</span>
+            </div>
+            <div class="breakdown-item">
+                <span class="cat-name">Content & Authority</span>
+                <span class="cat-score">7</span>
+                <span class="cat-max">out of 20</span>
+            </div>
+        </div>
+    </div>
+    <span class="slide-num">19 / 30</span>
+</section>
+
+<!-- SLIDE 20: What's Working -->
+<section class="slide" id="slide-20">
+    <div class="slide-split">
+        <div class="split-left">
+            <span class="label" style="color: var(--accent-positive);" class="reveal">Positives</span>
+            <h2 class="reveal reveal-delay-1">What's working</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">SmartGroup has solid foundations in several areas that provide a base to build from.</p>
+        </div>
+        <div class="split-right">
+            <ul class="findings">
+                <li class="reveal reveal-delay-1"><strong>Full HTTPS implementation</strong> with no mixed content detected across all crawled pages</li>
+                <li class="reveal reveal-delay-2"><strong>Clean robots.txt</strong> with proper directives and sitemap reference. No critical disallows blocking content</li>
+                <li class="reveal reveal-delay-3"><strong>BreadcrumbList schema</strong> correctly implemented on inner pages with valid @context and @type</li>
+                <li class="reveal reveal-delay-4"><strong>XML sitemap exists</strong> with 103 URLs, weekly change frequency, and priority values</li>
+            </ul>
+            <ul class="findings">
+                <li class="reveal reveal-delay-3"><strong>Responsive design</strong> with WebP image delivery and srcSet responsive images</li>
+                <li class="reveal reveal-delay-4"><strong>ASX-listed brand authority</strong> with documented history since 1999, industry awards, and established market position</li>
+            </ul>
+        </div>
+    </div>
+    <span class="slide-num">20 / 30</span>
+</section>
+
+<!-- SLIDE 21: Issue 1 - Missing Meta & OG Tags -->
+<section class="slide" id="slide-21">
+    <div class="slide-split">
+        <div class="split-left">
+            <span class="badge badge-critical reveal">Critical</span>
+            <h2 class="reveal reveal-delay-1">Missing meta descriptions and Open Graph tags across all pages</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">Google and social platforms have no guided description for any SmartGroup page. AI systems lose a key context signal.</p>
+        </div>
+        <div class="split-right">
+            <div class="evidence reveal reveal-delay-1">
+                <strong>Evidence:</strong><br>
+                Homepage: No meta description detected<br>
+                /what-we-do/salary-packaging/: No meta description<br>
+                /what-we-do/novated-leasing/: No meta description<br>
+                /what-we-do/fleet-management/: No meta description<br>
+                /about-us/: No meta description<br><br>
+                OG tags (og:title, og:description, og:image): Not present on any crawled page<br>
+                Twitter Card tags: Not present on any crawled page
+            </div>
+            <div class="fix-box reveal reveal-delay-2">
+                <span class="fix-icon">+</span>
                 <div>
-                    <p class="score-label">out of 100</p>
-                    <p style="font-size: var(--body-size); color: var(--text-muted); margin-top: clamp(0.3rem, 0.5vw, 0.5rem); max-width: 320px; line-height: 1.6;">An ASX-listed company with strong brand authority — but critical SEO fundamentals have been neglected. No meta descriptions, no social sharing tags, and no structured data on the homepage.</p>
+                    <strong>Fix</strong>
+                    <p>Add unique, keyword-rich meta descriptions (120-160 chars) to every page. Add og:title, og:description, og:image, og:url to all pages. Add twitter:card and twitter:title tags. Start with the 5 core service and landing pages.</p>
                 </div>
             </div>
         </div>
-        <div class="split-right">
-            <h3 class="reveal" style="color: var(--text-light);">Score Breakdown</h3>
-            <div class="breakdown-grid reveal reveal-delay-1">
-                <div class="breakdown-item" style="background: rgba(255,255,255,0.04); border-left-color: var(--accent);">
-                    <span class="cat-name" style="color: rgba(255,255,255,0.5);">Crawlability</span>
-                    <span class="cat-score" style="color: var(--accent);">18</span>
-                    <span class="cat-max" style="color: rgba(255,255,255,0.3);">/ 25</span>
-                </div>
-                <div class="breakdown-item" style="background: rgba(255,255,255,0.04); border-left-color: #d4760a;">
-                    <span class="cat-name" style="color: rgba(255,255,255,0.5);">Technical</span>
-                    <span class="cat-score" style="color: #d4760a;">4</span>
-                    <span class="cat-max" style="color: rgba(255,255,255,0.3);">/ 20</span>
-                </div>
-                <div class="breakdown-item" style="background: rgba(255,255,255,0.04); border-left-color: #c4a000;">
-                    <span class="cat-name" style="color: rgba(255,255,255,0.5);">On-Page</span>
-                    <span class="cat-score" style="color: #c4a000;">12</span>
-                    <span class="cat-max" style="color: rgba(255,255,255,0.3);">/ 30</span>
-                </div>
-                <div class="breakdown-item" style="background: rgba(255,255,255,0.04); border-left-color: #2e7d32;">
-                    <span class="cat-name" style="color: rgba(255,255,255,0.5);">Content</span>
-                    <span class="cat-score" style="color: #2e7d32;">5</span>
-                    <span class="cat-max" style="color: rgba(255,255,255,0.3);">/ 15</span>
-                </div>
-            </div>
-            <p class="reveal reveal-delay-2" style="font-size: var(--small-size); color: rgba(255,255,255,0.35);">Authority estimated at 5/10 based on ASX-listed status and established brand. Backlink analysis requires Ahrefs/Semrush.</p>
-        </div>
     </div>
+    <span class="slide-num">21 / 30</span>
 </section>
 
-<!-- ========== SLIDE 3: WHAT'S WORKING ========== -->
-<section class="slide slide-warm" data-slide="2">
-    <span class="slide-num">02 / 11</span>
-    <div class="slide-split">
-        <div class="split-left" style="background: var(--bg-warm);">
-            <p class="label reveal" style="color: #2e7d32;">Positives</p>
-            <h2 class="reveal reveal-delay-1">What's Working</h2>
-            <p class="reveal reveal-delay-2" style="font-size: var(--body-size); color: var(--text-muted); max-width: 350px;">The foundations for a strong SEO presence exist — they just need attention.</p>
-        </div>
-        <div class="split-right">
-            <ul class="findings findings-dark reveal">
-                <li><strong>HTTPS everywhere</strong> — valid SSL across all pages</li>
-                <li><strong>Canonical tags</strong> — correctly set on all crawled pages</li>
-                <li><strong>H1 tags on inner pages</strong> — Salary Packaging, About Us, NFP all have proper H1s</li>
-                <li><strong>BreadcrumbList schema</strong> — implemented on inner pages</li>
-                <li><strong>Clean URL structure</strong> — /what-we-do/salary-packaging/, /who-we-help/not-for-profits/</li>
-                <li><strong>XML sitemap</strong> — exists and referenced in robots.txt</li>
-                <li><strong>Lazy loading</strong> — images use loading="lazy"</li>
-                <li><strong>Sector-specific pages</strong> — NFP, Healthcare, Corporate, Government, Education</li>
-                <li><strong>Active news section</strong> — latest article March 2026</li>
-            </ul>
-        </div>
-    </div>
-</section>
-
-<!-- ========== SLIDE 4: CRITICAL — No Meta Descriptions ========== -->
-<section class="slide" data-slide="3">
-    <span class="slide-num" style="color: rgba(255,255,255,0.2);">03 / 11</span>
+<!-- SLIDE 22: Issue 2 - No Organization Schema -->
+<section class="slide" id="slide-22">
     <div class="slide-split">
         <div class="split-left">
-            <div class="reveal" style="display: flex; align-items: center; gap: clamp(0.3rem, 0.8vw, 0.6rem);">
-                <span class="badge badge-critical">Critical</span>
-                <p class="label">Issue #1</p>
-            </div>
-            <h2 class="reveal reveal-delay-1">No Meta Descriptions<br>On Any Page</h2>
-            <p class="reveal reveal-delay-2" style="font-size: var(--body-size); color: var(--text-muted); max-width: 380px;">Every single page crawled — homepage, services, about, sector pages — is missing a meta description. Google will auto-generate snippets from page content, which are often poor representations of the page's value.</p>
+            <span class="badge badge-high reveal">High</span>
+            <h2 class="reveal reveal-delay-1">No Organization schema or service-level structured data</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">AI systems can't confidently identify what SmartGroup does, who they serve, or how to cite them.</p>
         </div>
         <div class="split-right">
-            <div class="reveal">
-                <p style="font-size: var(--small-size); text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.4); margin-bottom: clamp(0.3rem, 0.5vw, 0.5rem);">Evidence</p>
-                <div class="evidence evidence-dark">
-                    / — meta description: (none)<br>
-                    /about-us/ — meta description: (none)<br>
-                    /what-we-do/salary-packaging/ — (none)<br>
-                    /what-we-do/novated-leasing/ — (none)<br>
-                    /who-we-help/not-for-profits/ — (none)
-                </div>
+            <div class="evidence reveal reveal-delay-1">
+                <strong>Evidence:</strong><br>
+                Homepage JSON-LD: None (only GTM and Application Insights tracking)<br>
+                No Organization schema with name, logo, URL, contactPoint, or sameAs<br>
+                No Service schema on /salary-packaging/, /novated-leasing/, /fleet-management/<br>
+                No FAQPage schema on any page<br>
+                Only structured data found: BreadcrumbList on inner pages<br><br>
+                Brand confusion: "SmartGroup", "Smart", "Smartsalary" used interchangeably without entity clarity
             </div>
-            <div class="reveal reveal-delay-1">
-                <div class="fix-box fix-box-dark">
-                    <span class="fix-icon">✓</span>
-                    <div>
-                        <strong>Recommended Fix</strong>
-                        <p>Write unique, keyword-rich meta descriptions (150-160 chars) for every page. Prioritise the homepage, salary packaging, novated leasing, and sector pages first.</p>
-                    </div>
+            <div class="fix-box reveal reveal-delay-2">
+                <span class="fix-icon">+</span>
+                <div>
+                    <strong>Fix</strong>
+                    <p>Add Organization schema to homepage with name, logo, URL, contactPoint (1300 476 278), and sameAs links. Add Service schema to each service page. Add FAQPage schema where FAQ content exists. Establish consistent entity naming.</p>
                 </div>
             </div>
         </div>
     </div>
+    <span class="slide-num">22 / 30</span>
 </section>
 
-<!-- ========== SLIDE 5: CRITICAL — No Open Graph / Social Tags ========== -->
-<section class="slide" data-slide="4">
-    <span class="slide-num">04 / 11</span>
+<!-- SLIDE 23: Issue 3 - Broken H1 Hierarchy -->
+<section class="slide" id="slide-23">
     <div class="slide-split">
         <div class="split-left">
-            <div class="reveal" style="display: flex; align-items: center; gap: clamp(0.3rem, 0.8vw, 0.6rem);">
-                <span class="badge badge-critical">Critical</span>
-                <p class="label">Issue #2</p>
-            </div>
-            <h2 class="reveal reveal-delay-1">Zero Social<br>Sharing Tags</h2>
-            <p class="reveal reveal-delay-2" style="font-size: var(--body-size); color: var(--text-muted); max-width: 380px;">No Open Graph tags and no Twitter Card tags on any page. When shared on LinkedIn, Facebook, or Twitter, the site has no control over the title, description, or image that appears.</p>
+            <span class="badge badge-high reveal">High</span>
+            <h2 class="reveal reveal-delay-1">Missing and broken heading hierarchy across key pages</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">Search engines and AI systems use heading structure to understand page topics. Broken hierarchy undermines this.</p>
         </div>
         <div class="split-right">
-            <div class="issue-card reveal">
-                <strong>No og:title, og:description, og:image</strong>
-                <p>Social platforms will guess at content to display, often pulling irrelevant text or no image at all. For a B2B company, LinkedIn shares are critical.</p>
+            <div class="evidence reveal reveal-delay-1">
+                <strong>Evidence:</strong><br>
+                Homepage: No H1 tag. Uses H2 for "Hello Smart" (not keyword-relevant)<br>
+                /salary-packaging/: No H1 or H2. Jumps straight to H3 and H6 tags<br>
+                /novated-leasing/: H1 present but skips H2, jumps to H3<br>
+                /fleet-management/: No clear H1 detected. Uses H3 and H6<br>
+                /about-us/: H1 present ("About Us") but thin hierarchy below<br><br>
+                H6 tags used for content subheadings on salary packaging page (should be H2/H3)
             </div>
-            <div class="issue-card reveal reveal-delay-1">
-                <strong>No Twitter Card meta tags</strong>
-                <p>twitter:card, twitter:title, twitter:image — all missing. Twitter/X shares will appear as plain text links.</p>
-            </div>
-            <div class="reveal reveal-delay-2">
-                <div class="fix-box fix-box-dark">
-                    <span class="fix-icon">✓</span>
-                    <div>
-                        <strong>Recommended Fix</strong>
-                        <p>Add og:title, og:description, og:image, og:url, og:type + twitter:card tags to every page template. Use branded images (1200×630px) for consistent social previews.</p>
-                    </div>
+            <div class="fix-box reveal reveal-delay-2">
+                <span class="fix-icon">+</span>
+                <div>
+                    <strong>Fix</strong>
+                    <p>Add keyword-rich H1 to homepage (e.g. "Salary Packaging & Novated Leasing for Australian Employers"). Fix salary packaging page: add H1, convert H6s to H3s. Ensure clean H1 &rarr; H2 &rarr; H3 nesting on all pages.</p>
                 </div>
             </div>
         </div>
     </div>
+    <span class="slide-num">23 / 30</span>
 </section>
 
-<!-- ========== SLIDE 6: CRITICAL — Homepage Missing H1 + Schema ========== -->
-<section class="slide" data-slide="5">
-    <span class="slide-num">05 / 11</span>
+<!-- SLIDE 24: Issue 4 - Thin Content & No FAQs -->
+<section class="slide" id="slide-24">
     <div class="slide-split">
         <div class="split-left">
-            <div class="reveal" style="display: flex; align-items: center; gap: clamp(0.3rem, 0.8vw, 0.6rem);">
-                <span class="badge badge-critical">Critical</span>
-                <p class="label">Issue #3</p>
-            </div>
-            <h2 class="reveal reveal-delay-1">Homepage Has<br>No H1 &amp; No Schema</h2>
-            <p class="reveal reveal-delay-2" style="font-size: var(--body-size); color: var(--text-muted); max-width: 380px;">The most important page on the site is missing both an H1 heading and any structured data. Inner pages have H1s and BreadcrumbList schema — but the homepage has neither.</p>
+            <span class="badge badge-medium reveal">Medium</span>
+            <h2 class="reveal reveal-delay-1">Thin service pages and zero informational content</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">Service pages lack the depth needed to rank or be cited. No guides, comparisons, or FAQ content exists.</p>
         </div>
         <div class="split-right">
-            <div class="reveal">
-                <p style="font-size: var(--small-size); text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.4); margin-bottom: clamp(0.3rem, 0.5vw, 0.5rem);">Evidence</p>
-                <div class="evidence evidence-dark">
-                    Homepage headings found:<br>
-                    H1: (none)<br>
-                    H2: "Hello Smart"<br>
-                    H2: "Giving back to those in need"<br>
-                    H2: "Champions in the Australian Service<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;Excellence Awards"<br><br>
-                    JSON-LD schemas found: 0<br>
-                    (inner pages have BreadcrumbList ✓)
-                </div>
+            <div class="evidence reveal reveal-delay-1">
+                <strong>Evidence:</strong><br>
+                /fleet-management/: ~220 words (too thin for a primary service page)<br>
+                /novated-leasing/: ~350 words (light for a competitive keyword)<br>
+                /salary-packaging/: ~800 words (adequate but no FAQ section)<br>
+                Homepage: No content hub or blog linked from main navigation<br>
+                News section exists but contains announcements, not keyword-targeted content<br><br>
+                Zero: buying guides, comparison pages, calculators, "how to" articles, or FAQ schema
             </div>
-            <div class="reveal reveal-delay-1">
-                <div class="fix-box fix-box-dark">
-                    <span class="fix-icon">✓</span>
-                    <div>
-                        <strong>Recommended Fix</strong>
-                        <p>Add an H1 (e.g. "Australia's Leading Salary Packaging Provider"). Add Organization schema with name, logo, URL, contact info, and sameAs for social profiles.</p>
-                    </div>
+            <div class="fix-box reveal reveal-delay-2">
+                <span class="fix-icon">+</span>
+                <div>
+                    <strong>Fix</strong>
+                    <p>Expand fleet management and novated leasing pages to 1,500+ words. Add FAQ sections with FAQPage schema to all service pages. Build informational content hub targeting "how does novated leasing work", "salary packaging benefits by industry", "novated lease vs car loan".</p>
                 </div>
             </div>
         </div>
     </div>
+    <span class="slide-num">24 / 30</span>
 </section>
 
-<!-- ========== SLIDE 7: HIGH — Soft 404s + Images ========== -->
-<section class="slide" data-slide="6">
-    <span class="slide-num">06 / 11</span>
+<!-- SLIDE 25: GEO Gap -->
+<section class="slide slide-center" id="slide-25">
+    <div class="grid-bg"></div>
+    <div class="content-wrap" style="gap: clamp(0.8rem, 2vh, 1.5rem);">
+        <span class="label-lime label reveal">GEO Gap</span>
+        <h2 class="reveal reveal-delay-1" style="font-size: clamp(1.5rem, 4vw, 3rem);">SmartGroup is <span style="color: var(--accent-critical);">invisible</span> to AI search engines</h2>
+        <p class="reveal reveal-delay-2" style="max-width: 650px;">When buyers ask ChatGPT, Perplexity, or Claude about salary packaging and novated leasing in Australia, SmartGroup is not cited. Competitors like Maxxia, SG Fleet, and Eziway own this space.</p>
+        <div class="keyword-badges reveal reveal-delay-3">
+            <span class="keyword-badge">best salary packaging provider Australia</span>
+            <span class="keyword-badge">how does novated leasing work</span>
+            <span class="keyword-badge">salary packaging for healthcare workers</span>
+            <span class="keyword-badge">novated lease vs car loan</span>
+            <span class="keyword-badge">fleet management companies Australia</span>
+            <span class="keyword-badge">salary packaging calculator</span>
+            <span class="keyword-badge">employee benefits provider comparison</span>
+            <span class="keyword-badge">FBT salary packaging explained</span>
+        </div>
+        <p class="reveal reveal-delay-4" style="font-size: var(--small-size); color: var(--text-muted);">Queries above represent high-intent searches where SmartGroup has zero AI presence</p>
+    </div>
+    <span class="slide-num">25 / 30</span>
+</section>
+
+<!-- SLIDE 26: AI Visibility Test -->
+<section class="slide" id="slide-26">
     <div class="slide-split">
         <div class="split-left">
-            <div class="reveal" style="display: flex; align-items: center; gap: clamp(0.3rem, 0.8vw, 0.6rem);">
-                <span class="badge badge-high">High</span>
-                <p class="label">Issue #4</p>
-            </div>
-            <h2 class="reveal reveal-delay-1">Soft 404s &amp;<br>Missing Alt Text</h2>
-            <p class="reveal reveal-delay-2" style="font-size: var(--body-size); color: var(--text-muted); max-width: 380px;">Old URLs return a 200 status with "404" content — confusing crawlers. And 4 of 10 homepage images have empty alt attributes.</p>
+            <span class="label-lime label reveal">AI Visibility</span>
+            <h2 class="reveal reveal-delay-1">We tested 6 queries across AI platforms</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">SmartGroup was absent from all AI-generated responses. Competitors are consistently cited.</p>
         </div>
-        <div class="split-right">
-            <div class="issue-card reveal">
-                <strong>Soft 404s on legacy URLs</strong>
-                <p>/salary-packaging/ and /novated-leasing/ display "404" content but return HTTP 200. Google treats these as live pages with thin content — hurting crawl quality.</p>
+        <div class="split-right" style="gap: clamp(0.3rem, 0.6vh, 0.5rem);">
+            <div class="ai-query-card reveal reveal-delay-1">
+                <span class="query">"Best salary packaging provider Australia"</span>
+                <span class="result"><span class="absent">SmartGroup: Not cited.</span> Maxxia, Eziway, Paywise, CBB, and SG Fleet cited instead</span>
             </div>
-            <div class="issue-card reveal reveal-delay-1">
-                <strong>40% of homepage images missing alt</strong>
-                <p>The hero slider images, logo image, and carousel images all have empty alt="" attributes. Impacts accessibility and image search visibility.</p>
+            <div class="ai-query-card reveal reveal-delay-1">
+                <span class="query">"How does novated leasing work in Australia"</span>
+                <span class="result"><span class="absent">SmartGroup: Not cited.</span> SG Fleet, NovatedLeaseAustralia, CommBank, Toyota Fleet, Canstar cited</span>
             </div>
-            <div class="reveal reveal-delay-2">
-                <div class="fix-box fix-box-dark">
-                    <span class="fix-icon">✓</span>
-                    <div>
-                        <strong>Recommended Fix</strong>
-                        <p>Return proper 404 status codes (or 301 redirect to /what-we-do/salary-packaging/). Add descriptive alt text to all images.</p>
-                    </div>
-                </div>
+            <div class="ai-query-card reveal reveal-delay-2">
+                <span class="query">"Salary packaging for hospital workers"</span>
+                <span class="result"><span class="absent">SmartGroup: Not cited.</span> Maxxia and RemServ dominate healthcare-specific queries</span>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- ========== SLIDE 8: BIG OPPORTUNITY — Content ========== -->
-<section class="slide slide-dark" data-slide="7">
-    <span class="slide-num">07 / 11</span>
-    <div class="slide-content" style="align-items: center; text-align: center;">
-        <p class="label reveal">The Biggest Opportunity</p>
-        <div class="pull-quote pull-quote-dark reveal reveal-delay-1" style="border-left: none; text-align: center; padding: 0;">
-            "News and Announcements" is not a content strategy.
-        </div>
-        <p class="reveal reveal-delay-2" style="color: rgba(255,255,255,0.6); max-width: min(70vw, 550px); font-size: var(--body-size); line-height: 1.6; margin-top: clamp(0.5rem, 1vw, 1rem);">Smartgroup's "news" section is PR releases and event coverage — not search-optimised content. Employees searching for "salary packaging calculator", "novated lease vs buying a car", or "FBT exemption cap 2026" won't find Smartgroup in the results.</p>
-        <div class="reveal reveal-delay-3" style="display: flex; gap: clamp(0.5rem, 1vw, 1rem); flex-wrap: wrap; justify-content: center; margin-top: clamp(0.5rem, 1vw, 1rem);">
-            <span class="badge badge-medium" style="font-size: var(--small-size); padding: clamp(4px, 0.5vw, 8px) clamp(10px, 1.5vw, 18px);">salary packaging calculator</span>
-            <span class="badge badge-medium" style="font-size: var(--small-size); padding: clamp(4px, 0.5vw, 8px) clamp(10px, 1.5vw, 18px);">novated lease vs buying</span>
-            <span class="badge badge-medium" style="font-size: var(--small-size); padding: clamp(4px, 0.5vw, 8px) clamp(10px, 1.5vw, 18px);">FBT exemption cap 2026</span>
-            <span class="badge badge-medium" style="font-size: var(--small-size); padding: clamp(4px, 0.5vw, 8px) clamp(10px, 1.5vw, 18px);">salary packaging NFP</span>
+            <div class="ai-query-card reveal reveal-delay-2">
+                <span class="query">"SmartGroup vs Maxxia salary packaging"</span>
+                <span class="result"><span class="absent">SmartGroup: No owned content.</span> Third-party review sites and comparison pages cited</span>
+            </div>
+            <div class="ai-query-card reveal reveal-delay-3">
+                <span class="query">"Fleet management companies Australia"</span>
+                <span class="result"><span class="absent">SmartGroup: Not cited.</span> SG Fleet, LeasePlan, and Custom Fleet cited</span>
+            </div>
+            <div class="ai-query-card reveal reveal-delay-3">
+                <span class="query">"What is salary packaging and how does it work"</span>
+                <span class="result"><span class="absent">SmartGroup: Not cited.</span> Maxxia, ATO.gov.au, and Paywise cited</span>
+            </div>
         </div>
     </div>
+    <span class="slide-num">26 / 30</span>
 </section>
 
-<!-- ========== SLIDE 9: MEDIUM — Other Findings ========== -->
-<section class="slide slide-warm" data-slide="8">
-    <span class="slide-num">08 / 11</span>
+<!-- SLIDE 27: Quick Wins -->
+<section class="slide" id="slide-27">
     <div class="slide-split">
-        <div class="split-left" style="background: var(--bg-warm);">
-            <p class="label reveal">Medium Priority</p>
-            <h2 class="reveal reveal-delay-1">Other Findings</h2>
+        <div class="split-left">
+            <span class="label reveal">Action Plan</span>
+            <h2 class="reveal reveal-delay-1">Quick wins: this week</h2>
         </div>
         <div class="split-right">
-            <ul class="findings findings-dark reveal">
-                <li><strong>BreadcrumbList schema malformed</strong> — uses "context" and "type" instead of the required "@context" and "@type". May not be parsed correctly by Google.</li>
-                <li><strong>No Organization schema</strong> — an ASX-listed company should have complete Organization markup with logo, address, social profiles, and contact info.</li>
-                <li><strong>Title tags are generic</strong> — "Salary Packaging | Smartgroup" misses keywords like "Australia", "employee benefits", or "for employers".</li>
-                <li><strong>Viewport meta incomplete</strong> — only has "width=device-width" (missing "initial-scale=1").</li>
-                <li><strong>Sitemap contains stale entries</strong> — many news articles have identical lastmod dates from March 2024, suggesting the sitemap isn't regenerating properly.</li>
-            </ul>
-        </div>
-    </div>
-</section>
-
-<!-- ========== SLIDE 10: QUICK WINS ========== -->
-<section class="slide slide-dark" data-slide="9">
-    <span class="slide-num">09 / 11</span>
-    <div class="slide-split" style="background: var(--bg-dark);">
-        <div class="split-left" style="background: var(--bg-dark); color: var(--text-light);">
-            <p class="label reveal">Action Plan</p>
-            <h2 class="reveal reveal-delay-1" style="color: var(--text-light);">Quick Wins<br><span style="color: var(--accent);">This Week</span></h2>
-            <p class="reveal reveal-delay-2" style="color: rgba(255,255,255,0.45); font-size: var(--body-size); font-style: italic;">Template-level fixes that immediately improve every page.</p>
-        </div>
-        <div class="split-right" style="background: rgba(255,255,255,0.02);">
-            <div class="priority-list reveal">
-                <div class="priority-row">
+            <div class="priority-list">
+                <div class="priority-row reveal reveal-delay-1">
                     <span class="priority-num">1</span>
-                    <span class="priority-text">Add meta descriptions to all pages (start with homepage + service pages)</span>
+                    <span class="priority-text">Add unique meta descriptions to all 5 core service pages</span>
                 </div>
-                <div class="priority-row">
+                <div class="priority-row reveal reveal-delay-1">
                     <span class="priority-num">2</span>
-                    <span class="priority-text">Add Open Graph + Twitter Card tags to page template</span>
+                    <span class="priority-text">Add Organization JSON-LD schema to homepage with name, logo, contactPoint, sameAs</span>
                 </div>
-                <div class="priority-row">
+                <div class="priority-row reveal reveal-delay-2">
                     <span class="priority-num">3</span>
-                    <span class="priority-text">Add H1 to homepage</span>
+                    <span class="priority-text">Fix missing H1 on homepage and salary packaging page</span>
                 </div>
-                <div class="priority-row">
+                <div class="priority-row reveal reveal-delay-2">
                     <span class="priority-num">4</span>
-                    <span class="priority-text">Fix soft 404s — return proper 404 status or 301 redirect</span>
+                    <span class="priority-text">Add og:title, og:description, og:image, og:url to all pages</span>
                 </div>
-                <div class="priority-row">
+                <div class="priority-row reveal reveal-delay-3">
                     <span class="priority-num">5</span>
-                    <span class="priority-text">Add alt text to all homepage images</span>
+                    <span class="priority-text">Fix heading hierarchy on salary packaging page (H6 &rarr; H3)</span>
                 </div>
-                <div class="priority-row">
+                <div class="priority-row reveal reveal-delay-3">
                     <span class="priority-num">6</span>
-                    <span class="priority-text">Fix viewport meta (add initial-scale=1)</span>
+                    <span class="priority-text">Fix sitemap.xml future-dated entries (2026-02-11 timestamps)</span>
                 </div>
-                <div class="priority-row">
+                <div class="priority-row reveal reveal-delay-4">
                     <span class="priority-num">7</span>
-                    <span class="priority-text">Fix BreadcrumbList schema (@context, @type)</span>
+                    <span class="priority-text">Set up 301 redirects from /novated-leasing/ to /what-we-do/novated-leasing/ (and other short paths returning 404)</span>
+                </div>
+                <div class="priority-row reveal reveal-delay-4">
+                    <span class="priority-num">8</span>
+                    <span class="priority-text">Resolve brand naming inconsistency between SmartGroup, Smart, and Smartsalary in NAP data</span>
                 </div>
             </div>
         </div>
     </div>
+    <span class="slide-num">27 / 30</span>
 </section>
 
-<!-- ========== SLIDE 11: MEDIUM-TERM ========== -->
-<section class="slide" data-slide="10">
-    <span class="slide-num">10 / 11</span>
+<!-- SLIDE 28: Growth Roadmap -->
+<section class="slide" id="slide-28">
     <div class="slide-split">
         <div class="split-left">
-            <p class="label reveal">Next 2–4 Weeks</p>
-            <h2 class="reveal reveal-delay-1">Growth<br>Roadmap</h2>
+            <span class="label reveal">Roadmap</span>
+            <h2 class="reveal reveal-delay-1">Next 2-4 weeks</h2>
         </div>
         <div class="split-right">
-            <div class="priority-list reveal">
-                <div class="priority-row">
+            <div class="priority-list">
+                <div class="priority-row reveal reveal-delay-1">
                     <span class="priority-num">1</span>
-                    <span class="priority-text">Add Organization schema with logo, address, phone, sameAs profiles</span>
+                    <span class="priority-text">Build FAQ sections with FAQPage schema on novated leasing, salary packaging, and fleet management pages</span>
                 </div>
-                <div class="priority-row">
+                <div class="priority-row reveal reveal-delay-1">
                     <span class="priority-num">2</span>
-                    <span class="priority-text">Rewrite title tags with targeted keywords + "Australia" across all pages</span>
+                    <span class="priority-text">Expand fleet management page from 220 to 1,500+ words with detailed service descriptions, use cases, and benefits</span>
                 </div>
-                <div class="priority-row">
+                <div class="priority-row reveal reveal-delay-2">
                     <span class="priority-num">3</span>
-                    <span class="priority-text">Add FAQ schema to salary packaging and novated leasing pages</span>
+                    <span class="priority-text">Create content hub targeting long-tail queries: "how novated leasing works", "salary packaging by industry", "novated lease vs car loan"</span>
                 </div>
-                <div class="priority-row">
+                <div class="priority-row reveal reveal-delay-2">
                     <span class="priority-num">4</span>
-                    <span class="priority-text">Launch an SEO-optimised blog targeting employee benefit keywords</span>
+                    <span class="priority-text">Add Service schema to each service page with clear provider, areaServed, and serviceType properties</span>
                 </div>
-                <div class="priority-row">
+                <div class="priority-row reveal reveal-delay-3">
                     <span class="priority-num">5</span>
-                    <span class="priority-text">Build a salary packaging calculator tool (free tool strategy for organic traffic)</span>
+                    <span class="priority-text">Deploy Psyke content cluster targeting "salary packaging" topic with 100+ long-tail pages on smartgroup.com.au</span>
+                </div>
+                <div class="priority-row reveal reveal-delay-4">
+                    <span class="priority-num">6</span>
+                    <span class="priority-text">Begin AI citation tracking across ChatGPT, Perplexity, and Google AI Overviews for core service queries</span>
                 </div>
             </div>
         </div>
     </div>
+    <span class="slide-num">28 / 30</span>
 </section>
 
-<!-- ========== SLIDE 12: CLOSING ========== -->
-<section class="slide slide-title" data-slide="11" style="background: var(--bg-dark);">
-    <div class="content-wrap">
-        <p class="meta reveal" style="color: rgba(255,255,255,0.35);">SEO Audit Complete</p>
-        <div class="hr-ornament reveal reveal-delay-1" style="--rule-color: rgba(255,255,255,0.1);"><div class="diamond"></div></div>
-        <h1 class="reveal reveal-delay-2" style="color: var(--text-light);">Score: <span class="accent">44/100</span></h1>
-        <p class="subtitle reveal reveal-delay-3" style="color: rgba(255,255,255,0.5);">Strong brand authority undermined by basic technical neglect. The template-level fixes alone — meta descriptions, OG tags, homepage H1 — could push this into the 65+ range within a week.</p>
-        <div class="hr-ornament reveal reveal-delay-4" style="--rule-color: rgba(255,255,255,0.1);"><div class="diamond"></div></div>
-        <p class="label-muted reveal reveal-delay-4" style="color: rgba(255,255,255,0.25);">smartgroup.com.au — Prepared March 2026</p>
+<!-- SLIDE 29: How Psyke Helps -->
+<section class="slide slide-center" id="slide-29">
+    <div class="grid-bg"></div>
+    <div class="content-wrap" style="gap: clamp(0.8rem, 2vh, 1.5rem);">
+        <span class="label reveal">Solution</span>
+        <h2 class="reveal reveal-delay-1 psyke-cta" style="font-size: clamp(1.5rem, 4vw, 3rem);">How Psyke closes these gaps</h2>
+        <ul class="narrative-points reveal reveal-delay-2" style="text-align: left; max-width: 600px;">
+            <li><strong>Scalable content infrastructure</strong> that generates 100-200 pages per topic cluster, targeting the long-tail queries SmartGroup currently misses</li>
+            <li><strong>Full schema and structured data implementation</strong> including Organization, Service, FAQPage, and BreadcrumbList across all pages</li>
+            <li><strong>AI-ready content architecture</strong> built for citation by ChatGPT, Perplexity, and Google AI Overviews</li>
+            <li><strong>Competitive positioning</strong> to close the gap with Maxxia, SG Fleet, and other providers dominating AI search results</li>
+        </ul>
+        <div class="reveal reveal-delay-3" style="margin-top: clamp(0.5rem, 1vh, 1rem);">
+            <p style="font-size: var(--body-size); color: var(--psyke-purple); font-weight: 600;">Book a Discovery Call</p>
+            <p style="font-size: var(--small-size); color: var(--text-muted);">psyke.co &middot; hello@psyke.co</p>
+        </div>
     </div>
+    <span class="slide-num">29 / 30</span>
 </section>
 
+<!-- SLIDE 30: Closing -->
+<section class="slide slide-center" id="slide-30">
+    <div class="glow-orb glow-purple" style="top: -10%; right: 10%"></div>
+    <div class="glow-orb glow-lime" style="bottom: -5%; left: 15%"></div>
+    <div class="content-wrap" style="gap: clamp(1rem, 2.5vh, 2rem);">
+        <div class="dual-score reveal">
+            <div class="score-block">
+                <div class="score-ring" style="--score-pct: 0.48">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="ring-bg" cx="50" cy="50" r="45"/>
+                        <circle class="ring-fill" cx="50" cy="50" r="45"/>
+                    </svg>
+                    <div class="score-number">48</div>
+                </div>
+                <span class="score-label-big" style="color: var(--psyke-purple);">SEO Health</span>
+            </div>
+            <div class="score-block">
+                <div class="score-ring" style="--score-pct: 0.22">
+                    <svg viewBox="0 0 100 100">
+                        <circle class="ring-bg" cx="50" cy="50" r="45"/>
+                        <circle class="ring-fill ring-fill-lime" cx="50" cy="50" r="45"/>
+                    </svg>
+                    <div class="score-number">22</div>
+                </div>
+                <span class="score-label-big" style="color: var(--psyke-lime);">GEO Readiness</span>
+            </div>
+        </div>
+        <p class="reveal reveal-delay-1" style="max-width: 550px; font-size: var(--body-size);">SmartGroup has enterprise brand authority but lacks the content infrastructure to convert that into organic and AI-driven visibility. The gap is structural, and the fix is systematic.</p>
+        <div class="reveal reveal-delay-2" style="display: flex; flex-direction: column; gap: 4px; align-items: center;">
+            <p style="font-size: var(--small-size); color: var(--text-muted);">smartgroup.com.au</p>
+            <p style="font-size: var(--small-size); color: var(--text-dim);">Prepared by Psyke &middot; March 2026</p>
+        </div>
+        <div class="psyke-logo reveal reveal-delay-3">PSYKE</div>
+    </div>
+    <span class="slide-num">30 / 30</span>
+</section>
+
+<!-- ============================================================
+     JAVASCRIPT: Navigation, animations, keyboard, touch, progress
+     ============================================================ -->
 <script>
-class SlidePresentation {
-    constructor() {
-        this.slides = document.querySelectorAll('.slide');
-        this.currentSlide = 0;
-        this.setupIntersectionObserver();
-        this.setupKeyboardNav();
-        this.setupTouchNav();
-        this.setupProgressBar();
-        this.setupNavDots();
+(function() {
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const progressBar = document.getElementById('progressBar');
+    const navDotsContainer = document.getElementById('navDots');
+
+    // Create nav dots
+    slides.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'nav-dot';
+        dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        dot.addEventListener('click', () => {
+            slides[i].scrollIntoView({ behavior: 'smooth' });
+        });
+        navDotsContainer.appendChild(dot);
+    });
+
+    const navDots = navDotsContainer.querySelectorAll('.nav-dot');
+
+    // Intersection Observer for slide visibility
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                const idx = Array.from(slides).indexOf(entry.target);
+                updateProgress(idx);
+                updateDots(idx);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    slides.forEach(slide => observer.observe(slide));
+
+    function updateProgress(idx) {
+        const pct = ((idx + 1) / totalSlides) * 100;
+        progressBar.style.width = pct + '%';
     }
-    setupIntersectionObserver() {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    this.currentSlide = Array.from(this.slides).indexOf(entry.target);
-                    this.updateNavDots();
-                    this.updateProgressBar();
-                }
-            });
-        }, { threshold: 0.5 });
-        this.slides.forEach(slide => observer.observe(slide));
-    }
-    setupKeyboardNav() {
-        document.addEventListener('keydown', (e) => {
-            if (['ArrowDown','ArrowRight',' ','PageDown'].includes(e.key)) { e.preventDefault(); this.goToSlide(this.currentSlide + 1); }
-            else if (['ArrowUp','ArrowLeft','PageUp'].includes(e.key)) { e.preventDefault(); this.goToSlide(this.currentSlide - 1); }
-            else if (e.key === 'Home') { e.preventDefault(); this.goToSlide(0); }
-            else if (e.key === 'End') { e.preventDefault(); this.goToSlide(this.slides.length - 1); }
+
+    function updateDots(idx) {
+        navDots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === idx);
         });
     }
-    setupTouchNav() {
-        let startY = 0;
-        document.addEventListener('touchstart', (e) => { startY = e.touches[0].clientY; }, { passive: true });
-        document.addEventListener('touchend', (e) => {
-            const diff = startY - e.changedTouches[0].clientY;
-            if (Math.abs(diff) > 50) this.goToSlide(this.currentSlide + (diff > 0 ? 1 : -1));
-        }, { passive: true });
-    }
-    setupProgressBar() { this.progressBar = document.getElementById('progressBar'); this.updateProgressBar(); }
-    updateProgressBar() { if (this.progressBar) this.progressBar.style.width = ((this.currentSlide + 1) / this.slides.length * 100) + '%'; }
-    setupNavDots() {
-        const nav = document.getElementById('navDots');
-        if (!nav) return;
-        this.slides.forEach((_, i) => {
-            const dot = document.createElement('div');
-            dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
-            dot.addEventListener('click', () => this.goToSlide(i));
-            nav.appendChild(dot);
+
+    // Keyboard navigation
+    let currentSlide = 0;
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+            e.preventDefault();
+            if (currentSlide < totalSlides - 1) {
+                currentSlide++;
+                slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+            }
+        } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft' || e.key === 'PageUp') {
+            e.preventDefault();
+            if (currentSlide > 0) {
+                currentSlide--;
+                slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+            }
+        } else if (e.key === 'Home') {
+            e.preventDefault();
+            currentSlide = 0;
+            slides[0].scrollIntoView({ behavior: 'smooth' });
+        } else if (e.key === 'End') {
+            e.preventDefault();
+            currentSlide = totalSlides - 1;
+            slides[totalSlides - 1].scrollIntoView({ behavior: 'smooth' });
+        }
+    });
+
+    // Update currentSlide on scroll
+    const scrollObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                currentSlide = Array.from(slides).indexOf(entry.target);
+            }
         });
-        this.dots = nav.querySelectorAll('.nav-dot');
-    }
-    updateNavDots() { if (this.dots) this.dots.forEach((d, i) => d.classList.toggle('active', i === this.currentSlide)); }
-    goToSlide(idx) { if (idx >= 0 && idx < this.slides.length) this.slides[idx].scrollIntoView({ behavior: 'smooth' }); }
-}
-document.addEventListener('DOMContentLoaded', () => new SlidePresentation());
+    }, { threshold: 0.5 });
+
+    slides.forEach(slide => scrollObserver.observe(slide));
+
+    // Touch/swipe support
+    let touchStartY = 0;
+    let touchStartX = 0;
+
+    document.addEventListener('touchstart', (e) => {
+        touchStartY = e.touches[0].clientY;
+        touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+        const deltaY = touchStartY - e.changedTouches[0].clientY;
+        const deltaX = touchStartX - e.changedTouches[0].clientX;
+
+        if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 50) {
+            if (deltaY > 0 && currentSlide < totalSlides - 1) {
+                currentSlide++;
+                slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+            } else if (deltaY < 0 && currentSlide > 0) {
+                currentSlide--;
+                slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    }, { passive: true });
+
+    // Initial state
+    updateProgress(0);
+    updateDots(0);
+    slides[0].classList.add('visible');
+})();
 </script>
+
 </body>
 </html>

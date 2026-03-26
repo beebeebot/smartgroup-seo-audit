@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SmartGroup — AI Search & SEO/GEO Audit</title>
+<title>SmartGroup — GEO & AI Visibility Strategy</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -366,7 +366,7 @@ p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-seconda
 .reveal-delay-3 { transition-delay: 0.3s; }
 .reveal-delay-4 { transition-delay: 0.4s; }
 
-/* === NARRATIVE SLIDE STYLES === */
+/* === NARRATIVE STYLES === */
 .narrative-points {
     list-style: none; display: flex; flex-direction: column;
     gap: clamp(0.4rem, 1vh, 0.8rem);
@@ -391,33 +391,26 @@ p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-seconda
     font-size: var(--body-size); line-height: 1.6;
 }
 
-.step-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(clamp(120px, 15vw, 180px), 1fr));
+.stat-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
     gap: clamp(0.4rem, 1vw, 0.8rem);
 }
-.step-item {
-    padding: clamp(0.6rem, 1vw, 1rem);
-    background: var(--bg-surface);
-    border-top: 2px solid var(--psyke-purple);
-    border-radius: 0 0 4px 4px;
-    display: flex; flex-direction: column; gap: clamp(0.2rem, 0.4vw, 0.4rem);
-}
-.step-num {
-    font-family: var(--font-display); font-weight: 700;
-    font-size: clamp(1.2rem, 2vw, 1.8rem); color: var(--psyke-purple);
-}
-.step-item p { font-size: var(--small-size); color: var(--text-secondary); line-height: 1.4; }
-
-.proof-card {
+.stat-card {
     padding: clamp(0.6rem, 1.2vw, 1rem);
     background: var(--bg-surface);
-    border-left: 3px solid var(--psyke-lime);
+    border-left: 3px solid var(--psyke-purple);
     border-radius: 0 4px 4px 0;
-    display: flex; flex-direction: column; gap: clamp(0.2rem, 0.4vw, 0.3rem);
+    display: flex; flex-direction: column; gap: clamp(0.15rem, 0.3vw, 0.25rem);
 }
-.proof-card strong { font-size: var(--body-size); color: var(--text-primary); }
-.proof-card .stat { font-size: clamp(1.2rem, 2.5vw, 2rem); font-weight: 700; color: var(--psyke-lime); }
-.proof-card p { font-size: var(--small-size); color: var(--text-muted); }
+.stat-card .stat-value {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(1.2rem, 2.5vw, 2rem); color: var(--psyke-purple);
+}
+.stat-card.lime .stat-value { color: var(--psyke-lime); }
+.stat-card.lime { border-left-color: var(--psyke-lime); }
+.stat-card.critical .stat-value { color: var(--accent-critical); }
+.stat-card.critical { border-left-color: var(--accent-critical); }
+.stat-card p { font-size: var(--small-size); color: var(--text-muted); line-height: 1.4; }
 
 .phase-block {
     padding: clamp(0.5rem, 1vw, 0.8rem);
@@ -432,23 +425,6 @@ p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-seconda
 }
 .phase-block strong { font-size: var(--body-size); color: var(--text-primary); }
 .phase-block p { font-size: var(--small-size); color: var(--text-muted); line-height: 1.4; }
-
-.analysis-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: clamp(0.4rem, 1vw, 0.8rem);
-}
-.analysis-card {
-    padding: clamp(0.5rem, 1vw, 0.8rem);
-    background: var(--bg-surface);
-    border-left: 3px solid var(--psyke-purple);
-    border-radius: 0 4px 4px 0;
-    display: flex; flex-direction: column; gap: clamp(0.15rem, 0.3vw, 0.3rem);
-}
-.analysis-card strong {
-    font-size: var(--small-size); text-transform: uppercase;
-    letter-spacing: 0.08em; font-weight: 600; color: var(--psyke-purple);
-}
-.analysis-card p { font-size: var(--small-size); color: var(--text-muted); line-height: 1.4; }
 
 .keyword-badges {
     display: flex; flex-wrap: wrap; gap: clamp(0.3rem, 0.6vw, 0.5rem);
@@ -481,6 +457,26 @@ p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-seconda
 .ai-query-card .result .absent { color: var(--accent-critical); font-weight: 600; }
 .ai-query-card .result .present { color: var(--accent-positive); font-weight: 600; }
 
+/* === COMPETITOR TABLE === */
+.competitor-grid {
+    display: grid; grid-template-columns: 1fr;
+    gap: clamp(0.3rem, 0.6vw, 0.5rem);
+}
+.competitor-row {
+    display: grid; grid-template-columns: 2fr repeat(4, 1fr);
+    gap: clamp(0.3rem, 0.5vw, 0.5rem); align-items: center;
+    padding: clamp(0.3rem, 0.6vw, 0.5rem);
+    font-size: var(--small-size);
+}
+.competitor-row.header {
+    color: var(--text-muted); text-transform: uppercase;
+    letter-spacing: 0.08em; font-weight: 600;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.competitor-row.client { color: var(--psyke-purple); font-weight: 600; }
+.competitor-cell { text-align: center; }
+.competitor-cell:first-child { text-align: left; }
+
 /* === SECTION DIVIDER === */
 .section-divider {
     background: var(--bg-primary);
@@ -505,14 +501,61 @@ p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-seconda
     background: var(--gradient-brand); border-radius: 1px;
 }
 
+/* === AGENDA LIST === */
+.agenda-list {
+    list-style: none; display: flex; flex-direction: column;
+    gap: clamp(0.3rem, 0.8vh, 0.6rem); counter-reset: agenda;
+}
+.agenda-list li {
+    counter-increment: agenda;
+    font-size: var(--body-size); line-height: 1.5;
+    padding-left: clamp(2rem, 3vw, 2.5rem); position: relative;
+    color: var(--text-secondary);
+}
+.agenda-list li::before {
+    content: counter(agenda, decimal-leading-zero);
+    position: absolute; left: 0;
+    font-family: var(--font-display); font-weight: 700;
+    color: var(--psyke-purple); font-size: var(--body-size);
+}
+
+/* === PROOF CARD === */
+.proof-card {
+    padding: clamp(0.6rem, 1.2vw, 1rem);
+    background: var(--bg-surface);
+    border-left: 3px solid var(--psyke-lime);
+    border-radius: 0 4px 4px 0;
+    display: flex; flex-direction: column; gap: clamp(0.2rem, 0.4vw, 0.3rem);
+}
+.proof-card strong { font-size: var(--body-size); color: var(--text-primary); }
+.proof-card .stat { font-size: clamp(1.2rem, 2.5vw, 2rem); font-weight: 700; color: var(--psyke-lime); }
+.proof-card p { font-size: var(--small-size); color: var(--text-muted); }
+
+/* === DFY GRID === */
+.dfy-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: clamp(0.3rem, 0.8vw, 0.6rem);
+}
+.dfy-item {
+    padding: clamp(0.5rem, 1vw, 0.8rem);
+    background: var(--bg-surface);
+    border-top: 2px solid var(--psyke-purple);
+    border-radius: 0 0 4px 4px;
+    display: flex; flex-direction: column; gap: clamp(0.15rem, 0.3vw, 0.25rem);
+}
+.dfy-item strong {
+    font-size: var(--small-size); text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--psyke-purple); font-weight: 600;
+}
+.dfy-item p { font-size: var(--small-size); color: var(--text-muted); line-height: 1.4; }
+
 /* === RESPONSIVE === */
 @media (max-width: 768px) {
     .slide-split { flex-direction: column; }
     .split-left, .split-right { flex: none; height: 50%; }
-    .breakdown-grid { grid-template-columns: 1fr; }
-    .analysis-grid { grid-template-columns: 1fr; }
+    .breakdown-grid, .stat-grid, .dfy-grid { grid-template-columns: 1fr; }
     .dual-score { flex-direction: column; align-items: center; }
-    .step-grid { grid-template-columns: 1fr 1fr; }
+    .competitor-row { grid-template-columns: 1.5fr repeat(4, 1fr); font-size: clamp(0.55rem, 0.9vw, 0.65rem); }
 }
 @media (max-height: 700px) {
     :root { --slide-padding: clamp(0.75rem, 3vw, 2rem); --content-gap: clamp(0.4rem, 1.5vw, 1rem); --title-size: clamp(1.25rem, 4.5vw, 2.5rem); }
@@ -536,7 +579,7 @@ p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-seconda
 <nav class="nav-dots" id="navDots"></nav>
 
 <!-- ============================================================
-     PART 1: NARRATIVE SLIDES (1-17)
+     PART 1: ENTERPRISE PITCH (Slides 1-17)
      ============================================================ -->
 
 <!-- SLIDE 1: Title -->
@@ -545,117 +588,129 @@ p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-seconda
     <div class="glow-orb glow-lime" style="bottom: -8%; left: -3%"></div>
     <div class="content-wrap">
         <div class="psyke-logo reveal">PSYKE</div>
-        <h1 class="reveal reveal-delay-1"><span class="accent">AI Search</span> Is Reshaping How Enterprise Buyers Discover Vendors</h1>
-        <p class="subtitle reveal reveal-delay-2">What this means for SmartGroup and how to get ahead of it</p>
+        <h1 class="reveal reveal-delay-1"><span class="accent">SmartGroup</span></h1>
+        <p class="subtitle reveal reveal-delay-2">GEO & AI Visibility Strategy</p>
         <p class="meta reveal reveal-delay-3">smartgroup.com.au &middot; March 2026</p>
     </div>
     <span class="slide-num">01 / 30</span>
 </section>
 
-<!-- SLIDE 2: What We Heard -->
+<!-- SLIDE 2: Agenda -->
 <section class="slide" id="slide-2">
     <div class="slide-split">
         <div class="split-left">
-            <span class="label reveal">Context</span>
-            <h2 class="reveal reveal-delay-1">What we've heard from SmartGroup</h2>
-            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">Clear opportunity to unlock scalable, inbound demand</p>
+            <span class="label reveal">Agenda</span>
+            <h2 class="reveal reveal-delay-1">What we'll cover today</h2>
         </div>
         <div class="split-right">
-            <ul class="narrative-points">
-                <li class="reveal reveal-delay-1"><strong>Strong enterprise positioning</strong> and established market presence across salary packaging, novated leasing, and fleet management</li>
-                <li class="reveal reveal-delay-2"><strong>Growth tied to visibility</strong> across multiple service lines and employer segments</li>
-                <li class="reveal reveal-delay-3"><strong>Reliance on traditional channels</strong> including referrals, sales-led outreach, and paid acquisition</li>
-                <li class="reveal reveal-delay-4"><strong>Increasing pressure to modernise</strong> digital acquisition as competitors invest in organic and AI-ready content</li>
-            </ul>
+            <ol class="agenda-list">
+                <li class="reveal reveal-delay-1">Understanding SmartGroup: your business, your market, your challenges</li>
+                <li class="reveal reveal-delay-1">The AI search shift: how discovery is changing and what it means</li>
+                <li class="reveal reveal-delay-2">Education: how AI search works and what content needs to look like</li>
+                <li class="reveal reveal-delay-2">GEO analysis: SmartGroup vs competitors in AI visibility</li>
+                <li class="reveal reveal-delay-3">The opportunity: where the gaps are and what they're worth</li>
+                <li class="reveal reveal-delay-3">About Psyke: who we are, how we work, governance and compliance</li>
+                <li class="reveal reveal-delay-4">Next steps: project flow, Jeremy introduction, go-live</li>
+                <li class="reveal reveal-delay-4">Full Technical SEO & GEO Audit: smartgroup.com.au</li>
+            </ol>
         </div>
     </div>
     <span class="slide-num">02 / 30</span>
 </section>
 
-<!-- SLIDE 3: The Shift -->
+<!-- SLIDE 3: What We Know So Far -->
 <section class="slide" id="slide-3">
     <div class="slide-split">
         <div class="split-left">
-            <span class="label reveal">The Shift</span>
-            <h2 class="reveal reveal-delay-1">Search is no longer just Google</h2>
-            <div class="quote-block reveal reveal-delay-3">"If you're not structured for AI, you don't exist in these environments"</div>
+            <span class="label reveal">Context</span>
+            <h2 class="reveal reveal-delay-1">What we know about SmartGroup</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">A market leader with a digital visibility gap.</p>
         </div>
         <div class="split-right">
             <ul class="narrative-points">
-                <li class="reveal reveal-delay-1">Buyers are shifting to <strong>ChatGPT, AI Overviews, Claude, and Perplexity</strong> for vendor research</li>
-                <li class="reveal reveal-delay-2"><strong>Zero-click behaviour is rising</strong> across commercial queries. Answers are served directly, not via blue links</li>
-                <li class="reveal reveal-delay-3">Discovery is becoming <strong>answer-led, not link-led</strong>. AI systems cite authoritative, well-structured sources</li>
+                <li class="reveal reveal-delay-1"><strong>ASX-listed since 1999</strong> (SIQ). $329M revenue in 2025, $1.18B market cap. 491,000 active customers across salary packaging, novated leasing, and fleet management</li>
+                <li class="reveal reveal-delay-2"><strong>No dedicated SEO lead.</strong> SEO activities are managed cross-functionally across departments, with no single owner driving organic and AI visibility strategy</li>
+                <li class="reveal reveal-delay-3"><strong>Key markets:</strong> not-for-profits, healthcare, government, corporate, and education. Serving employers of all sizes across Australia</li>
+                <li class="reveal reveal-delay-4"><strong>85,300 novated leases under management.</strong> BEV orders surged 49% year-on-year, signalling strong demand in the EV transition space</li>
             </ul>
         </div>
     </div>
     <span class="slide-num">03 / 30</span>
 </section>
 
-<!-- SLIDE 4: Why This Matters -->
+<!-- SLIDE 4: Perceived Challenges -->
 <section class="slide" id="slide-4">
     <div class="slide-split">
         <div class="split-left">
-            <span class="label reveal">Urgency</span>
-            <h2 class="reveal reveal-delay-1">This is already impacting enterprise buying behaviour</h2>
+            <span class="label reveal">Challenges</span>
+            <h2 class="reveal reveal-delay-1">What we believe you're dealing with</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">Based on our research and industry analysis.</p>
         </div>
         <div class="split-right">
             <ul class="narrative-points">
-                <li class="reveal reveal-delay-1">Buyers <strong>shortlist vendors before ever visiting a website</strong>, using AI tools to narrow options</li>
-                <li class="reveal reveal-delay-2"><strong>AI is influencing early-stage decision-making</strong> across salary packaging, fleet, and benefits procurement</li>
-                <li class="reveal reveal-delay-3"><strong>Visibility equals credibility</strong> in AI-mediated discovery. If an AI can't find you, you're not in the consideration set</li>
+                <li class="reveal reveal-delay-1"><strong>Visibility beyond branded search is limited.</strong> When someone searches "how does salary packaging work" or "best novated lease providers", SmartGroup is not appearing</li>
+                <li class="reveal reveal-delay-2"><strong>Competition is intensifying.</strong> Maxxia (McMillan Shakespeare) holds 38% of the novated lease market. Paywise and Employment Hero are investing in content and digital acquisition</li>
+                <li class="reveal reveal-delay-3"><strong>Scaling content without headcount is difficult.</strong> Cross-functional SEO ownership means limited bandwidth to produce the volume of content needed to compete</li>
+                <li class="reveal reveal-delay-4"><strong>AI-driven discovery is creating a new battleground.</strong> Buyers are increasingly using ChatGPT, Perplexity, and Google AI Overviews to shortlist providers before visiting a website</li>
             </ul>
-            <div class="evidence reveal reveal-delay-4">
-                If you're not showing up here, you're not in the conversation.
-            </div>
         </div>
     </div>
     <span class="slide-num">04 / 30</span>
 </section>
 
-<!-- SLIDE 5: What Winning Looks Like -->
+<!-- SLIDE 5: How AI Search Works (Education 1) -->
 <section class="slide" id="slide-5">
     <div class="slide-split">
         <div class="split-left">
-            <span class="label-lime label reveal">Opportunity</span>
-            <h2 class="reveal reveal-delay-1">The companies winning are doing this differently</h2>
+            <span class="label reveal">Education</span>
+            <h2 class="reveal reveal-delay-1">How AI search actually works</h2>
+            <div class="quote-block reveal reveal-delay-3">"AI does not cite websites. It cites chunks of knowledge."</div>
         </div>
         <div class="split-right">
             <ul class="narrative-points">
-                <li class="reveal reveal-delay-1"><strong>Owning entire topic clusters</strong>, not just ranking for a handful of keywords</li>
-                <li class="reveal reveal-delay-2"><strong>Structuring content for machines</strong>, not just humans. Schema, entities, clear headings, parseable paragraphs</li>
-                <li class="reveal reveal-delay-3"><strong>Building authority across long-tail, high-intent queries</strong> like "salary packaging for healthcare workers" or "novated lease vs car loan calculator"</li>
-                <li class="reveal reveal-delay-4"><strong>Being consistently cited by AI systems</strong> through depth, structure, and topical authority</li>
+                <li class="reveal reveal-delay-1"><strong>LLMs process text in ~400 word chunks</strong> (approximately 512 tokens). Each chunk must be self-contained and clearly structured to be retrieved and used in an answer</li>
+                <li class="reveal reveal-delay-2"><strong>AI performs query fan-out.</strong> One user query triggers multiple sub-searches simultaneously. From the AirOps study: 89.6% of queries trigger follow-up searches, ~37 pages retrieved per query, but only ~5 are cited</li>
+                <li class="reveal reveal-delay-3"><strong>Headings create contextual anchors.</strong> LLMs use heading structure to interpret what a section is about. Structured formatting helps AI understand relationships and intent</li>
+                <li class="reveal reveal-delay-4"><strong>You are competing with content sections, not entire pages.</strong> AI answers pull the best chunk, not the best page. If your content is structured clearly, your brand is more likely to be found and cited</li>
             </ul>
         </div>
     </div>
     <span class="slide-num">05 / 30</span>
 </section>
 
-<!-- SLIDE 6: SmartGroup Analysis -->
+<!-- SLIDE 6: What Content Needs to Look Like (Education 2) -->
 <section class="slide" id="slide-6">
     <div class="slide-split">
         <div class="split-left">
-            <span class="label reveal">Assessment</span>
-            <h2 class="reveal reveal-delay-1">Where SmartGroup currently sits</h2>
-            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">This isn't a performance issue. It's a structural opportunity.</p>
+            <span class="label reveal">Content Structure</span>
+            <h2 class="reveal reveal-delay-1">What content needs to look like for AI</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">The shift from "How do we rank this page?" to "How will AI retrieve this answer?"</p>
         </div>
         <div class="split-right">
-            <div class="analysis-grid">
-                <div class="analysis-card reveal reveal-delay-1">
-                    <strong>Visibility</strong>
-                    <p>Limited presence across long-tail, high-intent queries. SmartGroup absent from AI responses for "best salary packaging provider Australia" and "how does novated leasing work"</p>
+            <div class="stat-grid">
+                <div class="stat-card reveal reveal-delay-1">
+                    <p style="color: var(--text-primary); font-weight: 600;">Single clear H1</p>
+                    <p>One topic per page with an entity-first introduction that answers the core query immediately</p>
                 </div>
-                <div class="analysis-card reveal reveal-delay-2">
-                    <strong>Structure</strong>
-                    <p>Content not optimised for AI parsing. No Organization schema, no FAQ markup, missing Open Graph tags across all pages. H1 tags absent on homepage and key service pages</p>
+                <div class="stat-card reveal reveal-delay-1">
+                    <p style="color: var(--text-primary); font-weight: 600;">"At a glance" summary</p>
+                    <p>A scannable block near the top that AI can extract as a self-contained answer</p>
                 </div>
-                <div class="analysis-card reveal reveal-delay-3">
-                    <strong>Coverage</strong>
-                    <p>Gaps across service-related search themes. No informational content: no guides, comparisons, calculators, or explainer articles targeting buyer queries</p>
+                <div class="stat-card reveal reveal-delay-2">
+                    <p style="color: var(--text-primary); font-weight: 600;">FAQ with schema markup</p>
+                    <p>Structured Q&A sections with FAQPage schema for featured snippets and AI citations</p>
                 </div>
-                <div class="analysis-card reveal reveal-delay-4">
-                    <strong>Opportunity</strong>
-                    <p>Significant whitespace across commercial queries. Competitors like Maxxia, SG Fleet, and RemServ own the AI citation space. SmartGroup has the brand authority to compete, but not the content infrastructure</p>
+                <div class="stat-card reveal reveal-delay-2">
+                    <p style="color: var(--text-primary); font-weight: 600;">Chunked sections</p>
+                    <p>Content broken into clearly headed sections of ~400 words, each targeting a specific sub-query</p>
+                </div>
+                <div class="stat-card lime reveal reveal-delay-3">
+                    <p style="color: var(--text-primary); font-weight: 600;">Entity markup</p>
+                    <p>Organization, Service, and LocalBusiness schema so AI systems understand what you do and who you serve</p>
+                </div>
+                <div class="stat-card lime reveal reveal-delay-3">
+                    <p style="color: var(--text-primary); font-weight: 600;">Internal linking</p>
+                    <p>Topic clusters with authority pages linking to supporting long-tail pages, building topical depth</p>
                 </div>
             </div>
         </div>
@@ -663,233 +718,321 @@ p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-seconda
     <span class="slide-num">06 / 30</span>
 </section>
 
-<!-- SLIDE 7: The Gap -->
-<section class="slide slide-center" id="slide-7">
-    <div class="grid-bg"></div>
-    <div class="content-wrap">
-        <span class="label reveal">The Gap</span>
-        <h2 class="reveal reveal-delay-1" style="font-size: var(--title-size);">The gap isn't effort.<br>It's <span style="color: var(--psyke-purple);">infrastructure</span>.</h2>
-        <p class="reveal reveal-delay-2" style="max-width: 600px;">You cannot solve this with blogs or internal teams. This requires a new content system, purpose-built for how search works now and where it's heading.</p>
+<!-- SLIDE 7: The Visibility Crisis (Fear) -->
+<section class="slide" id="slide-7">
+    <div class="slide-split">
+        <div class="split-left">
+            <span class="label" style="color: var(--accent-critical);" class="reveal">The Visibility Crisis</span>
+            <h2 class="reveal reveal-delay-1">The ground is shifting beneath traditional search</h2>
+        </div>
+        <div class="split-right">
+            <div class="stat-grid">
+                <div class="stat-card critical reveal reveal-delay-1">
+                    <span class="stat-value">47-57%</span>
+                    <p>of search results now show AI summaries. When they appear, click-through rates drop from ~15% to ~8%</p>
+                </div>
+                <div class="stat-card critical reveal reveal-delay-1">
+                    <span class="stat-value">400M+</span>
+                    <p>people use AI search tools weekly. Discovery is moving from links to answers</p>
+                </div>
+                <div class="stat-card reveal reveal-delay-2">
+                    <span class="stat-value">~30%</span>
+                    <p>of AI citations come from top-ranking pages. Traditional SEO rankings no longer guarantee visibility</p>
+                </div>
+                <div class="stat-card reveal reveal-delay-2">
+                    <span class="stat-value">~70%</span>
+                    <p>of searches are long-tail queries. These require scalable content production, not manual creation</p>
+                </div>
+                <div class="stat-card reveal reveal-delay-3">
+                    <span class="stat-value">&lt;20%</span>
+                    <p>of websites use structured data. SmartGroup is among the majority who are invisible to AI parsing</p>
+                </div>
+                <div class="stat-card reveal reveal-delay-3">
+                    <span class="stat-value">56%</span>
+                    <p>of searches are zero-click. Rising to 69% after AI summary rollout. The click itself is disappearing</p>
+                </div>
+            </div>
+        </div>
     </div>
     <span class="slide-num">07 / 30</span>
 </section>
 
-<!-- SLIDE 8: Introducing the New Model -->
-<section class="slide" id="slide-8">
-    <div class="slide-split">
-        <div class="split-left">
-            <span class="label reveal">The Model</span>
-            <h2 class="reveal reveal-delay-1">From content creation to content <span style="color: var(--psyke-purple);">infrastructure</span></h2>
-        </div>
-        <div class="split-right">
-            <ul class="narrative-points">
-                <li class="reveal reveal-delay-1"><strong>Topic identification</strong> maps your service areas to the queries buyers actually use</li>
-                <li class="reveal reveal-delay-2"><strong>Blueprint creation</strong> builds the structural foundation: schema, entity relationships, heading architecture</li>
-                <li class="reveal reveal-delay-3"><strong>Scaled page generation</strong> produces 100-200 pages per topic cluster, each targeting specific long-tail queries</li>
-                <li class="reveal reveal-delay-4"><strong>Machine-readable by default.</strong> Every page built for both Google and AI citation engines</li>
-            </ul>
+<!-- SLIDE 8: Cost of Doing Nothing (Urgency) -->
+<section class="slide slide-center" id="slide-8">
+    <div class="grid-bg"></div>
+    <div class="content-wrap" style="gap: clamp(0.8rem, 2vh, 1.5rem);">
+        <span class="label" style="color: var(--accent-critical);">The Cost of Doing Nothing</span>
+        <h2 class="reveal reveal-delay-1" style="font-size: clamp(1.5rem, 4vw, 3rem);">This is not optional.<br>And <span style="color: var(--accent-critical);">timing matters</span>.</h2>
+        <div class="stat-grid reveal reveal-delay-2" style="width: 100%; max-width: 700px;">
+            <div class="stat-card critical">
+                <span class="stat-value">1.13B</span>
+                <p>Monthly AI referral visits from websites to platforms (2026). If you are not cited, you are invisible in over a billion discovery moments every month</p>
+            </div>
+            <div class="stat-card critical">
+                <span class="stat-value">2.5B</span>
+                <p>ChatGPT prompts per day driving AI-led discovery. If your brand is not structured for retrieval, the LLMs will send buyers to competitors</p>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value">80-90%</span>
+                <p>Traffic declines reported by publishers relying on traditional SEO. AI answers the question first, so your website never gets the click</p>
+            </div>
+            <div class="stat-card lime">
+                <span class="stat-value">350%+</span>
+                <p>YoY growth in AI search referrals. Over 90% of buyers now use AI tools during research. The early movers are compounding their advantage</p>
+            </div>
         </div>
     </div>
     <span class="slide-num">08 / 30</span>
 </section>
 
-<!-- SLIDE 9: Where Psyke Fits -->
+<!-- SLIDE 9: Competitive Landscape -->
 <section class="slide" id="slide-9">
     <div class="slide-split">
         <div class="split-left">
-            <span class="label reveal">Psyke</span>
-            <h2 class="reveal reveal-delay-1">Your AI Content Growth Engine</h2>
-            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">Not a tool. Not an agency. A system for scalable visibility.</p>
+            <span class="label reveal">Competitive Landscape</span>
+            <h2 class="reveal reveal-delay-1">SmartGroup has brand authority but competitors are moving faster digitally</h2>
         </div>
         <div class="split-right">
-            <ul class="narrative-points">
-                <li class="reveal reveal-delay-1"><strong>Generates 100-200 pages per topic</strong> targeting long-tail, high-intent queries across your service areas</li>
-                <li class="reveal reveal-delay-2"><strong>Built for AI discovery and Google</strong> with proper schema, entity markup, and structured content architecture</li>
-                <li class="reveal reveal-delay-3"><strong>Lives on your domain</strong> building domain authority and brand equity, not on a third-party platform</li>
-                <li class="reveal reveal-delay-4"><strong>No internal resource strain.</strong> Psyke handles research, creation, deployment, and optimisation end-to-end</li>
-            </ul>
+            <div class="competitor-grid reveal reveal-delay-1">
+                <div class="competitor-row header">
+                    <span class="competitor-cell">Company</span>
+                    <span class="competitor-cell">Revenue</span>
+                    <span class="competitor-cell">Market Cap</span>
+                    <span class="competitor-cell">Content Depth</span>
+                    <span class="competitor-cell">AI Cited?</span>
+                </div>
+                <div class="competitor-row client">
+                    <span class="competitor-cell">SmartGroup (SIQ)</span>
+                    <span class="competitor-cell">$329M</span>
+                    <span class="competitor-cell">$1.18B</span>
+                    <span class="competitor-cell" style="color: var(--accent-critical);">Thin</span>
+                    <span class="competitor-cell" style="color: var(--accent-critical);">No</span>
+                </div>
+                <div class="competitor-row">
+                    <span class="competitor-cell">Maxxia (MMS)</span>
+                    <span class="competitor-cell">$563M*</span>
+                    <span class="competitor-cell">$954M</span>
+                    <span class="competitor-cell" style="color: var(--accent-positive);">Strong</span>
+                    <span class="competitor-cell" style="color: var(--accent-positive);">Yes</span>
+                </div>
+                <div class="competitor-row">
+                    <span class="competitor-cell">Paywise</span>
+                    <span class="competitor-cell">Private</span>
+                    <span class="competitor-cell">Private</span>
+                    <span class="competitor-cell" style="color: var(--accent-medium);">Moderate</span>
+                    <span class="competitor-cell" style="color: var(--accent-positive);">Yes</span>
+                </div>
+                <div class="competitor-row">
+                    <span class="competitor-cell">Fleetcare</span>
+                    <span class="competitor-cell">Private</span>
+                    <span class="competitor-cell">Private</span>
+                    <span class="competitor-cell" style="color: var(--accent-medium);">Moderate</span>
+                    <span class="competitor-cell" style="color: var(--accent-medium);">Partial</span>
+                </div>
+                <div class="competitor-row">
+                    <span class="competitor-cell">Employment Hero</span>
+                    <span class="competitor-cell">Private</span>
+                    <span class="competitor-cell">~$2B</span>
+                    <span class="competitor-cell" style="color: var(--accent-positive);">Very Strong</span>
+                    <span class="competitor-cell" style="color: var(--accent-positive);">Yes</span>
+                </div>
+            </div>
+            <p class="reveal reveal-delay-2" style="font-size: var(--small-size); color: var(--text-muted);">*McMillan Shakespeare group revenue. Maxxia holds 38% novated lease market share with 380,900 salary packaging volumes.</p>
+            <div class="evidence reveal reveal-delay-3">
+                SmartGroup has the largest market cap in the category but the weakest digital content infrastructure. Competitors with lower brand authority are winning AI citations through structured, deep content.
+            </div>
         </div>
     </div>
     <span class="slide-num">09 / 30</span>
 </section>
 
-<!-- SLIDE 10: How It Works -->
+<!-- SLIDE 10: AI/LLM Visibility Gap -->
 <section class="slide" id="slide-10">
     <div class="slide-split">
         <div class="split-left">
-            <span class="label reveal">Process</span>
-            <h2 class="reveal reveal-delay-1">How it works</h2>
+            <span class="label" style="color: var(--accent-critical);">AI Visibility Gap</span>
+            <h2 class="reveal reveal-delay-1">We tested 8 queries across AI platforms</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">SmartGroup was absent from every AI-generated response. Competitors are consistently cited.</p>
         </div>
-        <div class="split-right">
-            <div class="step-grid">
-                <div class="step-item reveal reveal-delay-1">
-                    <span class="step-num">01</span>
-                    <p><strong>Identify</strong> core topics aligned to your commercial goals</p>
-                </div>
-                <div class="step-item reveal reveal-delay-1">
-                    <span class="step-num">02</span>
-                    <p><strong>Build</strong> blueprint pages with full schema and entity architecture</p>
-                </div>
-                <div class="step-item reveal reveal-delay-2">
-                    <span class="step-num">03</span>
-                    <p><strong>Generate</strong> long-tail page variants at scale</p>
-                </div>
-                <div class="step-item reveal reveal-delay-2">
-                    <span class="step-num">04</span>
-                    <p><strong>Deploy</strong> to your domain with zero disruption</p>
-                </div>
-                <div class="step-item reveal reveal-delay-3" style="grid-column: span 2;">
-                    <span class="step-num">05</span>
-                    <p><strong>Optimise + iterate</strong> based on performance data, AI citation tracking, and keyword movement</p>
-                </div>
+        <div class="split-right" style="gap: clamp(0.3rem, 0.6vh, 0.5rem);">
+            <div class="ai-query-card reveal reveal-delay-1">
+                <span class="query">"Best novated lease providers Australia"</span>
+                <span class="result"><span class="absent">SmartGroup: Not cited.</span> Maxxia, SG Fleet, LeasePlan, Eziway cited instead</span>
+            </div>
+            <div class="ai-query-card reveal reveal-delay-1">
+                <span class="query">"How does salary packaging work"</span>
+                <span class="result"><span class="absent">SmartGroup: Not cited.</span> Maxxia, ATO.gov.au, Paywise, RemServ own this query</span>
+            </div>
+            <div class="ai-query-card reveal reveal-delay-2">
+                <span class="query">"Best salary packaging companies Australia"</span>
+                <span class="result"><span class="absent">SmartGroup: Not cited.</span> Maxxia, Paywise, Eziway, CBB cited</span>
+            </div>
+            <div class="ai-query-card reveal reveal-delay-2">
+                <span class="query">"EV novated lease Australia"</span>
+                <span class="result"><span class="absent">SmartGroup: Not cited.</span> Despite 49% BEV order growth, zero AI presence in this space</span>
+            </div>
+            <div class="ai-query-card reveal reveal-delay-3">
+                <span class="query">"Novated lease vs car loan"</span>
+                <span class="result"><span class="absent">SmartGroup: Not cited.</span> Comparison sites and competitors dominate</span>
+            </div>
+            <div class="ai-query-card reveal reveal-delay-3">
+                <span class="query">"Employee benefits providers Australia"</span>
+                <span class="result"><span class="absent">SmartGroup: Not cited.</span> Employment Hero, Maxxia, Flare HR cited</span>
+            </div>
+            <div class="ai-query-card reveal reveal-delay-4">
+                <span class="query">"Fleet management companies Australia"</span>
+                <span class="result"><span class="absent">SmartGroup: Not cited.</span> SG Fleet, LeasePlan, Custom Fleet cited</span>
+            </div>
+            <div class="ai-query-card reveal reveal-delay-4">
+                <span class="query">"Salary packaging for NFP organisations"</span>
+                <span class="result"><span class="absent">SmartGroup: Not cited.</span> Maxxia and RemServ dominate this sector</span>
             </div>
         </div>
     </div>
     <span class="slide-num">10 / 30</span>
 </section>
 
-<!-- SLIDE 11: Proof -->
+<!-- SLIDE 11: The Opportunity -->
 <section class="slide" id="slide-11">
     <div class="slide-split">
         <div class="split-left">
-            <span class="label-lime label reveal">Results</span>
-            <h2 class="reveal reveal-delay-1">What this looks like in practice</h2>
+            <span class="label-lime label reveal">The Opportunity</span>
+            <h2 class="reveal reveal-delay-1">The window is open. But it's closing.</h2>
         </div>
-        <div class="split-right" style="gap: clamp(0.4rem, 1vw, 0.8rem);">
-            <div class="proof-card reveal reveal-delay-1">
-                <strong>Beny</strong>
-                <span class="stat">600 clicks in 28 days</span>
-                <p>From zero organic presence to measurable inbound traffic within one month of deployment</p>
-            </div>
-            <div class="proof-card reveal reveal-delay-2">
-                <strong>Varicon</strong>
-                <span class="stat">41,000 impressions</span>
-                <p>Scaled visibility across niche construction-tech queries, establishing category authority</p>
-            </div>
-            <div class="proof-card reveal reveal-delay-3">
-                <strong>SaucedIT</strong>
-                <span class="stat">Deal via ChatGPT</span>
-                <p>First recorded client acquisition directly attributed to AI citation, not Google</p>
+        <div class="split-right">
+            <ul class="narrative-points">
+                <li class="reveal reveal-delay-1"><strong>EV novated leasing is the fastest-growing category in this space.</strong> Australian EV/PHEV sales hit 156,958 units in 2025 (+38% YoY), forecast to reach ~195,000 in 2026. SmartGroup's BEV orders grew 49%, yet the site has zero dedicated EV content. Competitors are building content and capturing this demand</li>
+                <li class="reveal reveal-delay-2"><strong>SmartGroup has zero informational content.</strong> No guides, no comparisons, no calculators, no "how it works" articles. These are the exact content types AI systems retrieve and cite</li>
+                <li class="reveal reveal-delay-3"><strong>65+ news articles exist but are orphaned.</strong> No hub page, no taxonomy, no internal linking structure. This content provides zero SEO or GEO value in its current state</li>
+                <li class="reveal reveal-delay-4"><strong>The authority is already there.</strong> SmartGroup has 25+ years of market presence, ASX credibility, and the deepest customer base in the category. The gap is content infrastructure, not brand strength</li>
+            </ul>
+            <div class="evidence reveal reveal-delay-4">
+                Narrative: They have the authority. Competitors are moving. They're not visible in AI. The window is closing.
             </div>
         </div>
     </div>
     <span class="slide-num">11 / 30</span>
 </section>
 
-<!-- SLIDE 12: Enterprise Readiness -->
+<!-- SLIDE 12: About Psyke -->
 <section class="slide" id="slide-12">
     <div class="slide-split">
         <div class="split-left">
-            <span class="label reveal">Enterprise</span>
-            <h2 class="reveal reveal-delay-1">Built for enterprise environments</h2>
-            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">This isn't experimental. This is deployable at enterprise scale.</p>
+            <span class="label reveal">About Psyke</span>
+            <h2 class="reveal reveal-delay-1">Your AI Content Growth Engine</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">An AI CMS that helps brands scale visibility across organic search and AI discovery. No additional headcount required.</p>
         </div>
         <div class="split-right">
-            <ul class="narrative-points">
-                <li class="reveal reveal-delay-1"><strong>Security and compliance:</strong> Content generated with governance controls, brand-safe outputs, and audit trails</li>
-                <li class="reveal reveal-delay-2"><strong>Brand control:</strong> Every page reviewed against brand guidelines before deployment. Tone, terminology, and positioning locked in</li>
-                <li class="reveal reveal-delay-3"><strong>Integration:</strong> Deploys as a subdirectory on your existing domain. No platform migration, no CMS disruption</li>
-                <li class="reveal reveal-delay-4"><strong>Governance:</strong> Approval workflows, version control, and performance reporting built into the process</li>
-            </ul>
+            <div class="dfy-grid">
+                <div class="dfy-item reveal reveal-delay-1">
+                    <strong>GEO Audit + Blueprint</strong>
+                    <p>Full technical audit, on-site structure review, subfolder topology, topic cluster mapping, backlink strategy. Complimentary (valued at $2.5k)</p>
+                </div>
+                <div class="dfy-item reveal reveal-delay-1">
+                    <strong>Content Strategy</strong>
+                    <p>Topical authority page design, entity optimisation, internal linking, schema implementation, brand voice alignment</p>
+                </div>
+                <div class="dfy-item reveal reveal-delay-2">
+                    <strong>Page Infrastructure</strong>
+                    <p>Subdomain + reverse proxy deployment, chunked content structure, schema markup, entity relationships, publishing workflow</p>
+                </div>
+                <div class="dfy-item reveal reveal-delay-2">
+                    <strong>Monthly Deployment</strong>
+                    <p>Long-tail and query-focused page generation, programmatic page variants, AI-optimised formatting, topic cluster expansion</p>
+                </div>
+                <div class="dfy-item reveal reveal-delay-3">
+                    <strong>Monthly Reporting</strong>
+                    <p>Organic visibility tracking, long-tail coverage, AI discovery monitoring, traffic and indexing updates, deployment summaries</p>
+                </div>
+                <div class="dfy-item reveal reveal-delay-3">
+                    <strong>Strategy Calls</strong>
+                    <p>Monthly strategy sessions, content prioritisation, topic expansion planning, performance reviews, roadmap refinement</p>
+                </div>
+            </div>
         </div>
     </div>
     <span class="slide-num">12 / 30</span>
 </section>
 
-<!-- SLIDE 13: Risk Reversal -->
+<!-- SLIDE 13: Risk, Compliance, Security & Governance -->
 <section class="slide" id="slide-13">
     <div class="slide-split">
         <div class="split-left">
-            <span class="label reveal">De-risked</span>
-            <h2 class="reveal reveal-delay-1">De-risked from day one</h2>
+            <span class="label reveal">Governance</span>
+            <h2 class="reveal reveal-delay-1">You get scale without losing control</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">Built for enterprise compliance requirements from day one.</p>
         </div>
         <div class="split-right">
             <ul class="narrative-points">
-                <li class="reveal reveal-delay-1"><strong>3-month performance guarantee.</strong> If metrics don't improve within 90 days, we course-correct at our cost</li>
-                <li class="reveal reveal-delay-2"><strong>Controlled rollout.</strong> Start with one topic cluster. Scale only when results are validated</li>
-                <li class="reveal reveal-delay-3"><strong>Pilot approach.</strong> Low commitment entry point designed for enterprise procurement cycles</li>
-                <li class="reveal reveal-delay-4"><strong>Measurable KPIs from week one.</strong> Impressions, clicks, keyword rankings, and AI citation tracking from day of deployment</li>
+                <li class="reveal reveal-delay-1"><strong>Controlled content creation.</strong> This is not rogue AI generating unreviewed content. Every page goes through approval workflows with brand consistency checks before deployment</li>
+                <li class="reveal reveal-delay-2"><strong>Brand voice ingestion.</strong> Psyke scrapes your digital footprint, captures your brand kit, tone, messaging, and positioning. That context is applied consistently across every page generated</li>
+                <li class="reveal reveal-delay-3"><strong>Safe deployment via reverse proxy.</strong> Pages live on a subdomain connected to your existing site architecture. No CMS migration, no site risk, no developer dependency after initial setup</li>
+                <li class="reveal reveal-delay-4"><strong>Full visibility and accountability.</strong> Version control, audit trails, performance reporting, and monthly strategy calls. You see exactly what's deployed, what's performing, and what's next</li>
             </ul>
         </div>
     </div>
     <span class="slide-num">13 / 30</span>
 </section>
 
-<!-- SLIDE 14: Jeremy Slide -->
+<!-- SLIDE 14: Project Flow -->
 <section class="slide" id="slide-14">
     <div class="slide-split">
         <div class="split-left">
-            <span class="label reveal">Strategic</span>
-            <h2 class="reveal reveal-delay-1">Strategic Growth Audit</h2>
-            <h3 class="reveal reveal-delay-2" style="color: var(--psyke-purple);">Led by Jeremy Cabral</h3>
-            <p class="reveal reveal-delay-3" style="color: var(--text-muted);">Embedded growth operator, not an advisor.</p>
+            <span class="label reveal">Project Flow</span>
+            <h2 class="reveal reveal-delay-1">What the first month looks like</h2>
         </div>
-        <div class="split-right">
-            <ul class="narrative-points">
-                <li class="reveal reveal-delay-1"><strong>Deep audit of acquisition and funnel</strong> identifying where pipeline leaks and where high-value traffic is being lost</li>
-                <li class="reveal reveal-delay-2"><strong>Identification of growth constraints</strong> across organic, paid, and AI channels</li>
-                <li class="reveal reveal-delay-3"><strong>Alignment of Psyke with broader strategy</strong> so content infrastructure maps directly to revenue goals</li>
-                <li class="reveal reveal-delay-4"><strong>Recommendations beyond content:</strong> conversion, positioning, competitive gaps, and channel prioritisation</li>
-            </ul>
+        <div class="split-right" style="gap: clamp(0.3rem, 0.8vh, 0.6rem);">
+            <div class="phase-block reveal reveal-delay-1">
+                <span class="phase-label">Phase 1 &middot; Week 1</span>
+                <strong>Discovery & Scoping</strong>
+                <p>Onboarding and kickoff session. Subdomain created, reverse proxy configured. Audit and blueprint work begins across priority areas</p>
+            </div>
+            <div class="phase-block reveal reveal-delay-2">
+                <span class="phase-label">Phase 2 &middot; Weeks 2-3</span>
+                <strong>Strategy Alignment</strong>
+                <p>Comprehensive GEO audit completed. Strategy blueprints delivered. Authority page structures created for priority topics. First deployments prepared</p>
+            </div>
+            <div class="phase-block reveal reveal-delay-3">
+                <span class="phase-label">Phase 3 &middot; Week 4</span>
+                <strong>Implementation</strong>
+                <p>Authority pages published in your website architecture. Initial long-tail pages deployed across topic clusters. Indexing and monitoring begins</p>
+            </div>
+            <div class="phase-block reveal reveal-delay-4">
+                <span class="phase-label">Phase 4 &middot; Ongoing</span>
+                <strong>Management & Reporting</strong>
+                <p>Monthly deployment cycle activated. AI citation monitoring, traffic tracking, strategy calls, and continuous content expansion</p>
+            </div>
+            <div class="evidence reveal reveal-delay-4">
+                <strong>What we need from you:</strong> Create a subdomain + set up reverse proxy + GA4 and GSC access + 30-60 minute kickoff session
+            </div>
         </div>
     </div>
     <span class="slide-num">14 / 30</span>
 </section>
 
-<!-- SLIDE 15: The Plan -->
+<!-- SLIDE 15: Introduction to Jeremy -->
 <section class="slide" id="slide-15">
     <div class="slide-split">
         <div class="split-left">
-            <span class="label reveal">Timeline</span>
-            <h2 class="reveal reveal-delay-1">What the next 6-8 weeks looks like</h2>
+            <span class="label reveal">Strategic Advisor</span>
+            <h2 class="reveal reveal-delay-1">Introduction to Jeremy Cabral</h2>
+            <h3 class="reveal reveal-delay-2" style="color: var(--psyke-purple);">Co-founder of Finder</h3>
+            <p class="reveal reveal-delay-3" style="color: var(--text-muted);">Operator-led growth. Proven at scale.</p>
         </div>
-        <div class="split-right" style="gap: clamp(0.3rem, 0.8vh, 0.6rem);">
-            <div class="phase-block reveal reveal-delay-1">
-                <span class="phase-label">Phase 1 &middot; Week 1-2</span>
-                <strong>Audit</strong>
-                <p>Jeremy-led growth audit, market and competitor analysis, topic and structure mapping</p>
-            </div>
-            <div class="phase-block reveal reveal-delay-2">
-                <span class="phase-label">Phase 2 &middot; Week 3</span>
-                <strong>Strategy</strong>
-                <p>Blueprint creation, content architecture design, alignment with commercial goals</p>
-            </div>
-            <div class="phase-block reveal reveal-delay-3">
-                <span class="phase-label">Phase 3 &middot; Week 4-6</span>
-                <strong>Deployment</strong>
-                <p>Page generation and rollout, integration with smartgroup.com.au domain, schema implementation</p>
-            </div>
-            <div class="phase-block reveal reveal-delay-4">
-                <span class="phase-label">Phase 4 &middot; Ongoing</span>
-                <strong>Optimisation</strong>
-                <p>Performance tracking, AI citation monitoring, expansion into new topic clusters</p>
-            </div>
+        <div class="split-right">
+            <ul class="narrative-points">
+                <li class="reveal reveal-delay-1"><strong>Bootstrapped Finder to $100M+ revenue.</strong> Scaled across 20+ countries with 1,100+ team members. Built one of Australia's largest comparison platforms from zero</li>
+                <li class="reveal reveal-delay-2"><strong>Deep-dive growth audit</strong> across acquisition, conversion, retention, and revenue levers to identify highest-impact opportunities for SmartGroup</li>
+                <li class="reveal reveal-delay-3"><strong>Diagnose bottlenecks</strong> across product, operations, and go-to-market, with clear prioritisation of what to address first</li>
+                <li class="reveal reveal-delay-4"><strong>Ongoing advisory support</strong> to pressure-test decisions, accelerate execution, and drive sustainable growth. This is hands-on strategic guidance, not theory</li>
+            </ul>
         </div>
     </div>
     <span class="slide-num">15 / 30</span>
 </section>
 
-<!-- SLIDE 16: The Outcome -->
-<section class="slide" id="slide-16">
-    <div class="slide-split">
-        <div class="split-left">
-            <span class="label-lime label reveal">Outcome</span>
-            <h2 class="reveal reveal-delay-1">What success looks like</h2>
-        </div>
-        <div class="split-right">
-            <ul class="narrative-points">
-                <li class="reveal reveal-delay-1"><strong>Increased inbound pipeline</strong> from organic and AI-driven discovery across salary packaging, novated leasing, and fleet management</li>
-                <li class="reveal reveal-delay-2"><strong>Visibility in AI and Google</strong> for the queries that matter. Being cited, not just indexed</li>
-                <li class="reveal reveal-delay-3"><strong>Reduced reliance on paid channels.</strong> Organic infrastructure that compounds over time, lowering acquisition cost</li>
-                <li class="reveal reveal-delay-4"><strong>A scalable acquisition engine</strong> that grows with your service lines and geographic expansion</li>
-            </ul>
-        </div>
-    </div>
-    <span class="slide-num">16 / 30</span>
-</section>
-
-<!-- SLIDE 17: Next Steps -->
-<section class="slide slide-center" id="slide-17">
+<!-- SLIDE 16: Next Steps -->
+<section class="slide slide-center" id="slide-16">
     <div class="grid-bg"></div>
     <div class="content-wrap">
         <span class="label reveal">Next Steps</span>
@@ -901,61 +1044,65 @@ p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-seconda
             </div>
             <div class="priority-row reveal reveal-delay-2">
                 <span class="priority-num">2</span>
-                <span class="priority-text">Schedule Jeremy's strategic growth session</span>
+                <span class="priority-text">Introduction to Jeremy for strategic growth audit</span>
+            </div>
+            <div class="priority-row reveal reveal-delay-2">
+                <span class="priority-num">3</span>
+                <span class="priority-text">Audit delivery and strategy walkthrough</span>
             </div>
             <div class="priority-row reveal reveal-delay-3">
-                <span class="priority-num">3</span>
-                <span class="priority-text">Begin topic mapping across salary packaging, novated leasing, and fleet</span>
+                <span class="priority-num">4</span>
+                <span class="priority-text">Contracts and onboarding</span>
             </div>
             <div class="priority-row reveal reveal-delay-4">
-                <span class="priority-num">4</span>
-                <span class="priority-text">Agree kick-off timeline and pilot cluster</span>
+                <span class="priority-num">5</span>
+                <span class="priority-text">Go-live: subdomain, reverse proxy, first deployment</span>
             </div>
         </div>
     </div>
-    <span class="slide-num">17 / 30</span>
+    <span class="slide-num">16 / 30</span>
 </section>
 
 <!-- ============================================================
-     PART 2: SEO + GEO AUDIT (18-30)
+     PART 2: FULL TECHNICAL SEO & GEO AUDIT (Slides 17-30)
      ============================================================ -->
 
-<!-- SLIDE 18: Section Divider -->
-<section class="slide section-divider" id="slide-18">
+<!-- SLIDE 17: Section Divider -->
+<section class="slide section-divider" id="slide-17">
     <div class="glow-orb glow-purple" style="top: 20%; left: -10%"></div>
     <div class="glow-orb glow-lime" style="bottom: 20%; right: -5%"></div>
     <div class="content-wrap">
         <div class="divider-line reveal"></div>
-        <h1 class="reveal reveal-delay-1">SEO & GEO Audit</h1>
+        <h1 class="reveal reveal-delay-1">Technical SEO & GEO Audit</h1>
         <p class="reveal reveal-delay-2" style="font-size: var(--body-size); color: var(--text-secondary);">smartgroup.com.au</p>
         <p class="reveal reveal-delay-3" style="font-size: var(--small-size); color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.2em;">March 2026</p>
     </div>
-    <span class="slide-num">18 / 30</span>
+    <span class="slide-num">17 / 30</span>
 </section>
 
-<!-- SLIDE 19: Dual Score -->
-<section class="slide slide-center" id="slide-19">
+<!-- SLIDE 18: Dual Score -->
+<section class="slide slide-center" id="slide-18">
     <div class="content-wrap" style="gap: clamp(1rem, 3vh, 2.5rem);">
         <span class="label reveal">Overall Scores</span>
         <div class="dual-score reveal reveal-delay-1">
             <div class="score-block">
-                <div class="score-ring" style="--score-pct: 0.48">
+                <div class="score-ring" style="--score-pct: 0.44">
                     <svg viewBox="0 0 100 100">
                         <circle class="ring-bg" cx="50" cy="50" r="45"/>
                         <circle class="ring-fill" cx="50" cy="50" r="45"/>
                     </svg>
-                    <div class="score-number">48</div>
+                    <div class="score-number">44</div>
                 </div>
                 <span class="score-label-big" style="color: var(--psyke-purple);">SEO Health</span>
                 <span class="score-label">Poor</span>
             </div>
             <div class="score-block">
-                <div class="score-ring" style="--score-pct: 0.22">
+                <div class="score-ring" style="--score-pct: 0.18">
                     <svg viewBox="0 0 100 100">
                         <circle class="ring-bg" cx="50" cy="50" r="45"/>
                         <circle class="ring-fill ring-fill-lime" cx="50" cy="50" r="45"/>
                     </svg>
-                    <div class="score-number">22</div>
+                    <div class="score-number">18</div>
                 </div>
                 <span class="score-label-big" style="color: var(--psyke-lime);">GEO Readiness</span>
                 <span class="score-label">Invisible</span>
@@ -969,22 +1116,22 @@ p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-seconda
             </div>
             <div class="breakdown-item lime-border">
                 <span class="cat-name">AI Citability</span>
-                <span class="cat-score">11</span>
+                <span class="cat-score">8</span>
                 <span class="cat-max">out of 40</span>
             </div>
             <div class="breakdown-item">
                 <span class="cat-name">Technical SEO</span>
-                <span class="cat-score">9</span>
+                <span class="cat-score">8</span>
                 <span class="cat-max">out of 20</span>
             </div>
             <div class="breakdown-item lime-border">
                 <span class="cat-name">Content Architecture</span>
-                <span class="cat-score">5</span>
+                <span class="cat-score">4</span>
                 <span class="cat-max">out of 35</span>
             </div>
             <div class="breakdown-item">
                 <span class="cat-name">On-Page SEO</span>
-                <span class="cat-score">13</span>
+                <span class="cat-score">12</span>
                 <span class="cat-max">out of 25</span>
             </div>
             <div class="breakdown-item lime-border">
@@ -994,7 +1141,7 @@ p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-seconda
             </div>
             <div class="breakdown-item">
                 <span class="cat-name">Structured Data</span>
-                <span class="cat-score">5</span>
+                <span class="cat-score">3</span>
                 <span class="cat-max">out of 15</span>
             </div>
             <div class="breakdown-item">
@@ -1004,80 +1151,80 @@ p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-seconda
             </div>
         </div>
     </div>
-    <span class="slide-num">19 / 30</span>
+    <span class="slide-num">18 / 30</span>
 </section>
 
-<!-- SLIDE 20: What's Working -->
-<section class="slide" id="slide-20">
+<!-- SLIDE 19: What's Working -->
+<section class="slide" id="slide-19">
     <div class="slide-split">
         <div class="split-left">
-            <span class="label" style="color: var(--accent-positive);" class="reveal">Positives</span>
+            <span class="label" style="color: var(--accent-positive);">Positives</span>
             <h2 class="reveal reveal-delay-1">What's working</h2>
-            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">SmartGroup has solid foundations in several areas that provide a base to build from.</p>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">SmartGroup has foundations to build from.</p>
         </div>
         <div class="split-right">
             <ul class="findings">
                 <li class="reveal reveal-delay-1"><strong>Full HTTPS implementation</strong> with no mixed content detected across all crawled pages</li>
-                <li class="reveal reveal-delay-2"><strong>Clean robots.txt</strong> with proper directives and sitemap reference. No critical disallows blocking content</li>
-                <li class="reveal reveal-delay-3"><strong>BreadcrumbList schema</strong> correctly implemented on inner pages with valid @context and @type</li>
-                <li class="reveal reveal-delay-4"><strong>XML sitemap exists</strong> with 103 URLs, weekly change frequency, and priority values</li>
-            </ul>
-            <ul class="findings">
-                <li class="reveal reveal-delay-3"><strong>Responsive design</strong> with WebP image delivery and srcSet responsive images</li>
-                <li class="reveal reveal-delay-4"><strong>ASX-listed brand authority</strong> with documented history since 1999, industry awards, and established market position</li>
+                <li class="reveal reveal-delay-2"><strong>Clean robots.txt.</strong> Only blocks CMS admin (/EPiServer/CMS/) and utility paths. All AI crawlers (GPTBot, ClaudeBot, PerplexityBot) are allowed</li>
+                <li class="reveal reveal-delay-2"><strong>BreadcrumbList schema</strong> correctly implemented on all inner pages with valid @context and @type</li>
+                <li class="reveal reveal-delay-3"><strong>XML sitemap exists</strong> at /Sitemap.xml with 101 URLs, weekly change frequency, and priority values</li>
+                <li class="reveal reveal-delay-3"><strong>Responsive design</strong> with WebP image delivery, srcSet responsive images, and React hydration</li>
+                <li class="reveal reveal-delay-4"><strong>ASX-listed brand authority.</strong> 25+ years of market presence, industry awards, and established positioning across salary packaging, novated leasing, and fleet management</li>
             </ul>
         </div>
     </div>
-    <span class="slide-num">20 / 30</span>
+    <span class="slide-num">19 / 30</span>
 </section>
 
-<!-- SLIDE 21: Issue 1 - Missing Meta & OG Tags -->
-<section class="slide" id="slide-21">
+<!-- SLIDE 20: Issue 1 - JS Rendering + Missing Meta -->
+<section class="slide" id="slide-20">
     <div class="slide-split">
         <div class="split-left">
             <span class="badge badge-critical reveal">Critical</span>
-            <h2 class="reveal reveal-delay-1">Missing meta descriptions and Open Graph tags across all pages</h2>
-            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">Google and social platforms have no guided description for any SmartGroup page. AI systems lose a key context signal.</p>
+            <h2 class="reveal reveal-delay-1">JS-rendered meta tags and zero Open Graph across entire site</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">The React/Episerver frontend appears to inject meta descriptions and title tags via JavaScript. Social crawlers and many AI crawlers do not execute JS.</p>
         </div>
         <div class="split-right">
             <div class="evidence reveal reveal-delay-1">
                 <strong>Evidence:</strong><br>
-                Homepage: No meta description detected<br>
-                /what-we-do/salary-packaging/: No meta description<br>
-                /what-we-do/novated-leasing/: No meta description<br>
-                /what-we-do/fleet-management/: No meta description<br>
-                /about-us/: No meta description<br><br>
+                Homepage: No meta description visible to crawlers<br>
+                /salary-packaging/: No meta description in source<br>
+                /novated-leasing/: No meta description in source<br>
+                /fleet-management/: No meta description in source<br>
+                /about-us/: No meta description in source<br><br>
                 OG tags (og:title, og:description, og:image): Not present on any crawled page<br>
-                Twitter Card tags: Not present on any crawled page
+                Twitter Card tags: Not present on any crawled page<br><br>
+                Social Score: 0/10. Every link shared on LinkedIn or Facebook produces an uncontrolled preview.
             </div>
             <div class="fix-box reveal reveal-delay-2">
                 <span class="fix-icon">+</span>
                 <div>
                     <strong>Fix</strong>
-                    <p>Add unique, keyword-rich meta descriptions (120-160 chars) to every page. Add og:title, og:description, og:image, og:url to all pages. Add twitter:card and twitter:title tags. Start with the 5 core service and landing pages.</p>
+                    <p>Server-side render all meta tags. Add unique meta descriptions (120-160 chars) to every page. Add og:title, og:description, og:image, og:url to all pages. Add twitter:card tags. Start with the 5 core service pages.</p>
                 </div>
             </div>
         </div>
     </div>
-    <span class="slide-num">21 / 30</span>
+    <span class="slide-num">20 / 30</span>
 </section>
 
-<!-- SLIDE 22: Issue 2 - No Organization Schema -->
-<section class="slide" id="slide-22">
+<!-- SLIDE 21: Issue 2 - No Organization Schema -->
+<section class="slide" id="slide-21">
     <div class="slide-split">
         <div class="split-left">
-            <span class="badge badge-high reveal">High</span>
-            <h2 class="reveal reveal-delay-1">No Organization schema or service-level structured data</h2>
-            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">AI systems can't confidently identify what SmartGroup does, who they serve, or how to cite them.</p>
+            <span class="badge badge-critical reveal">Critical</span>
+            <h2 class="reveal reveal-delay-1">No Organization schema, no Service schema, no FAQ markup</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">Schema score: 1 out of 10. Only BreadcrumbList exists. For an ASX-listed company, this is a significant gap.</p>
         </div>
         <div class="split-right">
             <div class="evidence reveal reveal-delay-1">
                 <strong>Evidence:</strong><br>
-                Homepage JSON-LD: None (only GTM and Application Insights tracking)<br>
-                No Organization schema with name, logo, URL, contactPoint, or sameAs<br>
+                Homepage JSON-LD: None (only GTM and Application Insights)<br>
+                No Organization schema with name, logo, URL, contactPoint<br>
                 No Service schema on /salary-packaging/, /novated-leasing/, /fleet-management/<br>
-                No FAQPage schema on any page<br>
-                Only structured data found: BreadcrumbList on inner pages<br><br>
+                No FAQPage schema on any page (despite FAQ-ready content)<br>
+                No LocalBusiness or ContactPoint on /contact-us/<br>
+                No WebSite schema on homepage<br><br>
                 Brand confusion: "SmartGroup", "Smart", "Smartsalary" used interchangeably without entity clarity
             </div>
             <div class="fix-box reveal reveal-delay-2">
@@ -1089,32 +1236,65 @@ p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-seconda
             </div>
         </div>
     </div>
-    <span class="slide-num">22 / 30</span>
+    <span class="slide-num">21 / 30</span>
 </section>
 
-<!-- SLIDE 23: Issue 3 - Broken H1 Hierarchy -->
-<section class="slide" id="slide-23">
+<!-- SLIDE 22: Issue 3 - Broken H1 & Heading Hierarchy -->
+<section class="slide" id="slide-22">
     <div class="slide-split">
         <div class="split-left">
             <span class="badge badge-high reveal">High</span>
-            <h2 class="reveal reveal-delay-1">Missing and broken heading hierarchy across key pages</h2>
-            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">Search engines and AI systems use heading structure to understand page topics. Broken hierarchy undermines this.</p>
+            <h2 class="reveal reveal-delay-1">Missing H1 tags and broken heading hierarchy across key pages</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">AI systems use heading structure as contextual anchors. Broken hierarchy makes content harder to parse and retrieve.</p>
         </div>
         <div class="split-right">
             <div class="evidence reveal reveal-delay-1">
                 <strong>Evidence:</strong><br>
-                Homepage: No H1 tag. Uses H2 for "Hello Smart" (not keyword-relevant)<br>
-                /salary-packaging/: No H1 or H2. Jumps straight to H3 and H6 tags<br>
-                /novated-leasing/: H1 present but skips H2, jumps to H3<br>
-                /fleet-management/: No clear H1 detected. Uses H3 and H6<br>
-                /about-us/: H1 present ("About Us") but thin hierarchy below<br><br>
-                H6 tags used for content subheadings on salary packaging page (should be H2/H3)
+                Homepage: No H1 tag. Uses "Hello Smart" as H2 (branding, not keyword-targeted)<br>
+                /novated-leasing/: H1 present but skips H2 entirely, jumps to H3<br>
+                /fleet-management/: H1 present but thin hierarchy below<br>
+                /who-we-help/: H1 present, but jumps H1 &rarr; H3 &rarr; H5 (skips H2 and H4)<br><br>
+                Homepage content: ~400-500 words (very thin for an ASX-listed company homepage)<br>
+                /novated-leasing/: ~400-450 words (their #1 commercial keyword)
             </div>
             <div class="fix-box reveal reveal-delay-2">
                 <span class="fix-icon">+</span>
                 <div>
                     <strong>Fix</strong>
-                    <p>Add keyword-rich H1 to homepage (e.g. "Salary Packaging & Novated Leasing for Australian Employers"). Fix salary packaging page: add H1, convert H6s to H3s. Ensure clean H1 &rarr; H2 &rarr; H3 nesting on all pages.</p>
+                    <p>Add keyword-rich H1 to homepage. Fix novated leasing page hierarchy (H1 &rarr; H2 &rarr; H3). Fix /who-we-help/ heading levels. Ensure every page follows H1 &rarr; H2 &rarr; H3 nesting with keyword-relevant headings.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <span class="slide-num">22 / 30</span>
+</section>
+
+<!-- SLIDE 23: Issue 4 - Thin Content + No FAQs -->
+<section class="slide" id="slide-23">
+    <div class="slide-split">
+        <div class="split-left">
+            <span class="badge badge-high reveal">High</span>
+            <h2 class="reveal reveal-delay-1">Thin service pages and zero informational content</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">Average content per core page: ~450 words. Top-ranking competitor pages have 2,000-4,000 words with FAQs and calculators.</p>
+        </div>
+        <div class="split-right">
+            <div class="evidence reveal reveal-delay-1">
+                <strong>Page word counts:</strong><br>
+                Homepage: ~400-500 words<br>
+                /salary-packaging/: ~750-900 words<br>
+                /novated-leasing/: ~400-450 words<br>
+                /fleet-management/: ~400-500 words<br>
+                /about-us/: ~450-500 words<br>
+                /who-we-help/: ~300-400 words<br><br>
+                Zero: buying guides, comparison pages, calculators, "how it works" articles, FAQ sections<br>
+                No salary packaging or novated lease calculator (competitors have these)<br>
+                No EV content on fleet or novated pages (fastest growing search trend in category)
+            </div>
+            <div class="fix-box reveal reveal-delay-2">
+                <span class="fix-icon">+</span>
+                <div>
+                    <strong>Fix</strong>
+                    <p>Expand core service pages to 1,500+ words. Add FAQ sections with FAQPage schema. Build informational content hub. Deploy Psyke content clusters targeting long-tail queries across all service lines.</p>
                 </div>
             </div>
         </div>
@@ -1122,90 +1302,128 @@ p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-seconda
     <span class="slide-num">23 / 30</span>
 </section>
 
-<!-- SLIDE 24: Issue 4 - Thin Content & No FAQs -->
-<section class="slide" id="slide-24">
-    <div class="slide-split">
-        <div class="split-left">
-            <span class="badge badge-medium reveal">Medium</span>
-            <h2 class="reveal reveal-delay-1">Thin service pages and zero informational content</h2>
-            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">Service pages lack the depth needed to rank or be cited. No guides, comparisons, or FAQ content exists.</p>
-        </div>
-        <div class="split-right">
-            <div class="evidence reveal reveal-delay-1">
-                <strong>Evidence:</strong><br>
-                /fleet-management/: ~220 words (too thin for a primary service page)<br>
-                /novated-leasing/: ~350 words (light for a competitive keyword)<br>
-                /salary-packaging/: ~800 words (adequate but no FAQ section)<br>
-                Homepage: No content hub or blog linked from main navigation<br>
-                News section exists but contains announcements, not keyword-targeted content<br><br>
-                Zero: buying guides, comparison pages, calculators, "how to" articles, or FAQ schema
+<!-- SLIDE 24: GEO Gap -->
+<section class="slide slide-center" id="slide-24">
+    <div class="grid-bg"></div>
+    <div class="content-wrap" style="gap: clamp(0.8rem, 2vh, 1.5rem);">
+        <span class="label-lime label reveal">GEO Gap</span>
+        <h2 class="reveal reveal-delay-1" style="font-size: clamp(1.5rem, 4vw, 3rem);">SmartGroup is <span style="color: var(--accent-critical);">invisible</span> to AI search</h2>
+        <p class="reveal reveal-delay-2" style="max-width: 650px;">GEO Readiness Score: 2 out of 10. The site is fully crawlable by AI systems but provides almost nothing for them to cite, reference, or use in generated answers.</p>
+        <div class="stat-grid reveal reveal-delay-3" style="width: 100%; max-width: 600px; text-align: left;">
+            <div class="stat-card critical">
+                <p style="color: var(--text-primary); font-weight: 600;">Structured data</p>
+                <p>BreadcrumbList only. No Organization, Service, FAQPage, LocalBusiness, or WebSite schema</p>
             </div>
-            <div class="fix-box reveal reveal-delay-2">
-                <span class="fix-icon">+</span>
-                <div>
-                    <strong>Fix</strong>
-                    <p>Expand fleet management and novated leasing pages to 1,500+ words. Add FAQ sections with FAQPage schema to all service pages. Build informational content hub targeting "how does novated leasing work", "salary packaging benefits by industry", "novated lease vs car loan".</p>
-                </div>
+            <div class="stat-card critical">
+                <p style="color: var(--text-primary); font-weight: 600;">Entity definitions</p>
+                <p>No "What is X?" content with schema. No clear entity for AI to identify and cite</p>
+            </div>
+            <div class="stat-card critical">
+                <p style="color: var(--text-primary); font-weight: 600;">Topical authority</p>
+                <p>No content clusters, no blog/resource hub, no long-tail coverage. 65+ news articles exist but are orphaned</p>
+            </div>
+            <div class="stat-card critical">
+                <p style="color: var(--text-primary); font-weight: 600;">Comparison content</p>
+                <p>Zero "vs" pages, zero buyer guides, zero calculators. These are the content types AI systems retrieve and cite most often</p>
             </div>
         </div>
     </div>
     <span class="slide-num">24 / 30</span>
 </section>
 
-<!-- SLIDE 25: GEO Gap -->
-<section class="slide slide-center" id="slide-25">
-    <div class="grid-bg"></div>
-    <div class="content-wrap" style="gap: clamp(0.8rem, 2vh, 1.5rem);">
-        <span class="label-lime label reveal">GEO Gap</span>
-        <h2 class="reveal reveal-delay-1" style="font-size: clamp(1.5rem, 4vw, 3rem);">SmartGroup is <span style="color: var(--accent-critical);">invisible</span> to AI search engines</h2>
-        <p class="reveal reveal-delay-2" style="max-width: 650px;">When buyers ask ChatGPT, Perplexity, or Claude about salary packaging and novated leasing in Australia, SmartGroup is not cited. Competitors like Maxxia, SG Fleet, and Eziway own this space.</p>
-        <div class="keyword-badges reveal reveal-delay-3">
-            <span class="keyword-badge">best salary packaging provider Australia</span>
-            <span class="keyword-badge">how does novated leasing work</span>
-            <span class="keyword-badge">salary packaging for healthcare workers</span>
-            <span class="keyword-badge">novated lease vs car loan</span>
-            <span class="keyword-badge">fleet management companies Australia</span>
-            <span class="keyword-badge">salary packaging calculator</span>
-            <span class="keyword-badge">employee benefits provider comparison</span>
-            <span class="keyword-badge">FBT salary packaging explained</span>
+<!-- SLIDE 25: AI Visibility Test (Detailed) -->
+<section class="slide" id="slide-25">
+    <div class="slide-split">
+        <div class="split-left">
+            <span class="label-lime label reveal">Citation Analysis</span>
+            <h2 class="reveal reveal-delay-1">Who AI is citing instead of SmartGroup</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">Across ChatGPT, Perplexity, Claude, and Google AI Overviews, these brands consistently appear where SmartGroup does not.</p>
         </div>
-        <p class="reveal reveal-delay-4" style="font-size: var(--small-size); color: var(--text-muted);">Queries above represent high-intent searches where SmartGroup has zero AI presence</p>
+        <div class="split-right">
+            <div class="competitor-grid reveal reveal-delay-1">
+                <div class="competitor-row header">
+                    <span class="competitor-cell">Query Category</span>
+                    <span class="competitor-cell">SmartGroup</span>
+                    <span class="competitor-cell">Maxxia</span>
+                    <span class="competitor-cell">Paywise</span>
+                    <span class="competitor-cell">Others</span>
+                </div>
+                <div class="competitor-row">
+                    <span class="competitor-cell">Salary packaging</span>
+                    <span class="competitor-cell" style="color: var(--accent-critical);">Absent</span>
+                    <span class="competitor-cell" style="color: var(--accent-positive);">Cited</span>
+                    <span class="competitor-cell" style="color: var(--accent-positive);">Cited</span>
+                    <span class="competitor-cell">RemServ, CBB</span>
+                </div>
+                <div class="competitor-row">
+                    <span class="competitor-cell">Novated leasing</span>
+                    <span class="competitor-cell" style="color: var(--accent-critical);">Absent</span>
+                    <span class="competitor-cell" style="color: var(--accent-positive);">Cited</span>
+                    <span class="competitor-cell" style="color: var(--accent-medium);">Partial</span>
+                    <span class="competitor-cell">SG Fleet, Eziway</span>
+                </div>
+                <div class="competitor-row">
+                    <span class="competitor-cell">EV / electric vehicles</span>
+                    <span class="competitor-cell" style="color: var(--accent-critical);">Absent</span>
+                    <span class="competitor-cell" style="color: var(--accent-positive);">Cited</span>
+                    <span class="competitor-cell" style="color: var(--accent-critical);">Absent</span>
+                    <span class="competitor-cell">Toyota Fleet, SG Fleet</span>
+                </div>
+                <div class="competitor-row">
+                    <span class="competitor-cell">Fleet management</span>
+                    <span class="competitor-cell" style="color: var(--accent-critical);">Absent</span>
+                    <span class="competitor-cell" style="color: var(--accent-medium);">Partial</span>
+                    <span class="competitor-cell" style="color: var(--accent-critical);">N/A</span>
+                    <span class="competitor-cell">SG Fleet, LeasePlan</span>
+                </div>
+                <div class="competitor-row">
+                    <span class="competitor-cell">NFP / healthcare</span>
+                    <span class="competitor-cell" style="color: var(--accent-critical);">Absent</span>
+                    <span class="competitor-cell" style="color: var(--accent-positive);">Cited</span>
+                    <span class="competitor-cell" style="color: var(--accent-medium);">Partial</span>
+                    <span class="competitor-cell">RemServ</span>
+                </div>
+                <div class="competitor-row">
+                    <span class="competitor-cell">Employee benefits</span>
+                    <span class="competitor-cell" style="color: var(--accent-critical);">Absent</span>
+                    <span class="competitor-cell" style="color: var(--accent-positive);">Cited</span>
+                    <span class="competitor-cell" style="color: var(--accent-critical);">Absent</span>
+                    <span class="competitor-cell">Emp. Hero, Flare</span>
+                </div>
+            </div>
+            <div class="evidence reveal reveal-delay-2">
+                SmartGroup is absent from 100% of tested AI queries. Third-party sites and competitors with structured content own every category.
+            </div>
+        </div>
     </div>
     <span class="slide-num">25 / 30</span>
 </section>
 
-<!-- SLIDE 26: AI Visibility Test -->
+<!-- SLIDE 26: Content Gap / Keyword Benchmark -->
 <section class="slide" id="slide-26">
     <div class="slide-split">
         <div class="split-left">
-            <span class="label-lime label reveal">AI Visibility</span>
-            <h2 class="reveal reveal-delay-1">We tested 6 queries across AI platforms</h2>
-            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">SmartGroup was absent from all AI-generated responses. Competitors are consistently cited.</p>
+            <span class="label reveal">Content Gaps</span>
+            <h2 class="reveal reveal-delay-1">Where competitors rank and SmartGroup does not</h2>
+            <p class="reveal reveal-delay-2" style="color: var(--text-muted);">No content = no AI citations. These are the queries driving buyer decisions in your space.</p>
         </div>
-        <div class="split-right" style="gap: clamp(0.3rem, 0.6vh, 0.5rem);">
-            <div class="ai-query-card reveal reveal-delay-1">
-                <span class="query">"Best salary packaging provider Australia"</span>
-                <span class="result"><span class="absent">SmartGroup: Not cited.</span> Maxxia, Eziway, Paywise, CBB, and SG Fleet cited instead</span>
+        <div class="split-right">
+            <div class="keyword-badges reveal reveal-delay-1" style="justify-content: flex-start;">
+                <span class="keyword-badge">how does salary packaging work</span>
+                <span class="keyword-badge">salary packaging calculator</span>
+                <span class="keyword-badge">salary packaging for healthcare workers</span>
+                <span class="keyword-badge">novated lease vs car loan</span>
+                <span class="keyword-badge">EV novated lease calculator</span>
+                <span class="keyword-badge">best salary packaging provider comparison</span>
+                <span class="keyword-badge">FBT salary packaging explained</span>
+                <span class="keyword-badge">novated lease pros and cons</span>
+                <span class="keyword-badge">fleet management software Australia</span>
+                <span class="keyword-badge">salary packaging benefits by industry</span>
+                <span class="keyword-badge">how to set up salary packaging for employees</span>
+                <span class="keyword-badge">novated lease for electric cars 2026</span>
             </div>
-            <div class="ai-query-card reveal reveal-delay-1">
-                <span class="query">"How does novated leasing work in Australia"</span>
-                <span class="result"><span class="absent">SmartGroup: Not cited.</span> SG Fleet, NovatedLeaseAustralia, CommBank, Toyota Fleet, Canstar cited</span>
-            </div>
-            <div class="ai-query-card reveal reveal-delay-2">
-                <span class="query">"Salary packaging for hospital workers"</span>
-                <span class="result"><span class="absent">SmartGroup: Not cited.</span> Maxxia and RemServ dominate healthcare-specific queries</span>
-            </div>
-            <div class="ai-query-card reveal reveal-delay-2">
-                <span class="query">"SmartGroup vs Maxxia salary packaging"</span>
-                <span class="result"><span class="absent">SmartGroup: No owned content.</span> Third-party review sites and comparison pages cited</span>
-            </div>
-            <div class="ai-query-card reveal reveal-delay-3">
-                <span class="query">"Fleet management companies Australia"</span>
-                <span class="result"><span class="absent">SmartGroup: Not cited.</span> SG Fleet, LeasePlan, and Custom Fleet cited</span>
-            </div>
-            <div class="ai-query-card reveal reveal-delay-3">
-                <span class="query">"What is salary packaging and how does it work"</span>
-                <span class="result"><span class="absent">SmartGroup: Not cited.</span> Maxxia, ATO.gov.au, and Paywise cited</span>
+            <div class="evidence reveal reveal-delay-2">
+                <strong>Competitors winning these queries:</strong> Maxxia has comprehensive FAQ pages, salary packaging calculators, and industry-specific landing pages. Employment Hero publishes regular guides and comparison content. SG Fleet has detailed EV content and fleet management resources. SmartGroup has none of this.
             </div>
         </div>
     </div>
@@ -1223,7 +1441,7 @@ p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-seconda
             <div class="priority-list">
                 <div class="priority-row reveal reveal-delay-1">
                     <span class="priority-num">1</span>
-                    <span class="priority-text">Add unique meta descriptions to all 5 core service pages</span>
+                    <span class="priority-text">Server-side render all meta tags. Add unique meta descriptions to all core service pages</span>
                 </div>
                 <div class="priority-row reveal reveal-delay-1">
                     <span class="priority-num">2</span>
@@ -1231,7 +1449,7 @@ p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-seconda
                 </div>
                 <div class="priority-row reveal reveal-delay-2">
                     <span class="priority-num">3</span>
-                    <span class="priority-text">Fix missing H1 on homepage and salary packaging page</span>
+                    <span class="priority-text">Fix missing H1 on homepage. Add keyword-targeted heading</span>
                 </div>
                 <div class="priority-row reveal reveal-delay-2">
                     <span class="priority-num">4</span>
@@ -1239,19 +1457,19 @@ p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-seconda
                 </div>
                 <div class="priority-row reveal reveal-delay-3">
                     <span class="priority-num">5</span>
-                    <span class="priority-text">Fix heading hierarchy on salary packaging page (H6 &rarr; H3)</span>
+                    <span class="priority-text">Fix heading hierarchy on novated leasing and who-we-help pages</span>
                 </div>
                 <div class="priority-row reveal reveal-delay-3">
                     <span class="priority-num">6</span>
-                    <span class="priority-text">Fix sitemap.xml future-dated entries (2026-02-11 timestamps)</span>
+                    <span class="priority-text">Add LocalBusiness and ContactPoint schema to /contact-us/</span>
                 </div>
                 <div class="priority-row reveal reveal-delay-4">
                     <span class="priority-num">7</span>
-                    <span class="priority-text">Set up 301 redirects from /novated-leasing/ to /what-we-do/novated-leasing/ (and other short paths returning 404)</span>
+                    <span class="priority-text">Fix sitemap priorities (search-results at 0.9 should be noindex, core pages should be higher)</span>
                 </div>
                 <div class="priority-row reveal reveal-delay-4">
                     <span class="priority-num">8</span>
-                    <span class="priority-text">Resolve brand naming inconsistency between SmartGroup, Smart, and Smartsalary in NAP data</span>
+                    <span class="priority-text">Resolve brand naming inconsistency: SmartGroup vs Smart vs Smartsalary across site and NAP data</span>
                 </div>
             </div>
         </div>
@@ -1274,22 +1492,26 @@ p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-seconda
                 </div>
                 <div class="priority-row reveal reveal-delay-1">
                     <span class="priority-num">2</span>
-                    <span class="priority-text">Expand fleet management page from 220 to 1,500+ words with detailed service descriptions, use cases, and benefits</span>
+                    <span class="priority-text">Expand novated leasing page from 400 to 1,500+ words with detailed how-it-works, benefits, EV section, and FAQ</span>
                 </div>
                 <div class="priority-row reveal reveal-delay-2">
                     <span class="priority-num">3</span>
-                    <span class="priority-text">Create content hub targeting long-tail queries: "how novated leasing works", "salary packaging by industry", "novated lease vs car loan"</span>
+                    <span class="priority-text">Create dedicated EV novated leasing landing page targeting the fastest-growing search category</span>
                 </div>
                 <div class="priority-row reveal reveal-delay-2">
                     <span class="priority-num">4</span>
-                    <span class="priority-text">Add Service schema to each service page with clear provider, areaServed, and serviceType properties</span>
+                    <span class="priority-text">Add Service schema to each service page with provider, areaServed, and serviceType properties</span>
                 </div>
                 <div class="priority-row reveal reveal-delay-3">
                     <span class="priority-num">5</span>
-                    <span class="priority-text">Deploy Psyke content cluster targeting "salary packaging" topic with 100+ long-tail pages on smartgroup.com.au</span>
+                    <span class="priority-text">Build content hub targeting long-tail queries: "how novated leasing works", "salary packaging by industry", "novated lease vs car loan"</span>
+                </div>
+                <div class="priority-row reveal reveal-delay-3">
+                    <span class="priority-num">6</span>
+                    <span class="priority-text">Deploy Psyke content cluster targeting "salary packaging" with 100+ structured long-tail pages on smartgroup.com.au</span>
                 </div>
                 <div class="priority-row reveal reveal-delay-4">
-                    <span class="priority-num">6</span>
+                    <span class="priority-num">7</span>
                     <span class="priority-text">Begin AI citation tracking across ChatGPT, Perplexity, and Google AI Overviews for core service queries</span>
                 </div>
             </div>
@@ -1298,21 +1520,21 @@ p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-seconda
     <span class="slide-num">28 / 30</span>
 </section>
 
-<!-- SLIDE 29: How Psyke Helps -->
+<!-- SLIDE 29: How Psyke Closes These Gaps -->
 <section class="slide slide-center" id="slide-29">
     <div class="grid-bg"></div>
     <div class="content-wrap" style="gap: clamp(0.8rem, 2vh, 1.5rem);">
         <span class="label reveal">Solution</span>
         <h2 class="reveal reveal-delay-1 psyke-cta" style="font-size: clamp(1.5rem, 4vw, 3rem);">How Psyke closes these gaps</h2>
         <ul class="narrative-points reveal reveal-delay-2" style="text-align: left; max-width: 600px;">
-            <li><strong>Scalable content infrastructure</strong> that generates 100-200 pages per topic cluster, targeting the long-tail queries SmartGroup currently misses</li>
+            <li><strong>Scalable content infrastructure</strong> generating 100-200 pages per topic cluster, targeting the long-tail queries SmartGroup currently misses entirely</li>
             <li><strong>Full schema and structured data implementation</strong> including Organization, Service, FAQPage, and BreadcrumbList across all pages</li>
-            <li><strong>AI-ready content architecture</strong> built for citation by ChatGPT, Perplexity, and Google AI Overviews</li>
-            <li><strong>Competitive positioning</strong> to close the gap with Maxxia, SG Fleet, and other providers dominating AI search results</li>
+            <li><strong>AI-ready content architecture</strong> built for citation by ChatGPT, Perplexity, Claude, and Google AI Overviews</li>
+            <li><strong>Competitive positioning</strong> to close the gap with Maxxia, Paywise, and Employment Hero who are currently dominating AI search results</li>
         </ul>
         <div class="reveal reveal-delay-3" style="margin-top: clamp(0.5rem, 1vh, 1rem);">
-            <p style="font-size: var(--body-size); color: var(--psyke-purple); font-weight: 600;">Book a Discovery Call</p>
-            <p style="font-size: var(--small-size); color: var(--text-muted);">psyke.co &middot; hello@psyke.co</p>
+            <p style="font-size: var(--body-size); color: var(--psyke-purple); font-weight: 600;">adam@psyke.co &middot; 0484 333 432</p>
+            <p style="font-size: var(--small-size); color: var(--text-muted);">psyke.co</p>
         </div>
     </div>
     <span class="slide-num">29 / 30</span>
@@ -1325,27 +1547,27 @@ p, li { font-size: var(--body-size); line-height: 1.6; color: var(--text-seconda
     <div class="content-wrap" style="gap: clamp(1rem, 2.5vh, 2rem);">
         <div class="dual-score reveal">
             <div class="score-block">
-                <div class="score-ring" style="--score-pct: 0.48">
+                <div class="score-ring" style="--score-pct: 0.44">
                     <svg viewBox="0 0 100 100">
                         <circle class="ring-bg" cx="50" cy="50" r="45"/>
                         <circle class="ring-fill" cx="50" cy="50" r="45"/>
                     </svg>
-                    <div class="score-number">48</div>
+                    <div class="score-number">44</div>
                 </div>
                 <span class="score-label-big" style="color: var(--psyke-purple);">SEO Health</span>
             </div>
             <div class="score-block">
-                <div class="score-ring" style="--score-pct: 0.22">
+                <div class="score-ring" style="--score-pct: 0.18">
                     <svg viewBox="0 0 100 100">
                         <circle class="ring-bg" cx="50" cy="50" r="45"/>
                         <circle class="ring-fill ring-fill-lime" cx="50" cy="50" r="45"/>
                     </svg>
-                    <div class="score-number">22</div>
+                    <div class="score-number">18</div>
                 </div>
                 <span class="score-label-big" style="color: var(--psyke-lime);">GEO Readiness</span>
             </div>
         </div>
-        <p class="reveal reveal-delay-1" style="max-width: 550px; font-size: var(--body-size);">SmartGroup has enterprise brand authority but lacks the content infrastructure to convert that into organic and AI-driven visibility. The gap is structural, and the fix is systematic.</p>
+        <p class="reveal reveal-delay-1" style="max-width: 550px; font-size: var(--body-size);">SmartGroup has the brand authority, market position, and customer base to dominate AI-driven discovery. The gap is content infrastructure, not brand strength. The fix is systematic, and the window is now.</p>
         <div class="reveal reveal-delay-2" style="display: flex; flex-direction: column; gap: 4px; align-items: center;">
             <p style="font-size: var(--small-size); color: var(--text-muted);">smartgroup.com.au</p>
             <p style="font-size: var(--small-size); color: var(--text-dim);">Prepared by Psyke &middot; March 2026</p>
